@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SSIT Dashboard  </title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            :root {
+            --sidebar-bg: #111927;
+            --sidebar-hover: #1f2937;
+            --sidebar-active: #2d3748;
+            --sidebar-text: #9ca3af;
+            --body-bg: #90a6cade;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --blue-btn: #0066ff;
+            --blue-btn-hover: #0052cc;
+            }
+            body {
+                display: flex;
+                background-color: #b8c7df;
+                color: #333;
+                min-height: 100vh;
+                margin: 0px;
+            }
+
+            /* --- SIDEBAR --- */
+            .sidebar {
+                width: 240px;
+                background-color: #111927;
+                color: #1a1e20;
+                display: flex;
+                flex-direction: column;
+                padding: 35px 0px;
+               }
+
+            .brand {
+                color: #f1e6e6;
+                font-weight: bold;
+                font-size: 1.1rem;
+                padding: 0 20px 30px 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .sidebar-menu {
+                list-style: none;
+                
+            }
+
+            .sidebar-menu li a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 15px 15px;
+                color: #a0aec0;
+                text-decoration: none;
+                font-size: 0.15 rem;
+                transition: all 0.2s ease;
+            }
+
+            .sidebar-menu li.active a,
+            .sidebar-menu li a:hover {
+                background-color: #111927;
+                color: #ffffff;
+            }
+
+            .menu-category {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                padding: 20px 20px 8px 20px;
+                color: #58687a;
+            }
+
+            /* --- MAIN CONTENT --- */
+            .main-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Top Navbar */
+            .navbar {
+                height: 60px;
+                background-color: #ffffff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 30px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .navbar .breadcrumbs {
+                font-size: 0.9rem;
+                color: #718096;
+            }
+
+            .user-profile {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 0.9rem;
+                color: #070707;
+            }
+
+            .avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: #c1d0e0;
+            }
+
+            /* Dashboard Layout */
+            .dashboard-container {
+                padding: 15px 15px;
+            }
+
+            .page-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #1a202c;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+            }
+
+            /* Metrics Grid */
+            .metrics-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                margin-bottom: 25px;
+            }
+
+            .metric-card {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 18px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+            }
+
+            .metric-info label {
+                font-size: 0.85rem;
+                color: #4a5568;
+                font-weight: 600;
+                display: block;
+                margin-bottom: 6px;
+            }
+
+            .metric-info .value {
+                font-size: 1.6rem;
+                font-weight: bold;
+                color: #1a202c;
+            }
+
+            .metric-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                background-color: #cbd5db;
+                color: #3c72a8;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3rem;
+            }
+
+            /* Content Grid */
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: 2fr 1.3fr;
+                gap: 20px;
+            }
+
+            .panel {
+                background: #f3f1f1;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                margin-bottom: 20px;
+            }
+
+            .panel-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+            .panel-title {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #000000;
+                text-transform: uppercase;
+            }
+
+            /* Timetable Table */
+            .timetable-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.8rem;
+            }
+
+            .timetable-table th,
+            .timetable-table td {
+                border: 1px solid #000000;
+                padding: 8px;
+                text-align: center;
+            }
+
+            .timetable-table th {
+                background-color: #94a8b8;
+                color: #070707;
+                font-weight: 600;
+            }
+
+            .event-chip {
+                border-radius: 4px;
+                padding: 6px 8px;
+                text-align: left;
+                font-size: 0.75rem;
+                margin-bottom: 4px;
+            }
+
+            .purple-chip {
+                background-color: #cab1e7;
+                color: #553c9a;
+            }
+
+            .green-chip {
+                background-color: #b3dbbf;
+                color: #22543d;
+            }
+
+            .yellow-chip {
+                background-color: #eee76c;
+                color: #744210;
+            }
+
+            .red-chip {
+                background-color: #e69f9f;
+                color: #742a2a;
+            }
+
+            /* Compliance Progress Bars */
+            .progress-group {
+                margin-bottom: 12px;
+                font-size: 0.85rem;
+            }
+
+            .progress-label {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 4px;
+                font-weight: 600;
+                color: #4a5568;
+            }
+
+            .progress-bar {
+                height: 8px;
+                border-radius: 4px;
+                background-color: #141414;
+                overflow: hidden;
+            }
+
+            .progress-fill {
+                height: 100%;
+                border-radius: 4px;
+            }
+
+            /* List items */
+            .status-list,
+            .alert-list {
+                list-style: none;
+                font-size: 0.85rem;
+            }
+
+            .status-list li,
+            .alert-list li {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #000000;
+            }
+
+            .alert-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .badge-icon {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: auto;
+                padding: 15px 30px;
+                font-size: 0.8rem;
+                color: #363f4d;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            
+            <div class="brand">🎓 SSIT CMS</div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"> Dashboard </a></li>
+                <li><a href="#"> Timetable View</a></li>
+                <li><a href="#"> Faculty Manager</a></li>
+                <li><a href="#"> Room Allocation</a></li>
+                <li><a href="#"> Attendance Portal</a></li>
+                <li><a href="#"> Reports</a></li>
+                <li><a href="#"> Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- Top Navbar -->
+            <header class="navbar">
+                <div class="breadcrumbs">Dashboard</div>
+                <div class="user-profile">
+                <div class="avatar"></div>
+                    <span><strong>Admin User</strong> ▾</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-container">
+                <h1 class="page-title">Dashboard Overview</h1>
+
+                <!-- Top 4 Metric Cards -->
+                <section class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <label>Total Faculty:</label>
+                            <div class="value">145</div>
+                        </div>
+                        <div class="metric-icon">👥</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <label>Active Classes:</label>
+                            <div class="value">88</div>
+                        </div>
+                        <div class="metric-icon">💻</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <label>Rooms Occupied:</label>
+                            <div class="value">34/50 <span style="font-size:0.9rem; font-weight:normal;">(68%)</span>
+                            </div>
+                        </div>
+                        <div class="metric-icon">🧪</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <label>Daily Workload Ave:</label>
+                            <div class="value">3.8 hrs</div>
+                        </div>
+                        <div class="metric-icon">🕒</div>
+                    </div>
+                </section>
+
+                <!-- Main Section Grid -->
+                <div class="dashboard-grid">
+
+                    <!-- Left Side: Timetable -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">Upcoming Timetable: CS Department</div>
+                            <div><button style="padding:3px 8px; font-size:0.8rem;">Today</button></div>
+                        </div>
+
+                        <table class="timetable-table">
+                            <thead>
+                                <tr>
+                                    <th>day</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>23 Nov</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="event-chip purple-chip">Dr. ...<br>Prof.</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>15 Nov</td>
+                                    <td>
+                                        <div class="event-chip purple-chip">CS202A<br>Prof. Sharma</div>
+                                    </td>
+                                    <td>
+                                        <div class="event-chip purple-chip">CS202A<br>CS202A</div>
+                                    </td>
+                                    <td>
+                                        <div class="event-chip purple-chip">Dr. ...<br>Prof.</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>16 Nov</td>
+                                    <td>
+                                        <div class="event-chip green-chip">CS202A<br>Prof. Kumar</div>
+                                    </td>
+                                    <td>
+                                        <div class="event-chip green-chip">CS202A<br>Prof. Kumar</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>17 Nov</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="event-chip purple-chip">CS202A<br>EE101B</div>
+                                    </td>
+                                    <td>
+                                        <div class="event-chip yellow-chip">CE101B<br>EE101B</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>28 Nov</td>
+                                    <td>
+                                        <div class="event-chip red-chip">CS202B<br>Prof. Sharma</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="event-chip purple-chip">EE101B<br>EE101B</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>29 Nov</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="event-chip yellow-chip">CS202A<br>Prof. Sharma</div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Right Side: Faculty & Room Allocations -->
+                    <div>
+                        <!-- Faculty Workload -->
+                        <div class="panel">
+                            <div class="panel-title" style="margin-bottom: 12px;">
+                                Faculty Workload Compliance
+                                <div style="font-size:0.75rem; color:#718096; font-weight:normal;">(5 hours constraint
+                                    status)</div>
+                            </div>
+
+                            <div class="progress-group">
+                                <div class="progress-label"><span>CS</span><span>98%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 98%; background-color: #38a169;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-group">
+                                <div class="progress-label"><span>MA</span><span>96%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 96%; background-color: #38a169;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-group">
+                                <div class="progress-label"><span>CP</span><span>92%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%; background-color: #38a169;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-group">
+                                <div class="progress-label"><span>UB</span><span>60%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%; background-color: #dd6b20;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Split Panel -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <!-- Room Allocation Status -->
+                            <div class="panel">
+                                <div class="panel-title" style="margin-bottom:10px;">Room Allocation Status</div>
+                                <ul class="status-list">
+                                    <li><span>Lecture Hall 1</span><strong>CS202</strong></li>
+                                    <li><span>Lab A</span><strong>EE101</strong></li>
+                                    <li><span>Lecture Hall 2</span><strong>CS202</strong></li>
+                                    <li><span>Lab B</span><strong>EE101</strong></li>
+                                </ul>
+                            </div>
+
+                            <!-- Pending Reports -->
+                            <div class="panel">
+                                <div class="panel-title" style="margin-bottom:10px;">Pending Reports & Approvals</div>
+                                <ul class="alert-list">
+                                    <li>
+                                        <div class="alert-item"><span class="badge-icon"
+                                                style="background:#3182ce;"></span> Reat admin...</div>
+                                        <strong>3</strong>
+                                    </li>
+                                    <li>
+                                        <div class="alert-item"><span class="badge-icon"
+                                                style="background:#e53e3e;"></span> Report admin...</div>
+                                        <strong>0</strong>
+                                    </li>
+                                    <li>
+                                        <div class="alert-item"><span class="badge-icon"
+                                                style="background:#dd6b20;"></span> Report admin...</div>
+                                        <strong>0</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                © 2026 College Management System. Version 15.1
+            </footer>
+
+        </main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Example: Add logout functionality to a logout button if present
+    const logoutBtn = document.querySelector("#logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        window.location.href = "/";
+      });
+    }
+  });
+</script>
+
+    </body>
+
+    </html>
