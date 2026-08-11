@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSIT CMS - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f4f6f8;
+        }
+
+        /* Left Banner Section */
+        .banner {
+            flex: 1;
+            background: linear-gradient(135deg, #213397 0%, #3b1c55 50%, #5c0c0c 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 150px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .brand-logo i {
+            font-size: 2.2rem;
+        }
+
+        .brand-logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative graphic representation */
+        .banner-graphic {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.85;
+        }
+
+        .grid-lines {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            height: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 0;
+        }
+
+        .grid-cell {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .banner-text {
+            max-width: 440px;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #d0d7de;
+            margin-bottom: 20px;
+        }
+
+        /* Right Form Section */
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        /* Simulated background dashboard content behind modal */
+        .bg-overlay {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            opacity: 0.15;
+            pointer-events: none;
+
+            filter: blur(1px);
+        }
+
+
+        .bg-overlay h2 {
+            color: #334155;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .bg-overlay .line {
+            height: 12px;
+            background: #cbd5e1;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        /* Login Modal Card */
+        .login-card {
+            position: relative;
+            z-index: 10;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #0f172a;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+        }
+
+        .options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 0.88rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            accent-color: #1d4ed8;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #1d4ed8;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-login:hover {
+            background-color: #1e40af;
+        }
+
+        .support-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.82rem;
+            color: #475569;
+        }
+
+        .support-text a {
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .support-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustment for mobile screens */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .banner {
+                padding: 30px 20px;
+            }
+
+            .banner-graphic {
+                display: none;
+            }
+
+            .login-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="brand-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h1>Shree Swaminarayan
+                Institute of
+                Technology (SSIT)</h1>
+        </div>
+
+        <div class="banner-graphic">
+            <div class="grid-lines">
+                <div class="grid-cell"></div>
+                <div class="grid-cell"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"><i class="fa-solid fa-user"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"><i class="fa-solid fa-users-rectangle"></i></div>
+            </div>
+        </div>
+
+        <p class="banner-text">
+            Welcome to Shree Swaminarayan Institute of Technology (SSIT). Sign in to access your dashboard, timetables,
+            faculty records, and reports.
+        </p>
+    </div>
+    <div class="login-container">
+
+        <div class="bg-overlay">
+            <h2>Timetable Settings</h2>
+            <div class="line" style="width: 40%;"></div>
+            <div class="line" style="width: 70%;"></div>
+            <div class="line" style="width: 55%;"></div>
+            <div class="line" style="width: 80%;"></div>
+        </div>
+
+        <div class="login-card">
+            <h2>Access Your Portal</h2>
+            <form action="#" method="POST">
+
+                <div class="input-group">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" placeholder="Username/Email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+
+                <div class="options-row">
+                    <label class="remember-me">
+                        <input type="checkbox" checked>
+                        <span>Remember Me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+
+                <div class="support-text">
+                    Trouble signing in? <a href="#">Contact IT Support</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("form");
+
+    if (loginForm) {
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevents page refresh
+
+        // Grab inputs using multiple strategies
+        const inputs = loginForm.querySelectorAll("input");
+        let emailInput, passwordInput;
+
+        inputs.forEach(input => {
+          if (input.type === "email" || input.name === "email" || input.id.includes("email")) {
+            emailInput = input;
+          }
+          if (input.type === "password" || input.name === "password" || input.id.includes("pass")) {
+            passwordInput = input;
+          }
+        });
+
+        // Fallback: take the first two inputs if specific tags weren't found
+        if (!emailInput && inputs.length > 0) emailInput = inputs[0];
+        if (!passwordInput && inputs.length > 1) passwordInput = inputs[1];
+
+        if (!emailInput || !passwordInput) {
+          alert("Could not find input fields in form!");
+          return;
+        }
+
+        // Send POST request to Flask backend
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: emailInput.value,
+            password: passwordInput.value
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+          alert("Login successful! Role: " + result.user.role);
+          window.location.href = "/dashboard";
+
+        } else {
+          alert("Login Failed: " + result.message);
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+
+</html>
