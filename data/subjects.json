@@ -1,0 +1,4 @@
+[
+  { "id": "SUB101", "name": "Data Structures", "credits": 4, "required_room_type": "LECTURE", "duration_hrs": 1 },
+  { "id": "SUB102", "name": "Web Dev Lab", "credits": 3, "required_room_type": "LAB", "duration_hrs": 3 }
+]

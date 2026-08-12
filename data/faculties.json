@@ -1,0 +1,4 @@
+[
+  { "id": "F101", "name": "Dr. Sharma", "max_workload_hrs": 15, "specialization": "Data Structures" },
+  { "id": "F102", "name": "Prof. Patel", "max_workload_hrs": 12, "specialization": "Web Development" }
+]

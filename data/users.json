@@ -1,0 +1,14 @@
+[
+  {
+    "id": "U101",
+    "email": "student@college.edu",
+    "password": "password123",
+    "role": "student"
+  },
+  {
+    "id": "U102",
+    "email": "admin@college.edu",
+    "password": "adminpassword",
+    "role": "admin"
+  }
+]

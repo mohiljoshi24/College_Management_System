@@ -1,0 +1,4 @@
+[
+  { "id": "R101", "name": "Lecture Hall 101", "capacity": 60, "type": "LECTURE", "department": "CS" },
+  { "id": "L201", "name": "Computer Lab 1", "capacity": 30, "type": "LAB", "department": "CS" }
+]
