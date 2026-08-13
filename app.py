@@ -15,6 +15,21 @@ def index():
 def dashboard():
     return send_from_directory("frontend", "dashboard.html")
 
+# --- route to serve all other pages ---
+@app.route("/timetable")
+def timetable():
+    return send_from_directory("frontend", "timetable.html")
+
+@app.route("/faculties")
+def faculties():
+    return send_from_directory("frontend", "faculties.html")
+
+@app.route("/rooms")
+def rooms():
+    return send_from_directory("frontend", "rooms.html")
+
+#----------------------------------------
+
 # Authentication API
 @app.route("/api/login", methods=["POST"])
 def login():
