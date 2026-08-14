@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSIT - Classroom & Lab Manager</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #90a6cade;
+            color: #151515;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: #101d2d;
+            color: white;
+            padding-top: 12px;
+        }
+
+        .logo {
+            height: 50px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: .3px;
+        }
+
+        .logo-icon {
+            font-size: 18px;
+        }
+
+        .menu {
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            height: 40px;
+            margin: 3px 7px;
+            padding: 0 11px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d9e0e8;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #1c3047;
+        }
+
+        .menu-item.active {
+            background: #294968;
+            color: white;
+        }
+
+        .menu-icon {
+            width: 16px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        /* ===== MAIN ===== */
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            height: 43px;
+            background: white;
+            border-bottom: 1px solid #e4e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 18px;
+            font-size: 15px;
+        }
+
+        .breadcrumb {
+            color: #777;
+        }
+
+        .breadcrumb strong {
+            color: #555;
+            font-weight: normal;
+        }
+
+        .admin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification {
+            font-size: 17px;
+            color: #555;
+        }
+
+        .avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d8a582, #51352d);
+            border: 1px solid #ddd;
+        }
+
+        .admin-name {
+            font-size: 12px;
+            color: #222;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            padding: 17px;
+            padding-right: 230px;
+            margin-left: 15px;
+        }
+
+        .page-title {
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* ===== STAT CARDS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 13px;
+        }
+
+        .stat-card {
+            height: 72px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e4e7eb;
+            padding: 10px 14px;
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #333;
+            margin-top: 2px;
+        }
+
+        .stat-icon {
+            position: absolute;
+            right: 13px;
+            top: 15px;
+            width: 28px;
+            height: 28px;
+            border-radius: 5px;
+            background: #eef1f5;
+            color: #101d2d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        /* ===== TOOLBAR ===== */
+        .toolbar {
+            height: 42px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .add-btn {
+            background: #0879dc;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #0669c0;
+        }
+
+        .search {
+            width: 158px;
+            height: 29px;
+            border: 1px solid #d7dce2;
+            border-radius: 5px;
+            padding: 0 10px;
+            font-size: 11px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #438ed1;
+        }
+
+        /* ===== ROOM GRID ===== */
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .room-card {
+            min-height: 120px;
+            background: rgb(245, 246, 248);
+            border: 1px solid #e2e6eb;
+            border-radius: 7px;
+            padding: 13px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .room-card:hover {
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+        }
+
+        .room-card.selected {
+            border: 1.5px solid #0879dc;
+            background: #f1f8ff;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #e7e7e7;
+            padding-bottom: 9px;
+        }
+
+        .room-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .room-type {
+            font-size: 12px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        .capacity {
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .room-info {
+            padding-top: 10px;
+            font-size: 12px;
+            line-height: 19px;
+        }
+
+        .status-occupied {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .status-available {
+            color: #268b5d;
+            font-weight: bold;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+        .details-panel {
+            position: fixed;
+            right: 0;
+            top: 43px;
+            width: 220px;
+            height: calc(100vh - 43px);
+            background: rgb(240, 243, 246);
+            border-left: 1px solid #d0d5dd;
+            padding: 12px 14px;
+            overflow-y: auto;
+        }
+
+        .details-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            color: #777;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .floor-plan {
+            width: 100%;
+            height: 100px;
+            background: #0d478d;
+            border: 1px solid #1763ac;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .floor-plan-inner {
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, .6);
+            position: relative;
+        }
+
+        .room-box {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .75);
+        }
+
+        .r1 { left: 30px; top: 6px; width: 45px; height: 30px; }
+        .r2 { left: 80px; top: 6px; width: 40px; height: 30px; }
+        .r3 { left: 10px; bottom: 6px; width: 55px; height: 30px; }
+        .door {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+            right: 15px;
+            bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #222;
+        }
+
+        .session-box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 9px;
+            margin-bottom: 15px;
+        }
+
+        .session-name {
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .session-time {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .checklist {
+            margin-bottom: 14px;
+        }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            margin: 6px 0;
+        }
+
+        .footer {
+            font-size: 10px;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🎓</span>
+            <span class="logo-text">SSIT CMS</span>
+        </div>
+
+        <div class="menu">
+            <div class="menu-item" onclick="window.location.href='/dashboard'">
+                <span class="menu-icon">📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item" onclick="window.location.href='/timetable'">
+                <span class="menu-icon">📅</span>
+                <span>Timetable View</span>
+            </div>
+            <div class="menu-item" onclick="window.location.href='/faculties'">
+                <span class="menu-icon">👥</span>
+                <span>Faculty Manager</span>
+            </div>
+            <div class="menu-item active" onclick="window.location.href='/room_allocation'">
+                <span class="menu-icon">🏛️</span>
+                <span>Room Allocation</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+        <header class="topbar">
+            <div class="breadcrumb">
+                Dashboard &nbsp;/&nbsp; <strong>Room Allocation</strong>
+            </div>
+            <div class="admin">
+                <span class="notification">🔔</span>
+                <div class="avatar"></div>
+                <span class="admin-name">Admin User</span>
+            </div>
+        </header>
+
+        <section class="content">
+            <h1 class="page-title">CLASSROOM &amp; LAB MANAGER</h1>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalClassroomsCount">0</span>
+                    <div class="stat-label">Total Classrooms</div>
+                    <div class="stat-icon">🏛️</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="activeLabsCount">0</span>
+                    <div class="stat-label">Active Labs</div>
+                    <div class="stat-icon">💻</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalRoomsCount">0</span>
+                    <div class="stat-label">Total Rooms</div>
+                    <div class="stat-icon">📈</div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <button class="add-btn" onclick="addRoom()">＋ Add New Room</button>
+                <input type="text" class="search" id="searchRoom" placeholder="Search Room..." onkeyup="searchRooms()">
+            </div>
+
+            <div class="room-grid" id="roomGrid"></div>
+
+            <div class="footer">
+                © 2026 College Management System. Version 15.1
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <aside class="details-panel" id="detailsPanel">
+        <div class="details-title">
+            <span id="selectedRoomTitle">Room Details</span>
+            <span class="close" onclick="closeDetails()">×</span>
+        </div>
+
+        <div class="floor-plan">
+            <div class="floor-plan-inner">
+                <div class="room-box r1"></div>
+                <div class="room-box r2"></div>
+                <div class="room-box r3"></div>
+                <div class="door"></div>
+            </div>
+        </div>
+
+        <div class="section-title">Current Session</div>
+        <div class="session-box">
+            <div class="session-name" id="selectedRoomSession">Available</div>
+            <div class="session-time" id="selectedRoomInfo">No active class scheduled</div>
+        </div>
+
+        <div class="section-title">Equipment Checklist</div>
+        <div class="checklist">
+            <label class="check"><input type="checkbox" checked> Projector &amp; Screen</label>
+            <label class="check"><input type="checkbox" checked> Workstations / Desks</label>
+            <label class="check"><input type="checkbox" checked> AC &amp; Power Sockets</label>
+            <label class="check"><input type="checkbox" id="labEquipCheck"> Specialized Lab Gear</label>
+        </div>
+    </aside>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        let allRooms = [];
+
+        async function fetchRooms() {
+            try {
+                const res = await fetch("/api/rooms");
+                allRooms = await res.json();
+                renderRooms(allRooms);
+                updateStats(allRooms);
+            } catch (err) {
+                console.error("Failed to load rooms:", err);
+            }
+        }
+
+        function renderRooms(rooms) {
+            const grid = document.getElementById("roomGrid");
+            if (!rooms || rooms.length === 0) {
+                grid.innerHTML = "<p>No rooms found.</p>";
+                return;
+            }
+
+            grid.innerHTML = rooms.map((room, idx) => `
+                <div class="room-card ${idx === 0 ? 'selected' : ''}" onclick="selectRoom(${idx}, this)">
+                    <div class="room-header">
+                        <div class="room-name">
+                            ${room.name || room.id}<br>
+                            <span class="room-type">(${room.type || 'Lecture Hall'})</span>
+                        </div>
+                        <div class="capacity">♙ ${room.capacity || 0}</div>
+                    </div>
+                    <div class="room-info">
+                        Status: <span class="${room.type && room.type.toLowerCase().includes('lab') ? 'status-occupied' : 'status-available'}">
+                            ${room.type && room.type.toLowerCase().includes('lab') ? 'Active Lab' : 'Available'}
+                        </span><br>
+                        Capacity: ${room.capacity || 0} seats
+                    </div>
+                </div>
+            `).join("");
+
+            if (rooms.length > 0) {
+                showDetails(rooms[0]);
+            }
+        }
+
+        function updateStats(rooms) {
+            const classrooms = rooms.filter(r => !r.type || !r.type.toLowerCase().includes("lab")).length;
+            const labs = rooms.filter(r => r.type && r.type.toLowerCase().includes("lab")).length;
+
+            document.getElementById("totalClassroomsCount").textContent = classrooms;
+            document.getElementById("activeLabsCount").textContent = labs;
+            document.getElementById("totalRoomsCount").textContent = rooms.length;
+        }
+
+        function selectRoom(index, element) {
+            document.querySelectorAll(".room-card").forEach(el => el.classList.remove("selected"));
+            element.classList.add("selected");
+            showDetails(allRooms[index]);
+        }
+
+        function showDetails(room) {
+            document.getElementById("selectedRoomTitle").textContent = `${room.name || room.id} (${room.type || 'General'})`;
+            document.getElementById("selectedRoomSession").textContent = room.type && room.type.toLowerCase().includes("lab") ? "Lab Session" : "Lecture Session";
+            document.getElementById("selectedRoomInfo").textContent = `Max Capacity: ${room.capacity || 0} Students`;
+            document.getElementById("labEquipCheck").checked = !!(room.type && room.type.toLowerCase().includes("lab"));
+        }
+
+        function closeDetails() {
+            document.getElementById("detailsPanel").style.display = "none";
+        }
+
+        function searchRooms() {
+            const query = document.getElementById("searchRoom").value.toLowerCase();
+            const filtered = allRooms.filter(r => 
+                (r.name && r.name.toLowerCase().includes(query)) ||
+                (r.type && r.type.toLowerCase().includes(query)) ||
+                (r.id && r.id.toLowerCase().includes(query))
+            );
+            renderRooms(filtered);
+        }
+
+        async function addRoom() {
+            const name = prompt("Enter Room Name (e.g. Room 305 or Lab C):");
+            if (!name) return;
+            const type = prompt("Enter Room Type (e.g. LECTURE or LAB):", "LECTURE");
+            const capacity = parseInt(prompt("Enter Capacity (e.g. 60):", "60"), 10);
+
+            const newRoom = {
+                id: "R" + (allRooms.length + 101),
+                name: name,
+                type: type ? type.toUpperCase() : "LECTURE",
+                capacity: capacity || 40,
+                department: "CS"
+            };
+
+            const res = await fetch("/api/rooms", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newRoom)
+            });
+
+            if (res.ok) {
+                fetchRooms();
+            } else {
+                alert("Failed to add room.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchRooms);
+    </script>
+</body>
+</html>
