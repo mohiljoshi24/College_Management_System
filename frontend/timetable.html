@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSIT Timetable View -</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #111927;
+            --sidebar-hover: #1f2937;
+            --sidebar-active: #2d3748;
+            --sidebar-text: #9ca3af;
+            --body-bg: #90a6cade;
+            ;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --blue-btn: #0066ff;
+            --blue-btn-hover: #0052cc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--body-bg);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 240px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 24px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .brand i {
+            font-size: 20px;
+        }
+
+        .nav-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-item a:hover {
+            background-color: var(--sidebar-hover);
+            color: #ffffff;
+        }
+
+        .nav-item.active a {
+            background-color: var(--sidebar-active);
+            color: #ffffff;
+            border-left: 3px solid var(--blue-btn);
+        }
+
+        .section-heading {
+            padding: 20px 24px 8px 24px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4b5563;
+        }
+
+        /* Main Area */
+        .main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--white);
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb span {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-icon {
+            position: relative;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Content Container */
+        .content {
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--blue-btn);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-btn-hover);
+        }
+
+        .btn-outline {
+            background-color: var(--white);
+            color: var(--text-dark);
+            border-color: #d1d5db;
+        }
+
+        .btn-outline:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Filters Card */
+        .filters-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .filter-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-dark);
+            outline: none;
+            appearance: none;
+            background-color: var(--white);
+            cursor: pointer;
+        }
+
+        .select-wrapper i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            font-size: 12px;
+        }
+
+        /* Timetable Table Styling */
+        .timetable-container {
+            background-color: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .timetable th,
+        .timetable td {
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .timetable th {
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            background-color: #94A8B8;
+            color: var(--text-dark);
+            width: 13.5%;
+            border: 2px solid black;
+        }
+
+        .timetable th:first-child {
+            width: 19%;
+        }
+
+        .timetable td {
+            height: 60px;
+            padding: 4px;
+            vertical-align: middle;
+            font-size: 16 px;
+            border: 1px solid black;
+        }
+
+        .time-col {
+            font-weight: 600;
+            color: var(--text-dark);
+            background-color: #bebebe;
+            border-radius: 10px;
+        }
+
+        /* Schedule Cards */
+        .schedule-card {
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            padding: 6px 8px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 3px solid transparent;
+            box-sizing: border-box;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .card-prof,
+        .card-room {
+            font-size: 11px;
+            color: #000000;
+            line-height: 1.2;
+        }
+
+        /* Color Schemes for Timetable Cards */
+        .purple-card {
+            background-color: #cab1e7;
+            ;
+            border-left-color: #533b8b;
+            color: #4c1d95;
+        }
+
+        .yellow-card {
+            background-color: #eee76c;
+            border-left-color: #eab308;
+            color: #713f12;
+        }
+
+        .blue-card {
+            background-color: #a6c8f7;
+            border-left-color: #3b82f6;
+            color: #1e40af;
+        }
+
+        .green-card {
+            background-color: #b3dbbf;
+            border-left-color: #22c55e;
+            color: #14532d;
+        }
+
+        .red-card {
+            background-color: #e69f9f;
+            border-left-color: #ef4444;
+            color: #7f1d1d;
+        }
+
+        .orange-card {
+            background-color: #e7a05d;
+            border-left-color: #f97316;
+            color: #7c2d12;
+        }
+
+        .break-cell {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 16px 28px;
+            font-size: 12px;
+            color: BLACK;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-graduation-cap">  </i>
+            <span> SSIT CMS</span>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#"></i> Dashboard</a>
+            </li>
+            <li class="nav-item active">
+                <a href="#"></i> Timetable View</a>
+            </li>
+        </ul>
+
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#"></i> Faculty Management</a>
+            </li>
+            <li class="nav-item">
+                <a href="#"></i>Room Allocation</a>
+            </li>
+            <li class="nav-item">
+                <a href="#"></i> Attendance Portal</a>
+            </li>
+            <li class="nav-item">
+                <a href="#"></i> Reports</a>
+            </li>
+            <li class="nav-item">
+                <a href="#"></i> Settings</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header Nav -->
+        <header class="header">
+            <div class="breadcrumb">
+                Dashboard / <span>Master Timetable View</span>
+            </div>
+            <div class="user-profile">
+                <div class="notification-icon">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </div>
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80"
+                        alt="Admin User" class="user-avatar">
+                    <span>Admin User</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 10px; color: #6b7280;"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="content">
+
+            <!-- Page Title & Main Actions -->
+            <div class="action-bar">
+                <h1 class="page-title">MASTER TIMETABLE VIEW</h1>
+                <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Generate Schedule (Constraint Solver)
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filters-card">
+                <div class="filter-group">
+                    <label>[View By: Class (Section A)]</label>
+                    <div class="select-wrapper">
+                        <select>
+                            <option>Class (Section A)</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>[View By: Professor]</label>
+                    <div class="select-wrapper">
+                        <select>
+                            <option>Select Professor</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>[View By: Room]</label>
+                    <div class="select-wrapper">
+                        <select>
+                            <option>Select Room</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timetable Grid -->
+            <div class="timetable-container">
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Slot 1 -->
+                        <tr>
+                            <td class="time-col">08:00AM - 09:30AM</td>
+                            <td>
+                                <div class="schedule-card purple-card">
+                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-room">Lecture Hall 1</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="schedule-card yellow-card">
+                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-prof">Prof. Sharma</div>
+                                    <div class="card-room">Lecture Room 1</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card blue-card">
+                                    <div class="card-title">MA101 -</div>
+                                    <div class="card-prof">Dr. Patel -</div>
+                                    <div class="card-room">Lecture Hall 2</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Slot 2 (Break) -->
+                        <tr>
+                            <td class="time-col">09:30AM - 10:30AM<br><span
+                                    style="font-weight: normal; color: #6b7280;">(Break)</span></td>
+                            <td colspan="6" class="break-cell">Break</td>
+                        </tr>
+
+                        <!-- Slot 3 -->
+                        <tr>
+                            <td class="time-col">10:30AM - 12:00PM</td>
+                            <td>
+                                <div class="schedule-card purple-card">
+                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-room">Lecture Hall 1</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-prof">Prof. Kumar -</div>
+                                    <div class="card-room">Seminar Room 1</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="schedule-card red-card">
+                                    <div class="card-title">MA101 -</div>
+                                    <div class="card-prof">Dr. Patel -</div>
+                                    <div class="card-room">Lecture Hall 2</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-prof">Prof. Kumar -</div>
+                                    <div class="card-room">Seminar Room 1</div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Slot 4 (Lunch) -->
+                        <tr>
+                            <td class="time-col">12:00PM - 12:30PM<br><span
+                                    style="font-weight: normal; color: #6b7280;">(Lunch)</span></td>
+                            <td colspan="6" class="break-cell">Lunch</td>
+                        </tr>
+
+                        <!-- Slot 5 -->
+                        <tr>
+                            <td class="time-col">12:30PM - 02:00PM</td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-room">Lecture Hall 1</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card orange-card">
+                                    <div class="card-title">CE101B</div>
+                                    <div class="card-prof">Prof. Kumar -</div>
+                                    <div class="card-room">Room/Lab ID</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card blue-card">
+                                    <div class="card-title">Lab A</div>
+                                    <div class="card-prof">CS202 Lab -</div>
+                                    <div class="card-room">Prof. Sharma</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-prof">Prof. Patel -</div>
+                                    <div class="card-room">Room/Lab ID</div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Slot 6 -->
+                        <tr>
+                            <td class="time-col">02:00PM - 04:00PM<br><span
+                                    style="font-weight: normal; color: #6b7280;">(Lab)</span></td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-prof">Prof. Kumar</div>
+                                    <div class="card-room">Room/Lab ID</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="schedule-card orange-card">
+                                    <div class="card-title">Lab A</div>
+                                    <div class="card-prof">CS202 Lab -</div>
+                                    <div class="card-room">Prof. Sharma</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="schedule-card green-card">
+                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-prof">Prof. Kumar</div>
+                                    <div class="card-room">Room/Lab ID</div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                &copy; 2024 College Management System. Version 15.1
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
