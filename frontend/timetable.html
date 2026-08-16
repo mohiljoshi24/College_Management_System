@@ -14,7 +14,6 @@
             --sidebar-active: #2d3748;
             --sidebar-text: #9ca3af;
             --body-bg: #90a6cade;
-            ;
             --white: #ffffff;
             --border-color: #e5e7eb;
             --text-dark: #1f2937;
@@ -78,6 +77,7 @@
             font-size: 13px;
             font-weight: 500;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .nav-item a:hover {
@@ -313,7 +313,7 @@
             height: 60px;
             padding: 4px;
             vertical-align: middle;
-            font-size: 16 px;
+            font-size: 14px;
             border: 1px solid black;
         }
 
@@ -321,7 +321,6 @@
             font-weight: 600;
             color: var(--text-dark);
             background-color: #bebebe;
-            border-radius: 10px;
         }
 
         /* Schedule Cards */
@@ -354,7 +353,6 @@
         /* Color Schemes for Timetable Cards */
         .purple-card {
             background-color: #cab1e7;
-            ;
             border-left-color: #533b8b;
             color: #4c1d95;
         }
@@ -400,7 +398,7 @@
             margin-top: auto;
             padding: 16px 28px;
             font-size: 12px;
-            color: BLACK;
+            color: #111927;
         }
     </style>
 </head>
@@ -410,34 +408,30 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="brand">
-            <i class="fa-solid fa-graduation-cap">  </i>
-            <span> SSIT CMS</span>
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>SSIT CMS</span>
         </div>
         <ul class="nav-list">
             <li class="nav-item">
-                <a href="#"></i> Dashboard</a>
+                <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
             </li>
             <li class="nav-item active">
-                <a href="#"></i> Timetable View</a>
-            </li>
-        </ul>
-
-        
-        <ul class="nav-list">
-            <li class="nav-item">
-                <a href="#"></i> Faculty Management</a>
+                <a href="/timetable"><i class="fa-solid fa-calendar-days"></i> Timetable View</a>
             </li>
             <li class="nav-item">
-                <a href="#"></i>Room Allocation</a>
+                <a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a>
             </li>
             <li class="nav-item">
-                <a href="#"></i> Attendance Portal</a>
+                <a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a>
             </li>
             <li class="nav-item">
-                <a href="#"></i> Reports</a>
+                <a href="#"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a>
             </li>
             <li class="nav-item">
-                <a href="#"></i> Settings</a>
+                <a href="#"><i class="fa-solid fa-file-lines"></i> Reports</a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
             </li>
         </ul>
     </aside>
@@ -483,28 +477,35 @@
             <!-- Filter Controls -->
             <div class="filters-card">
                 <div class="filter-group">
-                    <label>[View By: Class (Section A)]</label>
+                    <label>View By: Class</label>
                     <div class="select-wrapper">
                         <select>
                             <option>Class (Section A)</option>
+                            <option>Class (Section B)</option>
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
                 <div class="filter-group">
-                    <label>[View By: Professor]</label>
+                    <label>View By: Professor</label>
                     <div class="select-wrapper">
                         <select>
                             <option>Select Professor</option>
+                            <option>Dr. Sharma</option>
+                            <option>Prof. Kumar</option>
+                            <option>Dr. Patel</option>
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
                 <div class="filter-group">
-                    <label>[View By: Room]</label>
+                    <label>View By: Room</label>
                     <div class="select-wrapper">
                         <select>
                             <option>Select Room</option>
+                            <option>Lecture Hall 1</option>
+                            <option>Lecture Hall 2</option>
+                            <option>Lab A</option>
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -531,23 +532,23 @@
                             <td class="time-col">08:00AM - 09:30AM</td>
                             <td>
                                 <div class="schedule-card purple-card">
-                                    <div class="card-title">CS202 -</div>
-                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-title">CS202</div>
+                                    <div class="card-prof">Dr. Sharma</div>
                                     <div class="card-room">Lecture Hall 1</div>
                                 </div>
                             </td>
                             <td></td>
                             <td>
                                 <div class="schedule-card yellow-card">
-                                    <div class="card-title">CS202 -</div>
+                                    <div class="card-title">CS202</div>
                                     <div class="card-prof">Prof. Sharma</div>
                                     <div class="card-room">Lecture Room 1</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card blue-card">
-                                    <div class="card-title">MA101 -</div>
-                                    <div class="card-prof">Dr. Patel -</div>
+                                    <div class="card-title">MA101</div>
+                                    <div class="card-prof">Dr. Patel</div>
                                     <div class="card-room">Lecture Hall 2</div>
                                 </div>
                             </td>
@@ -567,30 +568,30 @@
                             <td class="time-col">10:30AM - 12:00PM</td>
                             <td>
                                 <div class="schedule-card purple-card">
-                                    <div class="card-title">CS202 -</div>
-                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-title">CS202</div>
+                                    <div class="card-prof">Dr. Sharma</div>
                                     <div class="card-room">Lecture Hall 1</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">EE101 -</div>
-                                    <div class="card-prof">Prof. Kumar -</div>
+                                    <div class="card-title">EE101</div>
+                                    <div class="card-prof">Prof. Kumar</div>
                                     <div class="card-room">Seminar Room 1</div>
                                 </div>
                             </td>
                             <td></td>
                             <td>
                                 <div class="schedule-card red-card">
-                                    <div class="card-title">MA101 -</div>
-                                    <div class="card-prof">Dr. Patel -</div>
+                                    <div class="card-title">MA101</div>
+                                    <div class="card-prof">Dr. Patel</div>
                                     <div class="card-room">Lecture Hall 2</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">EE101 -</div>
-                                    <div class="card-prof">Prof. Kumar -</div>
+                                    <div class="card-title">EE101</div>
+                                    <div class="card-prof">Prof. Kumar</div>
                                     <div class="card-room">Seminar Room 1</div>
                                 </div>
                             </td>
@@ -609,31 +610,31 @@
                             <td class="time-col">12:30PM - 02:00PM</td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">CS202 -</div>
-                                    <div class="card-prof">Dr. Sharma -</div>
+                                    <div class="card-title">CS202</div>
+                                    <div class="card-prof">Dr. Sharma</div>
                                     <div class="card-room">Lecture Hall 1</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card orange-card">
                                     <div class="card-title">CE101B</div>
-                                    <div class="card-prof">Prof. Kumar -</div>
-                                    <div class="card-room">Room/Lab ID</div>
+                                    <div class="card-prof">Prof. Kumar</div>
+                                    <div class="card-room">Lecture Room 2</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card blue-card">
                                     <div class="card-title">Lab A</div>
-                                    <div class="card-prof">CS202 Lab -</div>
+                                    <div class="card-prof">CS202 Lab</div>
                                     <div class="card-room">Prof. Sharma</div>
                                 </div>
                             </td>
                             <td></td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">CS202 -</div>
-                                    <div class="card-prof">Prof. Patel -</div>
-                                    <div class="card-room">Room/Lab ID</div>
+                                    <div class="card-title">CS202</div>
+                                    <div class="card-prof">Prof. Patel</div>
+                                    <div class="card-room">Lecture Hall 1</div>
                                 </div>
                             </td>
                             <td></td>
@@ -645,24 +646,24 @@
                                     style="font-weight: normal; color: #6b7280;">(Lab)</span></td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-title">EE101</div>
                                     <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Room/Lab ID</div>
+                                    <div class="card-room">Electronics Lab</div>
                                 </div>
                             </td>
                             <td></td>
                             <td>
                                 <div class="schedule-card orange-card">
                                     <div class="card-title">Lab A</div>
-                                    <div class="card-prof">CS202 Lab -</div>
+                                    <div class="card-prof">CS202 Lab</div>
                                     <div class="card-room">Prof. Sharma</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="schedule-card green-card">
-                                    <div class="card-title">EE101 -</div>
+                                    <div class="card-title">EE101</div>
                                     <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Room/Lab ID</div>
+                                    <div class="card-room">Electronics Lab</div>
                                 </div>
                             </td>
                             <td></td>
@@ -674,7 +675,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                &copy; 2024 College Management System. Version 15.1
+                &copy; 2026 College Management System. Version 15.1
             </footer>
 
         </main>
