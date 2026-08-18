@@ -287,13 +287,13 @@
         }
 
         .timetable th {
-            padding: 12px;
+            padding: 10px;
             font-size: 13px;
             font-weight: 600;
             background-color: #94A8B8;
             color: var(--text-dark);
             width: 13.5%;
-            border: 2px solid black;
+            border: 1.5px solid #111927;
         }
 
         .timetable th:first-child {
@@ -301,17 +301,18 @@
         }
 
         .timetable td {
-            height: 60px;
+            height: 52px;
             padding: 4px;
             vertical-align: middle;
-            font-size: 14px;
-            border: 1px solid black;
+            font-size: 13px;
+            border: 1px solid #111927;
         }
 
         .time-col {
             font-weight: 600;
             color: var(--text-dark);
-            background-color: #bebebe;
+            background-color: #cbd5e1;
+            font-size: 12px;
         }
 
         /* Schedule Cards */
@@ -319,7 +320,7 @@
             height: 100%;
             width: 100%;
             border-radius: 4px;
-            padding: 6px 8px;
+            padding: 4px 6px;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -336,12 +337,12 @@
 
         .card-prof,
         .card-room {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #000000;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* Color Schemes for Timetable Cards */
+        /* Color Schemes */
         .purple-card {
             background-color: #cab1e7;
             border-left-color: #533b8b;
@@ -380,8 +381,10 @@
 
         .break-cell {
             color: var(--text-dark);
-            font-weight: 500;
-            font-size: 13px;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1px;
+            background-color: #f1f5f9;
         }
 
         /* Footer */
@@ -456,10 +459,10 @@
             <div class="action-bar">
                 <h1 class="page-title">MASTER TIMETABLE VIEW</h1>
                 <div class="action-buttons">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="triggerScheduleGeneration()">
                         <i class="fa-solid fa-plus"></i> Generate Schedule (Constraint Solver)
                     </button>
-                    <button class="btn btn-outline">
+                    <button class="btn btn-outline" onclick="window.print()">
                         <i class="fa-solid fa-download"></i> Download PDF
                     </button>
                 </div>
@@ -481,10 +484,10 @@
                     <label>View By: Professor</label>
                     <div class="select-wrapper">
                         <select>
-                            <option>Select Professor</option>
-                            <option>Dr. Sharma</option>
-                            <option>Prof. Kumar</option>
-                            <option>Dr. Patel</option>
+                            <option>All Professors</option>
+                            <option>Dr. Aditi Sharma</option>
+                            <option>Prof. Rajesh Kumar</option>
+                            <option>Dr. Sneha Patel</option>
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -493,10 +496,10 @@
                     <label>View By: Room</label>
                     <div class="select-wrapper">
                         <select>
-                            <option>Select Room</option>
+                            <option>All Rooms</option>
                             <option>Lecture Hall 1</option>
                             <option>Lecture Hall 2</option>
-                            <option>Lab A</option>
+                            <option>Computer Lab 1</option>
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -517,149 +520,8 @@
                             <th>Sat</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Slot 1 -->
-                        <tr>
-                            <td class="time-col">08:00AM - 09:30AM</td>
-                            <td>
-                                <div class="schedule-card purple-card">
-                                    <div class="card-title">CS202</div>
-                                    <div class="card-prof">Dr. Sharma</div>
-                                    <div class="card-room">Lecture Hall 1</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td>
-                                <div class="schedule-card yellow-card">
-                                    <div class="card-title">CS202</div>
-                                    <div class="card-prof">Prof. Sharma</div>
-                                    <div class="card-room">Lecture Room 1</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card blue-card">
-                                    <div class="card-title">MA101</div>
-                                    <div class="card-prof">Dr. Patel</div>
-                                    <div class="card-room">Lecture Hall 2</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <!-- Slot 2 (Break) -->
-                        <tr>
-                            <td class="time-col">09:30AM - 10:30AM<br><span
-                                    style="font-weight: normal; color: #6b7280;">(Break)</span></td>
-                            <td colspan="6" class="break-cell">Break</td>
-                        </tr>
-
-                        <!-- Slot 3 -->
-                        <tr>
-                            <td class="time-col">10:30AM - 12:00PM</td>
-                            <td>
-                                <div class="schedule-card purple-card">
-                                    <div class="card-title">CS202</div>
-                                    <div class="card-prof">Dr. Sharma</div>
-                                    <div class="card-room">Lecture Hall 1</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">EE101</div>
-                                    <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Seminar Room 1</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td>
-                                <div class="schedule-card red-card">
-                                    <div class="card-title">MA101</div>
-                                    <div class="card-prof">Dr. Patel</div>
-                                    <div class="card-room">Lecture Hall 2</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">EE101</div>
-                                    <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Seminar Room 1</div>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
-
-                        <!-- Slot 4 (Lunch) -->
-                        <tr>
-                            <td class="time-col">12:00PM - 12:30PM<br><span
-                                    style="font-weight: normal; color: #6b7280;">(Lunch)</span></td>
-                            <td colspan="6" class="break-cell">Lunch</td>
-                        </tr>
-
-                        <!-- Slot 5 -->
-                        <tr>
-                            <td class="time-col">12:30PM - 02:00PM</td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">CS202</div>
-                                    <div class="card-prof">Dr. Sharma</div>
-                                    <div class="card-room">Lecture Hall 1</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card orange-card">
-                                    <div class="card-title">CE101B</div>
-                                    <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Lecture Room 2</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card blue-card">
-                                    <div class="card-title">Lab A</div>
-                                    <div class="card-prof">CS202 Lab</div>
-                                    <div class="card-room">Prof. Sharma</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">CS202</div>
-                                    <div class="card-prof">Prof. Patel</div>
-                                    <div class="card-room">Lecture Hall 1</div>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
-
-                        <!-- Slot 6 -->
-                        <tr>
-                            <td class="time-col">02:00PM - 04:00PM<br><span
-                                    style="font-weight: normal; color: #6b7280;">(Lab)</span></td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">EE101</div>
-                                    <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Electronics Lab</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td>
-                                <div class="schedule-card orange-card">
-                                    <div class="card-title">Lab A</div>
-                                    <div class="card-prof">CS202 Lab</div>
-                                    <div class="card-room">Prof. Sharma</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="schedule-card green-card">
-                                    <div class="card-title">EE101</div>
-                                    <div class="card-prof">Prof. Kumar</div>
-                                    <div class="card-room">Electronics Lab</div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <tbody id="timetableBody">
+                        <!-- Populated dynamically -->
                     </tbody>
                 </table>
             </div>
@@ -672,6 +534,104 @@
         </main>
     </div>
 
+    <script>
+        const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        async function loadTimetable() {
+            try {
+                const res = await fetch("/api/timetable");
+                const schedule = await res.json();
+                if (schedule && Object.keys(schedule).length > 0) {
+                    renderTimetable(schedule);
+                }
+            } catch (err) {
+                console.error("Failed to load timetable:", err);
+            }
+        }
+
+        function renderTimetable(schedule) {
+            const tbody = document.getElementById("timetableBody");
+            if (!tbody) return;
+
+            let html = "";
+
+            // Lecture 1 & Lecture 2
+            html += renderRow("09:00 AM - 10:00 AM", schedule["09:00 AM - 10:00 AM"], "Lecture 1");
+            html += renderRow("10:00 AM - 11:00 AM", schedule["10:00 AM - 11:00 AM"], "Lecture 2");
+
+            // Short Break
+            html += `
+                <tr>
+                    <td class="time-col">11:00 AM - 11:20 AM<br><span style="font-weight: normal; color: #64748b;">(Short Break)</span></td>
+                    <td colspan="6" class="break-cell">SHORT BREAK</td>
+                </tr>
+            `;
+
+            // Lecture 3 & Lecture 4
+            html += renderRow("11:20 AM - 12:10 PM", schedule["11:20 AM - 12:10 PM"], "Lecture 3");
+            html += renderRow("12:10 PM - 01:00 PM", schedule["12:10 PM - 01:00 PM"], "Lecture 4");
+
+            // Lunch / Long Break
+            html += `
+                <tr>
+                    <td class="time-col">01:00 PM - 01:50 PM<br><span style="font-weight: normal; color: #64748b;">(Lunch Break)</span></td>
+                    <td colspan="6" class="break-cell">LUNCH BREAK</td>
+                </tr>
+            `;
+
+            // Lecture 5 & Lecture 6
+            html += renderRow("01:50 PM - 02:40 PM", schedule["01:50 PM - 02:40 PM"], "Lecture 5");
+            html += renderRow("02:40 PM - 03:30 PM", schedule["02:40 PM - 03:30 PM"], "Lecture 6");
+
+            tbody.innerHTML = html;
+        }
+
+        function renderRow(slotTime, slotData, label = "") {
+            let rowHtml = `<tr><td class="time-col">${slotTime}${label ? `<br><span style="font-weight: normal; color: #475569;">(${label})</span>` : ""}</td>`;
+
+            DAYS.forEach(day => {
+                const item = slotData ? slotData[day] : null;
+                if (item) {
+                    rowHtml += `
+                        <td>
+                            <div class="schedule-card ${item.color || 'purple-card'}">
+                                <div class="card-title">${item.subject}</div>
+                                <div class="card-prof">${item.professor}</div>
+                                <div class="card-room">${item.room}</div>
+                            </div>
+                        </td>
+                    `;
+                } else {
+                    rowHtml += `<td></td>`;
+                }
+            });
+
+            rowHtml += `</tr>`;
+            return rowHtml;
+        }
+
+        async function triggerScheduleGeneration() {
+            const btn = document.querySelector(".btn-primary");
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating...`;
+
+            try {
+                const res = await fetch("/api/generate-timetable", { method: "POST" });
+                const result = await res.json();
+                if (result.status === "success") {
+                    renderTimetable(result.schedule);
+                } else {
+                    alert("Failed to generate schedule.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Error communicating with scheduler engine.");
+            } finally {
+                btn.innerHTML = `<i class="fa-solid fa-plus"></i> Generate Schedule (Constraint Solver)`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadTimetable);
+    </script>
 </body>
 
 </html>
