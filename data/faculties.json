@@ -1,4 +1,42 @@
 [
-  { "id": "F101", "name": "Dr. Sharma", "max_workload_hrs": 15, "specialization": "Data Structures" },
-  { "id": "F102", "name": "Prof. Patel", "max_workload_hrs": 12, "specialization": "Web Development" }
+  {
+    "id": "F102",
+    "name": "Prof. Patel",
+    "qualification": "(M.Tech)",
+    "department": "Computer Science",
+    "specialties": ["Web Development", "UI/UX"],
+    "active_courses": ["CS 101", "CS 302"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5
+  },
+  {
+    "id": "FA001",
+    "name": "Dr. Aditi Sharma",
+    "qualification": "(PhD)",
+    "department": "Computer Science",
+    "specialties": ["Python", "Data Structures"],
+    "active_courses": ["CS 101", "CS 202"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5
+  },
+  {
+    "id": "FA002",
+    "name": "Prof. Rajesh Kumar",
+    "qualification": "(M.Tech)",
+    "department": "Mathematics",
+    "specialties": ["Calculus", "Linear Algebra"],
+    "active_courses": ["MA 101"],
+    "daily_workload": 2.0,
+    "max_workload_hrs": 5
+  },
+  {
+    "id": "FA003",
+    "name": "Dr. Sneha Patel",
+    "qualification": "(PhD)",
+    "department": "Electrical Eng.",
+    "specialties": ["Digital Logic", "Signal Processing"],
+    "active_courses": ["EE 102"],
+    "daily_workload": 4.0,
+    "max_workload_hrs": 5
+  }
 ]

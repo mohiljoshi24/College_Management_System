@@ -1,0 +1,129 @@
+{
+    "09:00 AM - 10:00 AM": {
+        "Mon": {
+            "subject": "Data Structures",
+            "professor": "Prof. Rajesh Kumar",
+            "room": "room 305",
+            "color": "purple-card"
+        },
+        "Tue": {
+            "subject": "Data Structures",
+            "professor": "Prof. Rajesh Kumar",
+            "room": "Computer Lab 1",
+            "color": "green-card"
+        },
+        "Wed": {
+            "subject": "Data Structures",
+            "professor": "Dr. Sneha Patel",
+            "room": "room 202",
+            "color": "blue-card"
+        },
+        "Thu": {
+            "subject": "Data Structures",
+            "professor": "Prof. Patel",
+            "room": "Lecture Hall 101",
+            "color": "blue-card"
+        },
+        "Fri": {
+            "subject": "Data Structures",
+            "professor": "Prof. Rajesh Kumar",
+            "room": "Electronics Lab",
+            "color": "purple-card"
+        }
+    },
+    "10:00 AM - 11:00 AM": {
+        "Mon": {
+            "subject": "Web Dev Lab",
+            "professor": "Dr. Aditi Sharma",
+            "room": "Classroom 102",
+            "color": "red-card"
+        },
+        "Tue": {
+            "subject": "Data Structures",
+            "professor": "Dr. Aditi Sharma",
+            "room": "testing ",
+            "color": "orange-card"
+        },
+        "Wed": null,
+        "Thu": {
+            "subject": "Web Dev Lab",
+            "professor": "Dr. Aditi Sharma",
+            "room": "Electronics Lab",
+            "color": "orange-card"
+        },
+        "Fri": null
+    },
+    "11:20 AM - 12:10 PM": {
+        "Mon": {
+            "subject": "Data Structures",
+            "professor": "Prof. Patel",
+            "room": "room 305",
+            "color": "red-card"
+        },
+        "Tue": null,
+        "Wed": {
+            "subject": "Data Structures",
+            "professor": "Prof. Patel",
+            "room": "Lecture Hall 101",
+            "color": "blue-card"
+        },
+        "Thu": null,
+        "Fri": null
+    },
+    "12:10 PM - 01:00 PM": {
+        "Mon": {
+            "subject": "Data Structures",
+            "professor": "Prof. Patel",
+            "room": "Lecture Hall 101",
+            "color": "red-card"
+        },
+        "Tue": {
+            "subject": "Web Dev Lab",
+            "professor": "Prof. Rajesh Kumar",
+            "room": "Electronics Lab",
+            "color": "blue-card"
+        },
+        "Wed": {
+            "subject": "Web Dev Lab",
+            "professor": "Dr. Aditi Sharma",
+            "room": "Classroom 102",
+            "color": "yellow-card"
+        },
+        "Thu": {
+            "subject": "Data Structures",
+            "professor": "Dr. Aditi Sharma",
+            "room": "Electronics Lab",
+            "color": "red-card"
+        },
+        "Fri": null
+    },
+    "01:50 PM - 02:40 PM": {
+        "Mon": null,
+        "Tue": null,
+        "Wed": null,
+        "Thu": null,
+        "Fri": {
+            "subject": "Data Structures",
+            "professor": "Dr. Sneha Patel",
+            "room": "Lecture Hall 101",
+            "color": "purple-card"
+        }
+    },
+    "02:40 PM - 03:30 PM": {
+        "Mon": null,
+        "Tue": {
+            "subject": "Data Structures",
+            "professor": "Prof. Patel",
+            "room": "Electronics Lab",
+            "color": "orange-card"
+        },
+        "Wed": {
+            "subject": "Web Dev Lab",
+            "professor": "Dr. Sneha Patel",
+            "room": "Computer Lab 1",
+            "color": "green-card"
+        },
+        "Thu": null,
+        "Fri": null
+    }
+}

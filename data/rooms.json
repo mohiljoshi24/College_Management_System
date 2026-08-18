@@ -40,5 +40,12 @@
         "type": "LECTURE",
         "capacity": 60,
         "department": "CS"
+    },
+    {
+        "id": "R107",
+        "name": "testing ",
+        "type": "LAB",
+        "capacity": 35,
+        "department": "CS"
     }
 ]
