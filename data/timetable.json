@@ -1,0 +1,1540 @@
+{
+  "SEC-CS-SEM1-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Tue": null,
+      "Wed": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Fri": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Sat": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      }
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Wed": null,
+      "Thu": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Sat": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      }
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Tue": null,
+      "Wed": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Thu": null,
+      "Fri": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Sat": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      }
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Thu": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Fri": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Sat": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      }
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Wed": null,
+      "Thu": null,
+      "Fri": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Sat": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      }
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    }
+  },
+  "SEC-CS-SEM3-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Tue": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Wed": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Thu": null,
+      "Fri": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Sat": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      }
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Thu": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Fri": null,
+      "Sat": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      }
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Thu": null,
+      "Fri": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Sat": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      }
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Wed": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Fri": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Sat": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      }
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Tue": null,
+      "Wed": null,
+      "Thu": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Fri": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Sat": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      }
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Thu": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Fri": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Sat": null
+    }
+  },
+  "SEC-CS-SEM3-B": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": null,
+      "Thu": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Sat": null
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      }
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Wed": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Thu": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Fri": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Sat": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      }
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Wed": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Thu": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Fri": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Sat": null
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": {
+        "subject": "MA201",
+        "subject_name": "Probability & Statistics",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "yellow-card"
+      },
+      "Tue": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Wed": null,
+      "Thu": {
+        "subject": "CS202",
+        "subject_name": "Data Structures & Algorithms",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "CS202L",
+        "subject_name": "Data Structures Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Computer Programming Lab",
+        "room_id": "LAB-CS1",
+        "color": "red-card"
+      },
+      "Sat": null
+    }
+  },
+  "SEC-CS-SEM5-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Wed": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Wed": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      }
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Wed": null,
+      "Thu": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Fri": null,
+      "Sat": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      }
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Wed": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Sat": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      }
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Tue": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Wed": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Sat": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      }
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Tue": null,
+      "Wed": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "CS301",
+        "subject_name": "Database Management Systems",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Sat": null
+    }
+  },
+  "SEC-CS-SEM7-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Tue": null,
+      "Wed": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": null,
+      "Sat": null
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": null,
+      "Thu": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Fri": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Sat": null
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": null,
+      "Thu": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": null,
+      "Sat": null
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "purple-card"
+      },
+      "Wed": null,
+      "Thu": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
+      "Fri": null,
+      "Sat": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      }
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Thu": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Fri": null,
+      "Sat": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      }
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": {
+        "subject": "CS401",
+        "subject_name": "Artificial Intelligence & ML",
+        "type": "LECTURE",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
+        "color": "purple-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    }
+  },
+  "SEC-IT-SEM3-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": {
+        "subject": "IT201",
+        "subject_name": "Web Technologies",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "blue-card"
+      }
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Wed": null,
+      "Thu": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Fri": {
+        "subject": "IT201",
+        "subject_name": "Web Technologies",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "blue-card"
+      },
+      "Sat": null
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": null,
+      "Tue": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Wed": null,
+      "Thu": null,
+      "Fri": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      },
+      "Sat": {
+        "subject": "IT201L",
+        "subject_name": "Web Development Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Web & Network Lab",
+        "room_id": "LAB-IT1",
+        "color": "red-card"
+      }
+    }
+  },
+  "SEC-EC-SEM4-A": {
+    "09:00 AM - 10:00 AM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "10:00 AM - 11:00 AM": {
+      "Mon": null,
+      "Tue": null,
+      "Wed": {
+        "subject": "EC201",
+        "subject_name": "Digital Logic & Microprocessors",
+        "type": "LECTURE",
+        "professor": "Dr. Aditi Sharma",
+        "faculty_id": "FA001",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "green-card"
+      },
+      "Thu": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Fri": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Sat": null
+    },
+    "11:20 AM - 12:10 PM": {
+      "Mon": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "12:10 PM - 01:00 PM": {
+      "Mon": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "01:50 PM - 02:40 PM": {
+      "Mon": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Prof. Patel",
+        "faculty_id": "F102",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Tue": null,
+      "Wed": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Thu": null,
+      "Fri": null,
+      "Sat": null
+    },
+    "02:40 PM - 03:30 PM": {
+      "Mon": {
+        "subject": "EC201L",
+        "subject_name": "Digital Electronics Lab",
+        "type": "LAB",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Digital Electronics Lab",
+        "room_id": "LAB-EC1",
+        "color": "red-card"
+      },
+      "Tue": null,
+      "Wed": null,
+      "Thu": null,
+      "Fri": null,
+      "Sat": {
+        "subject": "EC201",
+        "subject_name": "Digital Logic & Microprocessors",
+        "type": "LECTURE",
+        "professor": "Dr. Sneha Patel",
+        "faculty_id": "FA003",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "green-card"
+      }
+    }
+  }
+}

@@ -394,6 +394,22 @@
             font-size: 12px;
             color: #111927;
         }
+
+        @media print {
+            .sidebar, .header, .action-bar, .filters-card, .footer {
+                display: none !important;
+            }
+            body, .main-wrapper, .content {
+                background: white !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            .timetable-container {
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+            }
+        }
     </style>
 </head>
 
@@ -471,35 +487,30 @@
             <!-- Filter Controls -->
             <div class="filters-card">
                 <div class="filter-group">
-                    <label>View By: Class</label>
+                    <label>View By: Class / Section</label>
                     <div class="select-wrapper">
-                        <select>
-                            <option>Class (Section A)</option>
-                            <option>Class (Section B)</option>
+                        <select id="sectionSelect" onchange="filterSchedule()">
+                            <!-- Populated dynamically -->
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
                 <div class="filter-group">
-                    <label>View By: Professor</label>
+                    <label>Filter By: Professor</label>
                     <div class="select-wrapper">
-                        <select>
-                            <option>All Professors</option>
-                            <option>Dr. Aditi Sharma</option>
-                            <option>Prof. Rajesh Kumar</option>
-                            <option>Dr. Sneha Patel</option>
+                        <select id="professorSelect" onchange="filterSchedule()">
+                            <option value="">All Professors</option>
+                            <!-- Populated dynamically -->
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
                 <div class="filter-group">
-                    <label>View By: Room</label>
+                    <label>Filter By: Room</label>
                     <div class="select-wrapper">
-                        <select>
-                            <option>All Rooms</option>
-                            <option>Lecture Hall 1</option>
-                            <option>Lecture Hall 2</option>
-                            <option>Computer Lab 1</option>
+                        <select id="roomSelect" onchange="filterSchedule()">
+                            <option value="">All Rooms</option>
+                            <!-- Populated dynamically -->
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -536,17 +547,107 @@
 
     <script>
         const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let fullSchedule = {};
+        let allSections = [];
+        let allProfessors = [];
+        let allRooms = [];
+
+        async function initialize() {
+            await Promise.all([
+                loadSections(),
+                loadProfessors(),
+                loadRooms()
+            ]);
+            await loadTimetable();
+        }
+
+        async function loadSections() {
+            try {
+                const res = await fetch("/api/sections");
+                allSections = await res.json();
+                const select = document.getElementById("sectionSelect");
+                if (select && allSections.length > 0) {
+                    select.innerHTML = allSections.map(s => `
+                        <option value="${s.id}">${s.department} - Sem ${s.semester} (${s.section})</option>
+                    `).join("");
+                }
+            } catch (err) {
+                console.error("Failed to load sections:", err);
+            }
+        }
+
+        async function loadProfessors() {
+            try {
+                const res = await fetch("/api/faculties");
+                allProfessors = await res.json();
+                const select = document.getElementById("professorSelect");
+                if (select && allProfessors.length > 0) {
+                    select.innerHTML = `<option value="">All Professors</option>` + allProfessors.map(p => `
+                        <option value="${p.id || p.name}">${p.name}</option>
+                    `).join("");
+                }
+            } catch (err) {
+                console.error("Failed to load professors:", err);
+            }
+        }
+
+        async function loadRooms() {
+            try {
+                const res = await fetch("/api/rooms");
+                allRooms = await res.json();
+                const select = document.getElementById("roomSelect");
+                if (select && allRooms.length > 0) {
+                    select.innerHTML = `<option value="">All Rooms</option>` + allRooms.map(r => `
+                        <option value="${r.id || r.name}">${r.name}</option>
+                    `).join("");
+                }
+            } catch (err) {
+                console.error("Failed to load rooms:", err);
+            }
+        }
 
         async function loadTimetable() {
             try {
                 const res = await fetch("/api/timetable");
-                const schedule = await res.json();
-                if (schedule && Object.keys(schedule).length > 0) {
-                    renderTimetable(schedule);
-                }
+                fullSchedule = await res.json();
+                filterSchedule();
             } catch (err) {
                 console.error("Failed to load timetable:", err);
             }
+        }
+
+        function filterSchedule() {
+            const selectedSection = document.getElementById("sectionSelect")?.value;
+            const selectedProf = document.getElementById("professorSelect")?.value;
+            const selectedRoom = document.getElementById("roomSelect")?.value;
+
+            if (!fullSchedule || Object.keys(fullSchedule).length === 0) {
+                renderTimetable({});
+                return;
+            }
+
+            // If the schedule is stored by section: fullSchedule[sec_id]
+            let sectionSchedule = fullSchedule[selectedSection] || fullSchedule;
+
+            // Apply professor & room filters if selected
+            let filtered = {};
+            for (let slot in sectionSchedule) {
+                filtered[slot] = {};
+                for (let day of DAYS) {
+                    const item = sectionSchedule[slot] ? sectionSchedule[slot][day] : null;
+                    if (!item) {
+                        filtered[slot][day] = null;
+                        continue;
+                    }
+
+                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
+                    let matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
+
+                    filtered[slot][day] = (matchProf && matchRoom) ? item : null;
+                }
+            }
+
+            renderTimetable(filtered);
         }
 
         function renderTimetable(schedule) {
@@ -612,13 +713,14 @@
 
         async function triggerScheduleGeneration() {
             const btn = document.querySelector(".btn-primary");
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating...`;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Master Schedule...`;
 
             try {
                 const res = await fetch("/api/generate-timetable", { method: "POST" });
                 const result = await res.json();
                 if (result.status === "success") {
-                    renderTimetable(result.schedule);
+                    fullSchedule = result.schedule;
+                    filterSchedule();
                 } else {
                     alert("Failed to generate schedule.");
                 }
@@ -630,7 +732,7 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", loadTimetable);
+        document.addEventListener("DOMContentLoaded", initialize);
     </script>
 </body>
 
