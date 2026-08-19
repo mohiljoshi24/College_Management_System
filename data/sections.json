@@ -1,3 +1,51 @@
 [
-  { "id": "SEC_CS_SEM3_A", "semester": 3, "department": "CS", "student_count": 55 }
+  {
+    "id": "SEC-CS-SEM1-A",
+    "department": "Computer Science",
+    "semester": 1,
+    "section": "A",
+    "student_count": 60
+  },
+  {
+    "id": "SEC-CS-SEM3-A",
+    "department": "Computer Science",
+    "semester": 3,
+    "section": "A",
+    "student_count": 55
+  },
+  {
+    "id": "SEC-CS-SEM3-B",
+    "department": "Computer Science",
+    "semester": 3,
+    "section": "B",
+    "student_count": 55
+  },
+  {
+    "id": "SEC-CS-SEM5-A",
+    "department": "Computer Science",
+    "semester": 5,
+    "section": "A",
+    "student_count": 50
+  },
+  {
+    "id": "SEC-CS-SEM7-A",
+    "department": "Computer Science",
+    "semester": 7,
+    "section": "A",
+    "student_count": 45
+  },
+  {
+    "id": "SEC-IT-SEM3-A",
+    "department": "Information Technology",
+    "semester": 3,
+    "section": "A",
+    "student_count": 50
+  },
+  {
+    "id": "SEC-EC-SEM4-A",
+    "department": "Electronics & Comm",
+    "semester": 4,
+    "section": "A",
+    "student_count": 48
+  }
 ]

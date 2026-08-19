@@ -1,51 +1,44 @@
 [
-    {
-        "id": "R101",
-        "name": "Lecture Hall 101",
-        "capacity": 60,
-        "type": "LECTURE",
-        "department": "CS"
-    },
-    {
-        "id": "L201",
-        "name": "Computer Lab 1",
-        "capacity": 30,
-        "type": "LAB",
-        "department": "CS"
-    },
-    {
-        "id": "R102",
-        "name": "Classroom 102",
-        "capacity": 45,
-        "type": "LECTURE",
-        "department": "CS"
-    },
-    {
-        "id": "L202",
-        "name": "Electronics Lab",
-        "capacity": 30,
-        "type": "LAB",
-        "department": "EC"
-    },
-    {
-        "id": "R105",
-        "name": "room 305",
-        "type": "LECTURE",
-        "capacity": 60,
-        "department": "CS"
-    },
-    {
-        "id": "R106",
-        "name": "room 202",
-        "type": "LECTURE",
-        "capacity": 60,
-        "department": "CS"
-    },
-    {
-        "id": "R107",
-        "name": "testing ",
-        "type": "LAB",
-        "capacity": 35,
-        "department": "CS"
-    }
+  {
+    "id": "R101",
+    "name": "Lecture Hall 101",
+    "type": "LECTURE",
+    "capacity": 70,
+    "department": "General"
+  },
+  {
+    "id": "R102",
+    "name": "Lecture Hall 102",
+    "type": "LECTURE",
+    "capacity": 70,
+    "department": "General"
+  },
+  {
+    "id": "R201",
+    "name": "Lecture Hall 201",
+    "type": "LECTURE",
+    "capacity": 60,
+    "department": "Computer Science"
+  },
+  {
+    "id": "LAB-CS1",
+    "name": "Computer Programming Lab",
+    "type": "LAB",
+    "capacity": 40,
+    "department": "Computer Science"
+  },
+  {
+    "id": "LAB-IT1",
+    "name": "Web & Network Lab",
+    "type": "LAB",
+    "capacity": 40,
+    "department": "Information Technology"
+  },
+  {
+    "id": "LAB-EC1",
+    "name": "Digital Electronics Lab",
+    "type": "LAB",
+    "capacity": 35,
+    "department": "Electronics & Comm"
+  }
 ]

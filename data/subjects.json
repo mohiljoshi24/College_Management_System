@@ -1,4 +1,98 @@
 [
-  { "id": "SUB101", "name": "Data Structures", "credits": 4, "required_room_type": "LECTURE", "duration_hrs": 1 },
-  { "id": "SUB102", "name": "Web Dev Lab", "credits": 3, "required_room_type": "LAB", "duration_hrs": 3 }
+  {
+    "code": "CS101",
+    "name": "Programming Fundamentals",
+    "department": "Computer Science",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS202",
+    "name": "Data Structures & Algorithms",
+    "department": "Computer Science",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS202L",
+    "name": "Data Structures Lab",
+    "department": "Computer Science",
+    "semester": 3,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "CS301",
+    "name": "Database Management Systems",
+    "department": "Computer Science",
+    "semester": 5,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS401",
+    "name": "Artificial Intelligence & ML",
+    "department": "Computer Science",
+    "semester": 7,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "IT201",
+    "name": "Web Technologies",
+    "department": "Information Technology",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "IT201L",
+    "name": "Web Development Lab",
+    "department": "Information Technology",
+    "semester": 3,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "EC101",
+    "name": "Basic Electrical & Electronics",
+    "department": "Electronics & Comm",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "EC201",
+    "name": "Digital Logic & Microprocessors",
+    "department": "Electronics & Comm",
+    "semester": 4,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "EC201L",
+    "name": "Digital Electronics Lab",
+    "department": "Electronics & Comm",
+    "semester": 4,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "MA101",
+    "name": "Calculus & Linear Algebra",
+    "department": "Mathematics",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "MA201",
+    "name": "Probability & Statistics",
+    "department": "Mathematics",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 4
+  }
 ]
