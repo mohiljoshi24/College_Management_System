@@ -8,6 +8,7 @@ USERS_FILE = "data/users.json"
 ROOMS_FILE = "data/rooms.json"
 FACULTIES_FILE = "data/faculties.json"
 TIMETABLE_FILE = "data/timetable.json"
+SECTIONS_FILE = "data/sections.json"
 
 # ================= PAGE ROUTES =================
 
@@ -89,6 +90,15 @@ def api_rooms():
         return jsonify({"status": "success", "room": new_room}), 201
     rooms = load_data(ROOMS_FILE)
     return jsonify(rooms), 200
+
+# ================= SECTIONS API ROUTES =================
+
+@app.route("/api/sections", methods=["GET"])
+def api_sections():
+    sections = load_data(SECTIONS_FILE)
+    return jsonify(sections if isinstance(sections, list) else []), 200
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
