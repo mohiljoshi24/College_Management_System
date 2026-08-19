@@ -4,6 +4,7 @@ import os
 def load_data(filepath):
     if not os.path.exists(filepath):
         return []
+    try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
             return data
