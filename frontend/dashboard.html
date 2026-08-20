@@ -274,25 +274,12 @@
             margin-bottom: 4px;
         }
 
-        .purple-chip {
-            background-color: #cab1e7;
-            color: #553c9a;
-        }
-
-        .green-chip {
-            background-color: #b3dbbf;
-            color: #22543d;
-        }
-
-        .yellow-chip {
-            background-color: #eee76c;
-            color: #744210;
-        }
-
-        .red-chip {
-            background-color: #e69f9f;
-            color: #742a2a;
-        }
+        .purple-chip { background-color: #cab1e7; color: #553c9a; }
+        .green-chip { background-color: #b3dbbf; color: #22543d; }
+        .yellow-chip { background-color: #eee76c; color: #744210; }
+        .red-chip { background-color: #e69f9f; color: #742a2a; }
+        .blue-card { background-color: #a6c8f7; color: #1e40af; }
+        .orange-card { background-color: #e7a05d; color: #7c2d12; }
 
         /* Compliance Progress Bars */
         .progress-group {
@@ -422,7 +409,7 @@
                 <div class="metric-card">
                     <div class="metric-info">
                         <label>Total Faculty:</label>
-                        <div class="value">145</div>
+                        <div class="value" id="valTotalFaculty">--</div>
                     </div>
                     <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
                 </div>
@@ -430,7 +417,7 @@
                 <div class="metric-card">
                     <div class="metric-info">
                         <label>Active Classes:</label>
-                        <div class="value">88</div>
+                        <div class="value" id="valActiveClasses">--</div>
                     </div>
                     <div class="metric-icon"><i class="fa-solid fa-laptop-code"></i></div>
                 </div>
@@ -438,7 +425,7 @@
                 <div class="metric-card">
                     <div class="metric-info">
                         <label>Rooms Occupied:</label>
-                        <div class="value">34/50 <span style="font-size:0.9rem; font-weight:normal; color:#718096;">(68%)</span></div>
+                        <div class="value" id="valRoomsOccupied">--</div>
                     </div>
                     <div class="metric-icon"><i class="fa-solid fa-flask"></i></div>
                 </div>
@@ -446,7 +433,7 @@
                 <div class="metric-card">
                     <div class="metric-info">
                         <label>Daily Workload Ave:</label>
-                        <div class="value">3.8 hrs</div>
+                        <div class="value" id="valWorkloadAvg">--</div>
                     </div>
                     <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
                 </div>
@@ -455,17 +442,17 @@
             <!-- Main Section Grid -->
             <div class="dashboard-grid">
 
-                <!-- Left Side: Timetable -->
+                <!-- Left Side: Timetable Preview -->
                 <div class="panel">
                     <div class="panel-header">
-                        <div class="panel-title">Upcoming Timetable: CS Department</div>
-                        <div><button style="padding:4px 10px; font-size:0.8rem; border-radius:4px; border:1px solid #d1d5db; background:#fff; cursor:pointer;">Today</button></div>
+                        <div class="panel-title" id="previewTitle">Upcoming Schedule: CS Sem 1</div>
+                        <div><a href="/timetable" style="text-decoration:none; padding:4px 10px; font-size:0.8rem; border-radius:4px; border:1px solid #d1d5db; background:#fff; color:#111927; cursor:pointer;">Full View</a></div>
                     </div>
 
                     <table class="timetable-table">
                         <thead>
                             <tr>
-                                <th>day</th>
+                                <th>Slot</th>
                                 <th>Mon</th>
                                 <th>Tue</th>
                                 <th>Wed</th>
@@ -474,61 +461,8 @@
                                 <th>Sat</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>23 Nov</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><div class="event-chip purple-chip">Dr. ...<br>Prof.</div></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>15 Nov</td>
-                                <td><div class="event-chip purple-chip">CS202A<br>Prof. Sharma</div></td>
-                                <td><div class="event-chip purple-chip">CS202A<br>CS202A</div></td>
-                                <td><div class="event-chip purple-chip">Dr. ...<br>Prof.</div></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>16 Nov</td>
-                                <td><div class="event-chip green-chip">CS202A<br>Prof. Kumar</div></td>
-                                <td><div class="event-chip green-chip">CS202A<br>Prof. Kumar</div></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>17 Nov</td>
-                                <td></td>
-                                <td><div class="event-chip purple-chip">CS202A<br>EE101B</div></td>
-                                <td><div class="event-chip yellow-chip">CE101B<br>EE101B</div></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>28 Nov</td>
-                                <td><div class="event-chip red-chip">CS202B<br>Prof. Sharma</div></td>
-                                <td></td>
-                                <td></td>
-                                <td><div class="event-chip purple-chip">EE101B<br>EE101B</div></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>29 Nov</td>
-                                <td></td>
-                                <td></td>
-                                <td><div class="event-chip yellow-chip">CS202A<br>Prof. Sharma</div></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                        <tbody id="dashTimetableBody">
+                            <!-- Populated dynamically from schedule -->
                         </tbody>
                     </table>
                 </div>
@@ -542,32 +476,8 @@
                             <div style="font-size:0.75rem; color:#718096; font-weight:normal;">(5 hours constraint status)</div>
                         </div>
 
-                        <div class="progress-group">
-                            <div class="progress-label"><span>CS</span><span>98%</span></div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 98%; background-color: #38a169;"></div>
-                            </div>
-                        </div>
-
-                        <div class="progress-group">
-                            <div class="progress-label"><span>MA</span><span>96%</span></div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 96%; background-color: #38a169;"></div>
-                            </div>
-                        </div>
-
-                        <div class="progress-group">
-                            <div class="progress-label"><span>CP</span><span>92%</span></div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 92%; background-color: #38a169;"></div>
-                            </div>
-                        </div>
-
-                        <div class="progress-group">
-                            <div class="progress-label"><span>UB</span><span>60%</span></div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 60%; background-color: #dd6b20;"></div>
-                            </div>
+                        <div id="complianceContainer">
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
 
@@ -575,28 +485,25 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div class="panel" style="margin-bottom: 0;">
                             <div class="panel-title" style="margin-bottom:10px; font-size: 0.85rem;">Room Allocation Status</div>
-                            <ul class="status-list">
-                                <li><span>Lecture Hall 1</span><strong>CS202</strong></li>
-                                <li><span>Lab A</span><strong>EE101</strong></li>
-                                <li><span>Lecture Hall 2</span><strong>CS202</strong></li>
-                                <li><span>Lab B</span><strong>EE101</strong></li>
+                            <ul class="status-list" id="roomStatusList">
+                                <!-- Populated dynamically -->
                             </ul>
                         </div>
 
                         <div class="panel" style="margin-bottom: 0;">
-                            <div class="panel-title" style="margin-bottom:10px; font-size: 0.85rem;">Pending Reports & Approvals</div>
+                            <div class="panel-title" style="margin-bottom:10px; font-size: 0.85rem;">System Health</div>
                             <ul class="alert-list">
                                 <li>
-                                    <div class="alert-item"><span class="badge-icon" style="background:#3182ce;"></span> Reat admin...</div>
-                                    <strong>3</strong>
+                                    <div class="alert-item"><span class="badge-icon" style="background:#38a169;"></span> Constraint Solver</div>
+                                    <strong>Ready</strong>
                                 </li>
                                 <li>
-                                    <div class="alert-item"><span class="badge-icon" style="background:#e53e3e;"></span> Report admin...</div>
-                                    <strong>0</strong>
+                                    <div class="alert-item"><span class="badge-icon" style="background:#3182ce;"></span> Storage Manager</div>
+                                    <strong>Active</strong>
                                 </li>
                                 <li>
-                                    <div class="alert-item"><span class="badge-icon" style="background:#dd6b20;"></span> Report admin...</div>
-                                    <strong>0</strong>
+                                    <div class="alert-item"><span class="badge-icon" style="background:#805ad5;"></span> API Endpoints</div>
+                                    <strong>Online</strong>
                                 </li>
                             </ul>
                         </div>
@@ -613,6 +520,102 @@
         </footer>
     </div>
 
+    <!-- Live Data Fetching Logic -->
+    <script>
+        const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        async function initDashboard() {
+            await Promise.all([
+                loadStats(),
+                loadPreviewTimetable(),
+                loadRooms()
+            ]);
+        }
+
+        async function loadStats() {
+            try {
+                const res = await fetch("/api/dashboard-stats");
+                const stats = await res.json();
+
+                document.getElementById("valTotalFaculty").textContent = stats.total_faculty || 0;
+                document.getElementById("valActiveClasses").textContent = stats.active_classes || 0;
+                document.getElementById("valRoomsOccupied").innerHTML = `${stats.rooms_occupied}/${stats.total_rooms} <span style="font-size:0.9rem; font-weight:normal; color:#718096;">(${stats.room_occupancy_pct}%)</span>`;
+                document.getElementById("valWorkloadAvg").textContent = `${stats.daily_workload_avg} hrs`;
+
+                // Render compliance bars
+                const compContainer = document.getElementById("complianceContainer");
+                if (compContainer && stats.compliance) {
+                    compContainer.innerHTML = stats.compliance.map(item => `
+                        <div class="progress-group">
+                            <div class="progress-label"><span>${item.department}</span><span>${item.pct}%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${item.pct}%; background-color: ${item.pct > 75 ? '#38a169' : '#dd6b20'};"></div>
+                            </div>
+                        </div>
+                    `).join("");
+                }
+            } catch (err) {
+                console.error("Failed to load dashboard stats:", err);
+            }
+        }
+
+        async function loadPreviewTimetable() {
+            try {
+                const res = await fetch("/api/timetable");
+                const timetable = await res.json();
+                const tbody = document.getElementById("dashTimetableBody");
+                if (!tbody) return;
+
+                // Pick the first cohort available for preview
+                const firstCohortKey = Object.keys(timetable)[0];
+                const schedule = (firstCohortKey && timetable[firstCohortKey]) ? timetable[firstCohortKey] : timetable;
+
+                if (firstCohortKey) {
+                    document.getElementById("previewTitle").textContent = `Upcoming Schedule: ${firstCohortKey}`;
+                }
+
+                const slots = Object.keys(schedule);
+                if (slots.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" style="padding:15px; color:#718096;">No active schedule. Visit Timetable to generate.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = slots.slice(0, 4).map(slot => {
+                    const shortSlot = slot.split(" - ")[0];
+                    let cells = `<td><strong>${shortSlot}</strong></td>`;
+                    DAYS.forEach(day => {
+                        const item = schedule[slot] ? schedule[slot][day] : null;
+                        if (item) {
+                            cells += `<td><div class="event-chip ${item.color || 'purple-chip'}">${item.subject}<br><span style="font-size:0.65rem;">${item.room}</span></div></td>`;
+                        } else {
+                            cells += `<td>-</td>`;
+                        }
+                    });
+                    return `<tr>${cells}</tr>`;
+                }).join("");
+
+            } catch (err) {
+                console.error("Failed to load timetable preview:", err);
+            }
+        }
+
+        async function loadRooms() {
+            try {
+                const res = await fetch("/api/rooms");
+                const rooms = await res.json();
+                const list = document.getElementById("roomStatusList");
+                if (list && rooms.length > 0) {
+                    list.innerHTML = rooms.slice(0, 4).map(r => `
+                        <li><span>${r.name}</span><strong>${r.type}</strong></li>
+                    `).join("");
+                }
+            } catch (err) {
+                console.error("Failed to load rooms status:", err);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", initDashboard);
+    </script>
 </body>
 
 </html>
