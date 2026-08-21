@@ -78,17 +78,23 @@ def api_faculties():
         return jsonify({"status": "success", "message": "Faculty deleted"}), 200
     return jsonify(faculties), 200
 
-@app.route("/api/rooms", methods=["GET", "POST"])
+@app.route("/api/rooms", methods=["GET", "POST", "DELETE"])
 def api_rooms():
+    rooms = load_data(ROOMS_FILE) or []
     if request.method == "POST":
         new_room = request.get_json()
         if not new_room:
             return jsonify({"status": "error", "message": "Invalid room data"}), 400
-        rooms = load_data(ROOMS_FILE)
         rooms.append(new_room)
         save_data(ROOMS_FILE, rooms)
         return jsonify({"status": "success", "room": new_room}), 201
-    rooms = load_data(ROOMS_FILE)
+    
+    if request.method == "DELETE":
+        room_id = request.args.get("id")
+        rooms = [r for r in rooms if str(r.get("id")) != str(room_id)]
+        save_data(ROOMS_FILE, rooms)
+        return jsonify({"status": "success", "message": "Room deleted"}), 200
+
     return jsonify(rooms), 200
 
 # --- DASHBOARD METRICS API ---
