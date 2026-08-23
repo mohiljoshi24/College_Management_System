@@ -55,7 +55,7 @@ An enterprise-grade Academic Operations and Automated Resource Scheduling platfo
 
 | Endpoint | Method | Payload / Query | Status Codes | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `/api/login` | `POST` | `{ "email": "...", "password": "..." }` | `200`, `401` | Authenticates administrator credentials. |
+| `/api/login` | `POST` | `{ "email": "...", "password": "..." }` | `200`, `401`   Authenticates administrator credentials. |
 | `/api/faculties` | `GET` | *None* | `200` | Retrieves all registered faculty profiles and workload parameters[cite: 2]. |
 | `/api/faculties` | `POST` | Faculty Object (`JSON`) | `201`, `400` | Creates a new faculty record and persists to disk[cite: 2]. |
 | `/api/faculties` | `DELETE` | `?id=FAxxx` | `200`, `400` | Removes a faculty record by identifier[cite: 2]. |
@@ -108,11 +108,36 @@ College_Management_System/
 │   └── users.json             # Administrative authentication credentials
 └── frontend/                  # Static client-side assets
 ├── dashboard.html         # Analytics dashboard, KPIs and mini schedule preview
-├── faculties.html         # Faculty workload manager with interactive modals[cite: 2]
+├── faculties.html         # Faculty workload manager with interactive modals[cite: 
 ├── login_page.html        # Authentication entry gateway
 ├── room_allocation.html   # Room & Lab infrastructure manager[cite: 3]
 └── timetable.html         # Filterable master schedule view with PDF export styling[cite: 1]
 
 ---
 
-**last but not the least:** its my very first project that to as a sem-1 CSE student.
+## Engineering Challenges Overcome
+
+**Circular Dependency Resolution:** Isolated storage_manager.py into a pure utility module to eliminate runtime circular self-imports on server initialization.
+
+**REST Method Normalization:** Standardized Flask route decorators with explicit methods=["GET", "POST", "DELETE"] allowances to prevent HTTP 405 Method Not Allowed exceptions.
+
+**Multi-Cohort Data Overwriting:** Refactored a flat schedule matrix into a multi-dimensional key-value store partitioned by Section IDs (SEC-CS-SEM1-A, SEC-IT-SEM3-A), allowing independent multi-cohort filtering.
+
+**Modal Input Validation:** Replaced primitive browser prompt inputs with accessible HTML5 modal overlay dialogs to prevent malformed JSON schemas from entering the datastore[cite: 2, 3].
+
+---
+
+## Future Roadmap
+
+**[ ] Role-Based Access Control (RBAC):** JWT-secured role routing for Administrators, Faculty, and Students.
+
+**[ ] Advanced Optimization:** Genetic Algorithm (GA) integration to minimize faculty idle gap periods between classes.
+
+**[ ] Database Migration:** Migration to PostgreSQL with SQLAlchemy ORM for higher transactional concurrency.
+
+**[ ] Direct Vector PDF Rendering:** Native server-side vector PDF generation for administrative printouts.
+
+---
+
+## last but not the least: 
+**its my very first project that to as a sem-1 CSE student.**
