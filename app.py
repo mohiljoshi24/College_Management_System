@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, render_template
 from storage_manager import load_data, save_data
 from scheduler_engine import generate_schedule
 
@@ -33,6 +33,19 @@ def faculties():
 @app.route("/rooms")
 def rooms():
     return send_from_directory("frontend", "room_allocation.html")
+
+@app.route('/attendance')
+def attendance_page():
+    return send_from_directory('frontend', 'attendance.html')
+
+@app.route('/reports')
+def reports_page():
+    return send_from_directory('frontend', 'reports.html')
+
+@app.route('/settings')
+def settings_page():
+    return send_from_directory('frontend', 'settings.html')
+
 
 
 # ================= TIMETABLE API ROUTES =================
@@ -113,6 +126,8 @@ def api_dashboard_stats():
     total_scheduled_hours = 0
     faculty_assigned_hours = {}
 
+
+
     for sec_id, slots in timetable.items():
         if not isinstance(slots, dict):
             continue
@@ -180,8 +195,6 @@ def api_dashboard_stats():
 def api_sections():
     sections = load_data(SECTIONS_FILE)
     return jsonify(sections if isinstance(sections, list) else []), 200
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

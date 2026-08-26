@@ -140,10 +140,10 @@
         /* Content Container */
         .content {
             padding: 24px 28px;
-            padding-right: 260px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            flex-grow: 1;
         }
         .page-title {
             font-size: 20px;
@@ -213,9 +213,9 @@
             background: var(--blue-btn-hover);
         }
         .search {
-            width: 220px;
-            height: 34px;
-            border: 1px solid #d1d5db;
+            width: 240px;
+            height: 36px;
+            border: 1px solid #cbd5e1;
             border-radius: 6px;
             padding: 0 12px;
             font-size: 13px;
@@ -228,7 +228,7 @@
         /* Room Grid */
         .room-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
         .room-card {
@@ -237,17 +237,12 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 16px;
-            cursor: pointer;
             transition: .2s;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             position: relative;
         }
         .room-card:hover {
             box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
-        }
-        .room-card.selected {
-            border: 1.5px solid var(--blue-btn);
-            background: #f8fafc;
         }
         .room-header {
             display: flex;
@@ -297,95 +292,6 @@
         }
         .delete-room-btn:hover {
             color: #ef4444;
-        }
-        /* Right Panel */
-        .details-panel {
-            position: fixed;
-            right: 0;
-            top: 53px;
-            width: 240px;
-            height: calc(100vh - 53px);
-            background: #ffffff;
-            border-left: 1px solid var(--border-color);
-            padding: 16px;
-            overflow-y: auto;
-            box-shadow: -1px 0 3px rgba(0, 0, 0, 0.05);
-        }
-        .details-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-        .close {
-            color: #94a3b8;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .floor-plan {
-            width: 100%;
-            height: 100px;
-            background: #0d478d;
-            border: 1px solid #1763ac;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .floor-plan-inner {
-            height: 100%;
-            border: 2px solid rgba(255, 255, 255, .6);
-            position: relative;
-        }
-        .room-box {
-            position: absolute;
-            border: 1px solid rgba(255, 255, 255, .75);
-        }
-        .r1 { left: 30px; top: 6px; width: 45px; height: 30px; }
-        .r2 { left: 80px; top: 6px; width: 40px; height: 30px; }
-        .r3 { left: 10px; bottom: 6px; width: 55px; height: 30px; }
-        .door {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-left: 2px solid white;
-            border-bottom: 2px solid white;
-            right: 15px;
-            bottom: 10px;
-        }
-        .section-title {
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 7px;
-            color: #1e293b;
-        }
-        .session-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-        .session-name {
-            font-weight: bold;
-            font-size: 12px;
-            margin-bottom: 4px;
-        }
-        .session-time {
-            font-size: 11px;
-            color: #64748b;
-        }
-        .checklist {
-            margin-bottom: 14px;
-        }
-        .check {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            margin: 8px 0;
-            color: #334155;
         }
         /* Footer */
         .footer {
@@ -486,27 +392,13 @@
             <span>SSIT CMS</span>
         </div>
         <ul class="nav-list">
-            <li class="nav-item">
-                <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="/timetable"><i class="fa-solid fa-calendar-days"></i> Timetable View</a>
-            </li>
-            <li class="nav-item">
-                <a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a>
-            </li>
-            <li class="nav-item active">
-                <a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-file-lines"></i> Reports</a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
-            </li>
+            <li class="nav-item"><a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="/timetable"><i class="fa-regular fa-calendar-days"></i> Timetable View</a></li>
+            <li class="nav-item"><a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a></li>
+            <li class="nav-item active"><a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a></li>
+            <li class="nav-item"><a href="/attendance"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a></li>
+            <li class="nav-item"><a href="/reports"><i class="fa-regular fa-file-lines"></i> Reports</a></li>
+            <li class="nav-item"><a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
         </ul>
     </aside>
 
@@ -568,34 +460,6 @@
             </footer>
         </main>
     </div>
-
-    <!-- Right Panel -->
-    <aside class="details-panel" id="detailsPanel">
-        <div class="details-title">
-            <span id="selectedRoomTitle">Room Details</span>
-            <span class="close" onclick="closeDetails()">&times;</span>
-        </div>
-        <div class="floor-plan">
-            <div class="floor-plan-inner">
-                <div class="room-box r1"></div>
-                <div class="room-box r2"></div>
-                <div class="room-box r3"></div>
-                <div class="door"></div>
-            </div>
-        </div>
-        <div class="section-title">Current Session</div>
-        <div class="session-box">
-            <div class="session-name" id="selectedRoomSession">Available</div>
-            <div class="session-time" id="selectedRoomInfo">No active class scheduled</div>
-        </div>
-        <div class="section-title">Equipment Checklist</div>
-        <div class="checklist">
-            <label class="check"><input type="checkbox" checked> Projector &amp; Screen</label>
-            <label class="check"><input type="checkbox" checked> Workstations / Desks</label>
-            <label class="check"><input type="checkbox" checked> AC &amp; Power Sockets</label>
-            <label class="check"><input type="checkbox" id="labEquipCheck"> Specialized Lab Gear</label>
-        </div>
-    </aside>
 
     <!-- Add Room Modal -->
     <div class="modal-overlay" id="roomModal">
@@ -668,7 +532,7 @@
                 return;
             }
             grid.innerHTML = rooms.map((room, idx) => `
-                <div class="room-card ${idx === 0 ? 'selected' : ''}" onclick="selectRoom(${idx}, this)">
+                <div class="room-card">
                     <div class="room-header">
                         <div class="room-name">
                             ${room.name || room.id}<br>
@@ -687,10 +551,6 @@
                     </div>
                 </div>
             `).join("");
-
-            if (rooms.length > 0) {
-                showDetails(rooms[0]);
-            }
         }
 
         function updateStats(rooms) {
@@ -702,30 +562,6 @@
             if (elClass) elClass.textContent = classrooms;
             if (elLabs) elLabs.textContent = labs;
             if (elTotal) elTotal.textContent = rooms.length;
-        }
-
-        function selectRoom(index, element) {
-            if (!allRooms[index]) return;
-            document.querySelectorAll(".room-card").forEach(el => el.classList.remove("selected"));
-            if (element) element.classList.add("selected");
-            showDetails(allRooms[index]);
-        }
-
-        function showDetails(room) {
-            if (!room) return;
-            const elTitle = document.getElementById("selectedRoomTitle");
-            const elSession = document.getElementById("selectedRoomSession");
-            const elInfo = document.getElementById("selectedRoomInfo");
-            const elCheck = document.getElementById("labEquipCheck");
-            if (elTitle) elTitle.textContent = `${room.name || room.id} (${room.type || 'General'})`;
-            if (elSession) elSession.textContent = room.type && room.type.toUpperCase() === "LAB" ? "Specialized Lab" : "Lecture Session";
-            if (elInfo) elInfo.textContent = `Department: ${room.department || 'General'} | Capacity: ${room.capacity || 0} Students`;
-            if (elCheck) elCheck.checked = !!(room.type && room.type.toUpperCase() === "LAB");
-        }
-
-        function closeDetails() {
-            const panel = document.getElementById("detailsPanel");
-            if (panel) panel.style.display = "none";
         }
 
         function searchRooms() {

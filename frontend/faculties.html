@@ -141,6 +141,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      flex-grow: 1;
     }
     .page-title {
       font-size: 20px;
@@ -243,13 +244,9 @@
       color: #334155;
       border-bottom: 1px solid #f1f5f9;
       vertical-align: middle;
-      cursor: pointer;
     }
     tr:hover td {
       background-color: #f8fafc;
-    }
-    tr.selected td {
-      background-color: #eff6ff;
     }
     tr:last-child td {
       border-bottom: none;
@@ -263,7 +260,7 @@
       color: #64748b;
     }
     .workload-container {
-      width: 140px;
+      width: 160px;
     }
     .workload-text {
       font-size: 12px;
@@ -299,84 +296,6 @@
       padding: 16px 28px;
       font-size: 12px;
       color: #111927;
-    }
-    /* --- RIGHT INSPECTOR PANEL --- */
-    .right-panel {
-      width: 270px;
-      background-color: #ffffff;
-      border-left: 1px solid var(--border-color);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      flex-shrink: 0;
-      overflow-y: auto;
-    }
-    .panel-header {
-      display: flex;
-      justify-content: flex-end;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-    .profile-card {
-      text-align: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-    .profile-card img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-    .profile-card h3 {
-      font-size: 15px;
-      color: #0f172a;
-      font-weight: 700;
-    }
-    .profile-card p {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 2px;
-    }
-    .schedule-section h4,
-    .kpi-section h4 {
-      font-size: 12px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    .schedule-item {
-      font-size: 12px;
-      color: #475569;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      padding-bottom: 4px;
-      border-bottom: 1px dashed #f1f5f9;
-    }
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .kpi-card {
-      background-color: #f8fafc;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #f1f5f9;
-    }
-    .kpi-card .val {
-      font-size: 14px;
-      font-weight: 700;
-      color: #0f172a;
-    }
-    .kpi-card .lbl {
-      font-size: 11px;
-      color: #64748b;
     }
 
     /* Modal Styling */
@@ -453,34 +372,21 @@
   </style>
 </head>
 <body>
-  <!-- Left Sidebar -->
+
+  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="brand">
       <i class="fa-solid fa-graduation-cap"></i>
       <span>SSIT CMS</span>
     </div>
     <ul class="nav-list">
-      <li class="nav-item">
-        <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a href="/timetable"><i class="fa-solid fa-calendar-days"></i> Timetable View</a>
-      </li>
-      <li class="nav-item active">
-        <a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a>
-      </li>
-      <li class="nav-item">
-        <a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a>
-      </li>
-      <li class="nav-item">
-        <a href="#"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a>
-      </li>
-      <li class="nav-item">
-        <a href="#"><i class="fa-solid fa-file-lines"></i> Reports</a>
-      </li>
-      <li class="nav-item">
-        <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
-      </li>
+      <li class="nav-item"><a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+      <li class="nav-item"><a href="/timetable"><i class="fa-regular fa-calendar-days"></i> Timetable View</a></li>
+      <li class="nav-item active"><a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a></li>
+      <li class="nav-item"><a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a></li>
+      <li class="nav-item"><a href="/attendance"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a></li>
+      <li class="nav-item"><a href="/reports"><i class="fa-regular fa-file-lines"></i> Reports</a></li>
+      <li class="nav-item"><a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
     </ul>
   </aside>
 
@@ -540,45 +446,6 @@
       &copy; 2026 College Management System. Version 15.1
     </footer>
   </div>
-
-  <!-- Right Inspector Panel -->
-  <aside class="right-panel" id="inspectorPanel">
-    <div class="panel-header">
-      <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeInspector()"></i>
-    </div>
-    <div class="profile-card">
-      <img id="inspAvatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80" alt="Professor">
-      <h3 id="inspName">Select a Professor</h3>
-      <p id="inspDept">Department</p>
-      <p id="inspEmail">email@ssit.edu</p>
-    </div>
-    <div class="schedule-section">
-      <h4>Weekly teaching schedule</h4>
-      <div class="schedule-item"><span>Monday - Wednesday</span> <span id="inspSchedule1">2.0 hrs / day</span></div>
-      <div class="schedule-item"><span>Thursday - Friday</span> <span id="inspSchedule2">2.5 hrs / day</span></div>
-    </div>
-    <div class="kpi-section">
-      <h4>Key Performances</h4>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="val" id="inspWorkload">0.0 hr</div>
-          <div class="lbl">Workload</div>
-        </div>
-        <div class="kpi-card">
-          <div class="val" id="inspCourses">0</div>
-          <div class="lbl">Courses</div>
-        </div>
-        <div class="kpi-card">
-          <div class="val">5.0 hr</div>
-          <div class="lbl">Max Hours</div>
-        </div>
-        <div class="kpi-card">
-          <div class="val">1.0 hr</div>
-          <div class="lbl">Break</div>
-        </div>
-      </div>
-    </div>
-  </aside>
 
   <!-- Add Faculty Modal -->
   <div class="modal-overlay" id="facultyModal">
@@ -675,8 +542,8 @@
           : (Array.isArray(fac.active_courses) ? fac.active_courses.join(", ") : (fac.active_courses || "None"));
 
         return `
-          <tr class="${idx === 0 ? 'selected' : ''}" onclick="selectFaculty(${idx}, this)">
-            <td><input type="checkbox" onclick="event.stopPropagation()"></td>
+          <tr>
+            <td><input type="checkbox"></td>
             <td>
               <div class="prof-name">${fac.name || 'Unknown'}</div>
               <div class="prof-sub">${fac.qualification || '(PhD)'}</div>
@@ -693,50 +560,12 @@
                 </div>
               </div>
             </td>
-            <td class="action-icons" onclick="event.stopPropagation()">
+            <td class="action-icons">
               <i class="fa-regular fa-trash-can" title="Delete Faculty" onclick="deleteFaculty('${fac.id}')"></i>
             </td>
           </tr>
         `;
       }).join("");
-
-      if (data.length > 0) {
-        showInspector(data[0]);
-      }
-    }
-
-    function selectFaculty(idx, rowElement) {
-      if (!facultiesList[idx]) return;
-      if (rowElement) {
-        document.querySelectorAll("#facultyTableBody tr").forEach(tr => tr.classList.remove("selected"));
-        rowElement.classList.add("selected");
-      }
-      showInspector(facultiesList[idx]);
-    }
-
-    function showInspector(fac) {
-      if (!fac) return;
-      const elName = document.getElementById("inspName");
-      const elDept = document.getElementById("inspDept");
-      const elEmail = document.getElementById("inspEmail");
-      const elWorkload = document.getElementById("inspWorkload");
-      const elCourses = document.getElementById("inspCourses");
-      if (elName) elName.textContent = fac.name || "Faculty Member";
-      if (elDept) elDept.textContent = fac.department || "Computer Science";
-      if (elEmail) elEmail.textContent = fac.email || (fac.name ? fac.name.toLowerCase().replace(/[^a-z]/g, "") + "@ssit.edu" : "faculty@ssit.edu");
-      
-      const workload = fac.daily_workload || fac.workload || 3.5;
-      if (elWorkload) elWorkload.textContent = `${workload} hr`;
-      
-      const count = Array.isArray(fac.subjects_can_teach) 
-        ? fac.subjects_can_teach.length 
-        : (Array.isArray(fac.active_courses) ? fac.active_courses.length : 2);
-      if (elCourses) elCourses.textContent = count;
-    }
-
-    function closeInspector() {
-      const panel = document.getElementById("inspectorPanel");
-      if (panel) panel.style.display = "none";
     }
 
     function filterFaculty() {
