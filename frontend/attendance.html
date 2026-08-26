@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSIT - Attendance Portal</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #111927;
+            --sidebar-hover: #1f2937;
+            --sidebar-active: #2d3748;
+            --sidebar-text: #9ca3af;
+            --body-bg: #90a6cade;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --blue-btn: #0066ff;
+            --blue-btn-hover: #0052cc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--body-bg);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 240px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 24px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .brand i {
+            font-size: 20px;
+        }
+
+        .nav-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item a:hover {
+            background-color: var(--sidebar-hover);
+            color: #ffffff;
+        }
+
+        .nav-item.active a {
+            background-color: var(--sidebar-active);
+            color: #ffffff;
+            border-left: 3px solid var(--blue-btn);
+        }
+
+        /* Main Area */
+        .main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--white);
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb span {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-icon {
+            position: relative;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Content Container */
+        .content {
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Centered Placeholder Area */
+        .placeholder-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .placeholder-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 40px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .placeholder-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background-color: #fef3c7;
+            color: #92400e;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .placeholder-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111927;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 16px 28px;
+            font-size: 12px;
+            color: #111927;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>SSIT CMS</span>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="/timetable"><i class="fa-regular fa-calendar-days"></i> Timetable View</a></li>
+            <li class="nav-item"><a href="/faculties"><i class="fa-solid fa-user-group"></i> Faculty Manager</a></li>
+            <li class="nav-item"><a href="/room_allocation"><i class="fa-solid fa-door-open"></i> Room Allocation</a></li>
+            <li class="nav-item active"><a href="/attendance"><i class="fa-solid fa-clipboard-user"></i> Attendance Portal</a></li>
+            <li class="nav-item"><a href="/reports"><i class="fa-regular fa-file-lines"></i> Reports</a></li>
+            <li class="nav-item"><a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header Nav -->
+        <header class="header">
+            <div class="breadcrumb">
+                SSIT / <span>Attendance</span>
+            </div>
+            <div class="user-profile">
+                <div class="notification-icon">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </div>
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80"
+                        alt="Admin User" class="user-avatar">
+                    <span>Admin User</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 10px; color: #6b7280;"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="content">
+            <h1 class="page-title">Attendance Portal</h1>
+
+            <div class="placeholder-container">
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                    </div>
+                    <div>
+                        <span class="status-pill"><i class="fa-solid fa-hourglass-half"></i> In Development</span>
+                    </div>
+                    <h2 class="placeholder-title">Work Under Progress</h2>
+                    <p class="placeholder-desc">This module is scheduled for implementation following the evaluation of timetable and allocation sub-systems.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            &copy; 2026 College Management System. Version 15.1
+        </footer>
+    </div>
+
+</body>
+</html>
