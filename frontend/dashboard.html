@@ -237,6 +237,14 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .panel-title-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .panel-title {
@@ -244,6 +252,22 @@
             font-weight: 700;
             color: #000000;
             text-transform: uppercase;
+        }
+
+        .cohort-select {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            color: #1e293b;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .cohort-select:focus {
+            border-color: var(--blue-btn);
         }
 
         /* Timetable Table */
@@ -269,17 +293,43 @@
         .event-chip {
             border-radius: 4px;
             padding: 6px 8px;
-            text-align: left;
+            text-align: center;
             font-size: 0.75rem;
-            margin-bottom: 4px;
+            font-weight: 600;
+            line-height: 1.3;
         }
 
-        .purple-chip { background-color: #cab1e7; color: #553c9a; }
-        .green-chip { background-color: #b3dbbf; color: #22543d; }
-        .yellow-chip { background-color: #eee76c; color: #744210; }
-        .red-chip { background-color: #e69f9f; color: #742a2a; }
-        .blue-card { background-color: #a6c8f7; color: #1e40af; }
-        .orange-card { background-color: #e7a05d; color: #7c2d12; }
+       /* Unified High-Intensity Pastel Palette */
+        .purple-chip { 
+             background-color: #cab1e7 !important; 
+             color: #44337a !important; 
+         }
+        .green-chip { 
+             background-color: #b3dbbf !important; 
+                color: #1c4532 !important; 
+        }
+        .yellow-chip { 
+             background-color: #eee76c !important; 
+             color: #5f370e !important; 
+        }
+        .red-chip { 
+              background-color: #e69f9f !important; 
+              color: #5c2323 !important; 
+        }
+        .blue-card { 
+              background-color: #a6c8f7 !important; 
+              color: #173b8a !important; 
+        }
+        .orange-card { 
+              background-color: #e7a05d !important; 
+              color: #652b19 !important; 
+        }
+
+/* Ensure child text isn't muted or faded */
+.event-chip span {
+    opacity: 0.95 !important;
+    font-weight: 500;
+}
 
         /* Compliance Progress Bars */
         .progress-group {
@@ -347,7 +397,7 @@
 
 <body>
 
-  <!-- Sidebar -->
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="brand">
             <i class="fa-solid fa-graduation-cap"></i>
@@ -431,14 +481,21 @@
                 <!-- Left Side: Timetable Preview -->
                 <div class="panel">
                     <div class="panel-header">
-                        <div class="panel-title" id="previewTitle">Upcoming Schedule: CS Sem 1</div>
-                        <div><a href="/timetable" style="text-decoration:none; padding:4px 10px; font-size:0.8rem; border-radius:4px; border:1px solid #d1d5db; background:#fff; color:#111927; cursor:pointer;">Full View</a></div>
+                        <div class="panel-title-area">
+                            <div class="panel-title">Upcoming Schedule</div>
+                            <select id="cohortSelector" class="cohort-select" onchange="handleCohortChange()">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div>
+                            <a href="/timetable" style="text-decoration:none; padding:4px 10px; font-size:0.8rem; border-radius:4px; border:1px solid #d1d5db; background:#fff; color:#111927; cursor:pointer;">Full View</a>
+                        </div>
                     </div>
 
                     <table class="timetable-table">
                         <thead>
                             <tr>
-                                <th>Slot</th>
+                                <th style="width: 15%;">Slot</th>
                                 <th>Mon</th>
                                 <th>Tue</th>
                                 <th>Wed</th>
@@ -508,12 +565,45 @@
 
     <!-- Live Data Fetching Logic -->
     <script>
-        const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+       const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const COLOR_CLASSES = ["purple-chip", "green-chip", "yellow-chip", "red-chip", "blue-card", "orange-card"];
+        const subjectColorMap = {};
+        let colorCounter = 0;
+        let globalTimetable = {};
+
+        function getSubjectColor(item) {
+            // 1. If backend already sent an explicit color class, prioritize it
+            if (item && item.color && COLOR_CLASSES.includes(item.color)) {
+                return item.color;
+            }
+            
+            // 2. Otherwise, map subject code consistently to the palette
+            const subj = item.subject || "";
+            if (!subjectColorMap[subj]) {
+                subjectColorMap[subj] = COLOR_CLASSES[colorCounter % COLOR_CLASSES.length];
+                colorCounter++;
+            }
+            return subjectColorMap[subj];
+        }
+
+        // Convert "09:00 AM" / "01:50 PM" to minutes for chronologically correct sorting
+        function parseTimeToMinutes(timeStr) {
+            if (!timeStr) return 0;
+            const startPart = timeStr.split("-")[0].trim();
+            const match = startPart.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+            if (!match) return 0;
+            let hours = parseInt(match[1], 10);
+            const minutes = parseInt(match[2], 10);
+            const meridiem = match[3].toUpperCase();
+            if (meridiem === "PM" && hours !== 12) hours += 12;
+            if (meridiem === "AM" && hours === 12) hours = 0;
+            return hours * 60 + minutes;
+        }
 
         async function initDashboard() {
             await Promise.all([
                 loadStats(),
-                loadPreviewTimetable(),
+                loadTimetableData(),
                 loadRooms()
             ]);
         }
@@ -528,7 +618,6 @@
                 document.getElementById("valRoomsOccupied").innerHTML = `${stats.rooms_occupied}/${stats.total_rooms} <span style="font-size:0.9rem; font-weight:normal; color:#718096;">(${stats.room_occupancy_pct}%)</span>`;
                 document.getElementById("valWorkloadAvg").textContent = `${stats.daily_workload_avg} hrs`;
 
-                // Render compliance bars
                 const compContainer = document.getElementById("complianceContainer");
                 if (compContainer && stats.compliance) {
                     compContainer.innerHTML = stats.compliance.map(item => `
@@ -545,44 +634,69 @@
             }
         }
 
-        async function loadPreviewTimetable() {
+        async function loadTimetableData() {
             try {
                 const res = await fetch("/api/timetable");
-                const timetable = await res.json();
-                const tbody = document.getElementById("dashTimetableBody");
-                if (!tbody) return;
+                globalTimetable = await res.json();
 
-                // Pick the first cohort available for preview
-                const firstCohortKey = Object.keys(timetable)[0];
-                const schedule = (firstCohortKey && timetable[firstCohortKey]) ? timetable[firstCohortKey] : timetable;
+                const selector = document.getElementById("cohortSelector");
+                if (!selector) return;
 
-                if (firstCohortKey) {
-                    document.getElementById("previewTitle").textContent = `Upcoming Schedule: ${firstCohortKey}`;
-                }
-
-                const slots = Object.keys(schedule);
-                if (slots.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="7" style="padding:15px; color:#718096;">No active schedule. Visit Timetable to generate.</td></tr>`;
+                const cohorts = Object.keys(globalTimetable);
+                if (cohorts.length === 0) {
+                    selector.innerHTML = `<option>No Classes Available</option>`;
+                    renderScheduleTable({});
                     return;
                 }
 
-                tbody.innerHTML = slots.slice(0, 4).map(slot => {
-                    const shortSlot = slot.split(" - ")[0];
-                    let cells = `<td><strong>${shortSlot}</strong></td>`;
-                    DAYS.forEach(day => {
-                        const item = schedule[slot] ? schedule[slot][day] : null;
-                        if (item) {
-                            cells += `<td><div class="event-chip ${item.color || 'purple-chip'}">${item.subject}<br><span style="font-size:0.65rem;">${item.room}</span></div></td>`;
-                        } else {
-                            cells += `<td>-</td>`;
-                        }
-                    });
-                    return `<tr>${cells}</tr>`;
-                }).join("");
-
+                selector.innerHTML = cohorts.map(c => `<option value="${c}">${c}</option>`).join("");
+                renderScheduleTable(globalTimetable[cohorts[0]]);
             } catch (err) {
                 console.error("Failed to load timetable preview:", err);
             }
+        }
+
+        function handleCohortChange() {
+            const selector = document.getElementById("cohortSelector");
+            const selectedCohort = selector.value;
+            if (globalTimetable[selectedCohort]) {
+                renderScheduleTable(globalTimetable[selectedCohort]);
+            }
+        }
+
+        function renderScheduleTable(schedule) {
+            const tbody = document.getElementById("dashTimetableBody");
+            if (!tbody) return;
+
+            if (!schedule || Object.keys(schedule).length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="padding:20px; color:#718096;">No active schedule available.</td></tr>`;
+                return;
+            }
+
+            // Sort slots chronologically starting from 09:00 AM
+            const sortedSlots = Object.keys(schedule).sort((a, b) => parseTimeToMinutes(a) - parseTimeToMinutes(b));
+            const previewSlots = sortedSlots.slice(0, 4);
+
+            tbody.innerHTML = previewSlots.map(slot => {
+                const shortSlot = slot.split(" - ")[0];
+                let cells = `<td style="font-weight:700; color:#1e293b; background:#f8fafc;">${shortSlot}</td>`;
+                
+                DAYS.forEach(day => {
+                    const item = schedule[slot] ? schedule[slot][day] : null;
+                    if (item && item.subject) {
+                        const chipClass = getSubjectColor(item);
+                        cells += `<td>
+                            <div class="event-chip ${chipClass}">
+                                <div>${item.subject}</div>
+                                <span style="font-size:0.68rem; opacity:0.85;">${item.room || ''}</span>
+                            </div>
+                        </td>`;
+                    } else {
+                        cells += `<td style="color:#cbd5e1;">-</td>`;
+                    }
+                });
+                return `<tr>${cells}</tr>`;
+            }).join("");
         }
 
         async function loadRooms() {
