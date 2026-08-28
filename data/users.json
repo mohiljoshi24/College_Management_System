@@ -1,14 +1,32 @@
 [
   {
-    "id": "U101",
-    "email": "student@college.edu",
-    "password": "password123",
-    "role": "student"
+    "id": "U100",
+    "name": "prof. shivang",
+    "email": "shivang@college.edu",
+    "password": "facultypassword",
+    "role": "faculty",
+    "department": "faculty",
+    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80"
   },
   {
-    "id": "U102",
+    "id": "U100",
+    "name": "Admin Officer",
     "email": "admin@college.edu",
     "password": "adminpassword",
-    "role": "admin"
+    "role": "admin",
+    "department": "Administration",
+    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "U100S",
+    "name": "Demo Student",
+    "email": "student@college.edu",
+    "password": "password123",
+    "role": "student",
+    "student_id": "ST2026000",
+    "section_id": "SEC-CS-SEM1-A",
+    "department": "Computer Science",
+    "semester": 1,
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80"
   }
 ]
