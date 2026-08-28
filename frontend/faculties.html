@@ -6,6 +6,7 @@
   <title>SSIT - Faculty & Workload Manager</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/auth.js"></script>
   <style>
     :root {
       --sidebar-bg: #111927;
@@ -508,6 +509,25 @@
 
   <script>
     let facultiesList = [];
+    let currentUser = null;
+
+    async function initializeFacultiesPage() {
+      currentUser = SSIT_AUTH.initPage(["admin", "faculty"]);
+      if (!currentUser) return;
+
+      setupRoleFacultiesUI(currentUser);
+      await loadFaculties();
+    }
+
+    function setupRoleFacultiesUI(user) {
+      const addBtn = document.querySelector(".btn-primary");
+      const title = document.querySelector(".page-title");
+
+      if (user.role === "faculty") {
+        if (addBtn) addBtn.style.display = "none";
+        if (title) title.textContent = "FACULTY DIRECTORY";
+      }
+    }
 
     async function loadFaculties() {
       try {
@@ -541,6 +561,11 @@
           ? fac.subjects_can_teach.join(", ") 
           : (Array.isArray(fac.active_courses) ? fac.active_courses.join(", ") : (fac.active_courses || "None"));
 
+        const isAdmin = currentUser && currentUser.role === "admin";
+        const actionHtml = isAdmin 
+          ? `<i class="fa-regular fa-trash-can" title="Delete Faculty" onclick="deleteFaculty('${fac.id}')"></i>`
+          : `<span style="font-size:11px; color:#94a3b8; font-style:italic;">Read-only</span>`;
+
         return `
           <tr>
             <td><input type="checkbox"></td>
@@ -561,7 +586,7 @@
               </div>
             </td>
             <td class="action-icons">
-              <i class="fa-regular fa-trash-can" title="Delete Faculty" onclick="deleteFaculty('${fac.id}')"></i>
+              ${actionHtml}
             </td>
           </tr>
         `;
@@ -579,6 +604,10 @@
     }
 
     function openFacultyModal() {
+      if (!currentUser || currentUser.role !== "admin") {
+        alert("Only Administrators can register new faculty.");
+        return;
+      }
       document.getElementById("facId").value = "FA" + String(facultiesList.length + 101).padStart(3, "0");
       document.getElementById("facName").value = "";
       document.getElementById("facSpecialties").value = "";
@@ -592,6 +621,11 @@
 
     async function handleSaveFaculty(e) {
       e.preventDefault();
+      if (!currentUser || currentUser.role !== "admin") {
+        alert("Only Administrators can save faculty records.");
+        return;
+      }
+
       const id = document.getElementById("facId").value.trim();
       const name = document.getElementById("facName").value.trim();
       const qual = document.getElementById("facQual").value;
@@ -635,6 +669,11 @@
     }
 
     async function deleteFaculty(id) {
+      if (!currentUser || currentUser.role !== "admin") {
+        alert("Only Administrators can delete faculty records.");
+        return;
+      }
+
       if (!confirm(`Are you sure you want to delete professor (${id})?`)) return;
       try {
         const res = await fetch(`/api/faculties?id=${encodeURIComponent(id)}`, { method: "DELETE" });
@@ -663,7 +702,7 @@
       a.click();
     }
 
-    document.addEventListener("DOMContentLoaded", loadFaculties);
+    document.addEventListener("DOMContentLoaded", initializeFacultiesPage);
   </script>
 </body>
 </html>

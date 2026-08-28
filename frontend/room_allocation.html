@@ -6,6 +6,7 @@
     <title>SSIT - Classroom & Lab Manager</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/auth.js"></script>
     <style>
         :root {
             --sidebar-bg: #111927;
@@ -509,6 +510,25 @@
 
     <script>
         let allRooms = [];
+        let currentUser = null;
+
+        async function initializeRoomsPage() {
+            currentUser = SSIT_AUTH.initPage(["admin", "faculty"]);
+            if (!currentUser) return;
+
+            setupRoleRoomsUI(currentUser);
+            await fetchRooms();
+        }
+
+        function setupRoleRoomsUI(user) {
+            const addBtn = document.querySelector(".add-btn");
+            const title = document.querySelector(".page-title");
+
+            if (user.role === "faculty") {
+                if (addBtn) addBtn.style.display = "none";
+                if (title) title.textContent = "CLASSROOMS & LABS DIRECTORY";
+            }
+        }
 
         async function fetchRooms() {
             try {
@@ -531,7 +551,15 @@
                 grid.innerHTML = "<p>No rooms found.</p>";
                 return;
             }
-            grid.innerHTML = rooms.map((room, idx) => `
+
+            const isAdmin = currentUser && currentUser.role === "admin";
+
+            grid.innerHTML = rooms.map((room, idx) => {
+                const deleteAction = isAdmin
+                    ? `<i class="fa-regular fa-trash-can delete-room-btn" title="Delete Room" onclick="deleteRoom('${room.id}', event)"></i>`
+                    : `<span style="font-size:11px; color:#94a3b8; font-style:italic;">Verified</span>`;
+
+                return `
                 <div class="room-card">
                     <div class="room-header">
                         <div class="room-name">
@@ -547,10 +575,10 @@
                             </span><br>
                             ID: <strong>${room.id}</strong>
                         </div>
-                        <i class="fa-regular fa-trash-can delete-room-btn" title="Delete Room" onclick="deleteRoom('${room.id}', event)"></i>
+                        ${deleteAction}
                     </div>
                 </div>
-            `).join("");
+            `}).join("");
         }
 
         function updateStats(rooms) {
@@ -576,6 +604,10 @@
         }
 
         function openRoomModal() {
+            if (!currentUser || currentUser.role !== "admin") {
+                alert("Only Administrators can register new rooms/labs.");
+                return;
+            }
             document.getElementById("roomId").value = "R" + (allRooms.length + 101);
             document.getElementById("roomName").value = "";
             document.getElementById("roomCapacity").value = "60";
@@ -588,6 +620,11 @@
 
         async function handleSaveRoom(e) {
             e.preventDefault();
+            if (!currentUser || currentUser.role !== "admin") {
+                alert("Only Administrators can add rooms/labs.");
+                return;
+            }
+
             const id = document.getElementById("roomId").value.trim();
             const name = document.getElementById("roomName").value.trim();
             const type = document.getElementById("roomType").value;
@@ -622,6 +659,11 @@
 
         async function deleteRoom(id, event) {
             if (event) event.stopPropagation();
+            if (!currentUser || currentUser.role !== "admin") {
+                alert("Only Administrators can delete classrooms or labs.");
+                return;
+            }
+
             if (!confirm(`Are you sure you want to delete room (${id})?`)) return;
             try {
                 const res = await fetch(`/api/rooms?id=${encodeURIComponent(id)}`, { method: "DELETE" });
@@ -635,7 +677,7 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", fetchRooms);
+        document.addEventListener("DOMContentLoaded", initializeRoomsPage);
     </script>
 </body>
 </html>
