@@ -287,16 +287,20 @@
                 <div class="grid-cell"></div>
                 <div class="grid-cell"></div>
                 <div class="grid-cell"></div>
-                <div class="grid-cell"><i class="fa-solid fa-user"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-clock"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-building-columns"></i></div>
                 <div class="grid-cell"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <div class="grid-cell"></div>
-                <div class="grid-cell"></div>
-                <div class="grid-cell"></div>
-                <div class="grid-cell"></div>
-                <div class="grid-cell"><i class="fa-solid fa-users-rectangle"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-users"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-microchip"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-book-open"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-flask"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-bell"></i></div>
+                <div class="grid-cell"><i class="fa-solid fa-shield-halved"></i></div>
             </div>
         </div>
-
         <p class="banner-text">
             Welcome to Shree Swaminarayan Institute of Technology (SSIT). Sign in to access your dashboard, timetables,
             faculty records, and reports.
@@ -314,27 +318,27 @@
 
         <div class="login-card">
             <h2>Access Your Portal</h2>
-            <form action="#" method="POST">
+            <form id="loginForm" method="POST">
 
                 <div class="input-group">
                     <i class="fa-regular fa-user"></i>
-                    <input type="text" placeholder="Username/Email" required>
+                    <input type="text" id="emailInput" placeholder="Username / Email" required>
                 </div>
 
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" id="passwordInput" placeholder="Password" required>
                 </div>
 
                 <div class="options-row">
                     <label class="remember-me">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" id="rememberMe" checked>
                         <span>Remember Me</span>
                     </label>
                     <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
 
-                <button type="submit" class="btn-login">Login</button>
+                <button type="submit" class="btn-login" id="submitBtn">Sign In</button>
 
                 <div class="support-text">
                     Trouble signing in? <a href="#">Contact IT Support</a>
@@ -345,60 +349,56 @@
 
     </div>
 
+<script src="/auth.js"></script>
 <script>
+  async function performLogin(email, password, remember = true) {
+    const submitBtn = document.getElementById("submitBtn");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+    }
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password: password })
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success" && result.user) {
+        SSIT_AUTH.setUser(result.user, remember);
+        window.location.href = "/dashboard";
+      } else {
+        alert("Login Failed: " + (result.message || "Invalid credentials."));
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "Sign In";
+        }
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Network or server error during login.");
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Sign In";
+      }
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("form");
-
+    const loginForm = document.getElementById("loginForm");
     if (loginForm) {
-      loginForm.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Prevents page refresh
-
-        // Grab inputs using multiple strategies
-        const inputs = loginForm.querySelectorAll("input");
-        let emailInput, passwordInput;
-
-        inputs.forEach(input => {
-          if (input.type === "email" || input.name === "email" || input.id.includes("email")) {
-            emailInput = input;
-          }
-          if (input.type === "password" || input.name === "password" || input.id.includes("pass")) {
-            passwordInput = input;
-          }
-        });
-
-        // Fallback: take the first two inputs if specific tags weren't found
-        if (!emailInput && inputs.length > 0) emailInput = inputs[0];
-        if (!passwordInput && inputs.length > 1) passwordInput = inputs[1];
-
-        if (!emailInput || !passwordInput) {
-          alert("Could not find input fields in form!");
-          return;
-        }
-
-        // Send POST request to Flask backend
-        const response = await fetch("/api/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailInput.value,
-            password: passwordInput.value
-          })
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-          alert("Login successful! Role: " + result.user.role);
-          window.location.href = "/dashboard";
-
-        } else {
-          alert("Login Failed: " + result.message);
-        }
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const email = document.getElementById("emailInput").value;
+        const password = document.getElementById("passwordInput").value;
+        const remember = document.getElementById("rememberMe") ? document.getElementById("rememberMe").checked : true;
+        performLogin(email, password, remember);
       });
     }
   });
 </script>
-
 </body>
-
 </html>
