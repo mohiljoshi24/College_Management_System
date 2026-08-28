@@ -7,6 +7,7 @@
     <title>SSIT Timetable View</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/auth.js"></script>
     <style>
         :root {
             --sidebar-bg: #111927;
@@ -448,21 +449,24 @@
 
             <!-- Page Title & Main Actions -->
             <div class="action-bar">
-                <h1 class="page-title">MASTER TIMETABLE VIEW</h1>
+                <div>
+                    <h1 class="page-title" id="timetableHeading">MASTER TIMETABLE VIEW</h1>
+                    <p id="timetableSubHeading" style="font-size: 13px; color: #475569; margin-top: 4px;">Dynamic Multi-Cohort Academic Matrix</p>
+                </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="triggerScheduleGeneration()">
+                    <button class="btn btn-primary" id="btnGenerateSchedule" onclick="triggerScheduleGeneration()">
                         <i class="fa-solid fa-plus"></i> Generate Schedule (Constraint Solver)
                     </button>
                     <button class="btn btn-outline" onclick="window.print()">
-                        <i class="fa-solid fa-download"></i> Download PDF
+                        <i class="fa-solid fa-download"></i> Download / Print PDF
                     </button>
                 </div>
             </div>
 
             <!-- Filter Controls -->
             <div class="filters-card">
-                <div class="filter-group">
-                    <label>View By: Class / Section</label>
+                <div class="filter-group" id="groupSectionFilter">
+                    <label id="lblSectionFilter">View By: Class / Section</label>
                     <div class="select-wrapper">
                         <select id="sectionSelect" onchange="filterSchedule()">
                             <!-- Populated dynamically -->
@@ -470,8 +474,8 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <div class="filter-group">
-                    <label>Filter By: Professor</label>
+                <div class="filter-group" id="groupProfFilter">
+                    <label id="lblProfFilter">Filter By: Professor</label>
                     <div class="select-wrapper">
                         <select id="professorSelect" onchange="filterSchedule()">
                             <option value="">All Professors</option>
@@ -480,7 +484,7 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <div class="filter-group">
+                <div class="filter-group" id="groupRoomFilter">
                     <label>Filter By: Room</label>
                     <div class="select-wrapper">
                         <select id="roomSelect" onchange="filterSchedule()">
@@ -526,8 +530,14 @@
         let allSections = [];
         let allProfessors = [];
         let allRooms = [];
+        let currentUser = null;
 
         async function initialize() {
+            currentUser = SSIT_AUTH.initPage();
+            if (!currentUser) return;
+
+            setupRoleTimetableUI(currentUser);
+
             await Promise.all([
                 loadSections(),
                 loadProfessors(),
@@ -536,12 +546,42 @@
             await loadTimetable();
         }
 
+        function setupRoleTimetableUI(user) {
+            const genBtn = document.getElementById("btnGenerateSchedule");
+            const heading = document.getElementById("timetableHeading");
+            const subHeading = document.getElementById("timetableSubHeading");
+
+            if (user.role === "admin") {
+                heading.textContent = "MASTER TIMETABLE VIEW";
+                subHeading.textContent = "Institution-Wide Multi-Cohort Schedule Matrix";
+                if (genBtn) genBtn.style.display = "inline-flex";
+            } else if (user.role === "faculty") {
+                heading.textContent = "MY TEACHING SCHEDULE";
+                subHeading.textContent = `Assigned Lectures & Labs • ${user.name} (${user.department || 'Faculty'})`;
+                if (genBtn) genBtn.style.display = "none";
+            } else if (user.role === "student") {
+                heading.textContent = `CLASS TIMETABLE — ${user.section_id || 'COHORT'}`;
+                subHeading.textContent = `Semester ${user.semester || 1} • Department of ${user.department || 'Engineering'}`;
+                if (genBtn) genBtn.style.display = "none";
+            }
+        }
+
         async function loadSections() {
             try {
                 const res = await fetch("/api/sections");
                 allSections = await res.json();
                 const select = document.getElementById("sectionSelect");
                 if (select && allSections.length > 0) {
+                    // If student, filter/lock to their section
+                    if (currentUser && currentUser.role === "student" && currentUser.section_id) {
+                        const mySec = allSections.find(s => s.id === currentUser.section_id);
+                        if (mySec) {
+                            select.innerHTML = `<option value="${mySec.id}">${mySec.department} - Sem ${mySec.semester} (${mySec.section})</option>`;
+                            select.disabled = true;
+                            return;
+                        }
+                    }
+
                     select.innerHTML = allSections.map(s => `
                         <option value="${s.id}">${s.department} - Sem ${s.semester} (${s.section})</option>
                     `).join("");
@@ -560,6 +600,14 @@
                     select.innerHTML = `<option value="">All Professors</option>` + allProfessors.map(p => `
                         <option value="${p.id || p.name}">${p.name}</option>
                     `).join("");
+
+                    // If faculty, pre-select themselves
+                    if (currentUser && currentUser.role === "faculty") {
+                        const matched = allProfessors.find(p => p.id === currentUser.faculty_id || p.name === currentUser.name);
+                        if (matched) {
+                            select.value = matched.id || matched.name;
+                        }
+                    }
                 }
             } catch (err) {
                 console.error("Failed to load professors:", err);
@@ -601,8 +649,26 @@
                 return;
             }
 
-            // If the schedule is stored by section: fullSchedule[sec_id]
+            // If faculty has selected their name but "All Sections" is desired, or section selected:
             let sectionSchedule = fullSchedule[selectedSection] || fullSchedule;
+
+            // If faculty is logged in and wants to see their classes across all sections when no specific section is chosen
+            if (currentUser && currentUser.role === "faculty" && selectedProf && !selectedSection) {
+                // Aggregate across all sections
+                sectionSchedule = {};
+                for (const [secId, secSlots] of Object.entries(fullSchedule)) {
+                    if (typeof secSlots !== 'object') continue;
+                    for (const [slot, days] of Object.entries(secSlots)) {
+                        if (!sectionSchedule[slot]) sectionSchedule[slot] = {};
+                        for (const day of DAYS) {
+                            const entry = days ? days[day] : null;
+                            if (entry && (entry.faculty_id === selectedProf || entry.professor === selectedProf || entry.professor === currentUser.name)) {
+                                sectionSchedule[slot][day] = entry;
+                            }
+                        }
+                    }
+                }
+            }
 
             // Apply professor & room filters if selected
             let filtered = {};
@@ -615,7 +681,7 @@
                         continue;
                     }
 
-                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
+                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf || item.professor === currentUser?.name;
                     let matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
 
                     filtered[slot][day] = (matchProf && matchRoom) ? item : null;
@@ -687,7 +753,12 @@
         }
 
         async function triggerScheduleGeneration() {
-            const btn = document.querySelector(".btn-primary");
+            if (!currentUser || currentUser.role !== "admin") {
+                alert("Only Administrators can trigger master timetable synthesis.");
+                return;
+            }
+
+            const btn = document.getElementById("btnGenerateSchedule");
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Master Schedule...`;
 
             try {
@@ -696,6 +767,7 @@
                 if (result.status === "success") {
                     fullSchedule = result.schedule;
                     filterSchedule();
+                    alert("Master timetable successfully synthesized and persisted!");
                 } else {
                     alert("Failed to generate schedule.");
                 }
@@ -710,5 +782,4 @@
         document.addEventListener("DOMContentLoaded", initialize);
     </script>
 </body>
-
 </html>
