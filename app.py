@@ -68,11 +68,27 @@ def login():
     credentials = request.get_json()
     if not credentials or "email" not in credentials or "password" not in credentials:
         return jsonify({"status": "error", "message": "Email and password required."}), 400
-    users = load_data(USERS_FILE)
-    matched_user = next((u for u in users if u["email"] == credentials["email"] and u["password"] == credentials["password"]), None)
+    users = load_data(USERS_FILE) or []
+    matched_user = next((u for u in users if u["email"].strip().lower() == credentials["email"].strip().lower() and u["password"] == credentials["password"]), None)
     if not matched_user:
         return jsonify({"status": "error", "message": "Invalid credentials."}), 401
-    return jsonify({"status": "success", "user": matched_user}), 200
+    
+    # Return user data without password
+    user_data = {k: v for k, v in matched_user.items() if k != "password"}
+    return jsonify({"status": "success", "user": user_data}), 200
+
+@app.route("/api/user-profile", methods=["GET"])
+def get_user_profile():
+    user_id = request.args.get("id")
+    if not user_id:
+        return jsonify({"status": "error", "message": "User ID required"}), 400
+    users = load_data(USERS_FILE) or []
+    matched = next((u for u in users if u["id"] == user_id), None)
+    if not matched:
+        return jsonify({"status": "error", "message": "User not found"}), 404
+    safe_data = {k: v for k, v in matched.items() if k != "password"}
+    return jsonify(safe_data), 200
+
 
 @app.route("/api/faculties", methods=["GET", "POST", "DELETE"])
 def api_faculties():
