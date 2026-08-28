@@ -7,6 +7,7 @@
     <title>SSIT Dashboard</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/auth.js"></script>
     <style>
         :root {
             --sidebar-bg: #111927;
@@ -438,40 +439,46 @@
 
         <!-- Main Workspace -->
         <main class="content">
-            <h1 class="page-title">Dashboard Overview</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h1 class="page-title" id="dashTitle">Dashboard Overview</h1>
+                    <p id="dashGreetingSub" style="font-size: 13px; color: #475569; margin-top: 4px;">Welcome to SSIT Academic Operations Portal</p>
+                </div>
+                <div id="roleBadgeContainer"></div>
+            </div>
 
             <!-- Top 4 Metric Cards -->
             <section class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-info">
-                        <label>Total Faculty:</label>
-                        <div class="value" id="valTotalFaculty">--</div>
+                        <label id="lblMetric1">Total Faculty:</label>
+                        <div class="value" id="valMetric1">--</div>
                     </div>
-                    <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="metric-icon"><i id="iconMetric1" class="fa-solid fa-users"></i></div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-info">
-                        <label>Active Classes:</label>
-                        <div class="value" id="valActiveClasses">--</div>
+                        <label id="lblMetric2">Active Classes:</label>
+                        <div class="value" id="valMetric2">--</div>
                     </div>
-                    <div class="metric-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="metric-icon"><i id="iconMetric2" class="fa-solid fa-laptop-code"></i></div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-info">
-                        <label>Rooms Occupied:</label>
-                        <div class="value" id="valRoomsOccupied">--</div>
+                        <label id="lblMetric3">Rooms Occupied:</label>
+                        <div class="value" id="valMetric3">--</div>
                     </div>
-                    <div class="metric-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="metric-icon"><i id="iconMetric3" class="fa-solid fa-flask"></i></div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-info">
-                        <label>Daily Workload Ave:</label>
-                        <div class="value" id="valWorkloadAvg">--</div>
+                        <label id="lblMetric4">Daily Workload Ave:</label>
+                        <div class="value" id="valMetric4">--</div>
                     </div>
-                    <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="metric-icon"><i id="iconMetric4" class="fa-solid fa-clock"></i></div>
                 </div>
             </section>
 
@@ -482,7 +489,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <div class="panel-title-area">
-                            <div class="panel-title">Upcoming Schedule</div>
+                            <div class="panel-title" id="dashScheduleTitle">Upcoming Schedule</div>
                             <select id="cohortSelector" class="cohort-select" onchange="handleCohortChange()">
                                 <!-- Populated dynamically -->
                             </select>
@@ -512,9 +519,9 @@
 
                 <!-- Right Side: Faculty & Room Allocations -->
                 <div>
-                    <!-- Faculty Workload -->
+                    <!-- Faculty Workload / Student Info Panel -->
                     <div class="panel">
-                        <div class="panel-title" style="margin-bottom: 12px;">
+                        <div class="panel-title" id="rightPanelTitle" style="margin-bottom: 12px;">
                             Faculty Workload Compliance
                             <div style="font-size:0.75rem; color:#718096; font-weight:normal;">(5 hours constraint status)</div>
                         </div>
@@ -527,7 +534,7 @@
                     <!-- Bottom Split Panel -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div class="panel" style="margin-bottom: 0;">
-                            <div class="panel-title" style="margin-bottom:10px; font-size: 0.85rem;">Room Allocation Status</div>
+                            <div class="panel-title" id="subPanel1Title" style="margin-bottom:10px; font-size: 0.85rem;">Room Allocation Status</div>
                             <ul class="status-list" id="roomStatusList">
                                 <!-- Populated dynamically -->
                             </ul>
@@ -565,19 +572,17 @@
 
     <!-- Live Data Fetching Logic -->
     <script>
-       const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const COLOR_CLASSES = ["purple-chip", "green-chip", "yellow-chip", "red-chip", "blue-card", "orange-card"];
         const subjectColorMap = {};
         let colorCounter = 0;
         let globalTimetable = {};
+        let currentUser = null;
 
         function getSubjectColor(item) {
-            // 1. If backend already sent an explicit color class, prioritize it
             if (item && item.color && COLOR_CLASSES.includes(item.color)) {
                 return item.color;
             }
-            
-            // 2. Otherwise, map subject code consistently to the palette
             const subj = item.subject || "";
             if (!subjectColorMap[subj]) {
                 subjectColorMap[subj] = COLOR_CLASSES[colorCounter % COLOR_CLASSES.length];
@@ -586,7 +591,6 @@
             return subjectColorMap[subj];
         }
 
-        // Convert "09:00 AM" / "01:50 PM" to minutes for chronologically correct sorting
         function parseTimeToMinutes(timeStr) {
             if (!timeStr) return 0;
             const startPart = timeStr.split("-")[0].trim();
@@ -601,6 +605,11 @@
         }
 
         async function initDashboard() {
+            currentUser = SSIT_AUTH.initPage();
+            if (!currentUser) return;
+
+            setupRoleUI(currentUser);
+
             await Promise.all([
                 loadStats(),
                 loadTimetableData(),
@@ -608,15 +617,80 @@
             ]);
         }
 
+        function setupRoleUI(user) {
+            const greeting = document.getElementById("dashGreetingSub");
+            const title = document.getElementById("dashTitle");
+
+            if (user.role === "admin") {
+                title.textContent = "Executive Campus Dashboard";
+                greeting.innerHTML = `Welcome back, <strong>${user.name}</strong> • Institutional Academic Operations`;
+            } else if (user.role === "faculty") {
+                title.textContent = "Faculty Operations Portal";
+                greeting.innerHTML = `Welcome back, <strong>${user.name}</strong> • Department of ${user.department || 'Engineering'}`;
+                
+                // Adjust right panel title
+                const rightPanel = document.getElementById("rightPanelTitle");
+                if (rightPanel) {
+                    rightPanel.innerHTML = `Department Workload Overview <div style="font-size:0.75rem; color:#718096; font-weight:normal;">(Real-time faculty allocation)</div>`;
+                }
+            } else if (user.role === "student") {
+                title.textContent = "Student Academic Portal";
+                greeting.innerHTML = `Welcome back, <strong>${user.name}</strong> • ${user.department} (Semester ${user.semester || 1})`;
+                
+                const schedTitle = document.getElementById("dashScheduleTitle");
+                if (schedTitle) schedTitle.textContent = `My Class Schedule (${user.section_id || 'Cohort'})`;
+            }
+        }
+
         async function loadStats() {
             try {
                 const res = await fetch("/api/dashboard-stats");
                 const stats = await res.json();
 
-                document.getElementById("valTotalFaculty").textContent = stats.total_faculty || 0;
-                document.getElementById("valActiveClasses").textContent = stats.active_classes || 0;
-                document.getElementById("valRoomsOccupied").innerHTML = `${stats.rooms_occupied}/${stats.total_rooms} <span style="font-size:0.9rem; font-weight:normal; color:#718096;">(${stats.room_occupancy_pct}%)</span>`;
-                document.getElementById("valWorkloadAvg").textContent = `${stats.daily_workload_avg} hrs`;
+                if (!currentUser || currentUser.role === "admin") {
+                    document.getElementById("lblMetric1").textContent = "Total Faculty:";
+                    document.getElementById("valMetric1").textContent = stats.total_faculty || 0;
+
+                    document.getElementById("lblMetric2").textContent = "Active Classes:";
+                    document.getElementById("valMetric2").textContent = stats.active_classes || 0;
+
+                    document.getElementById("lblMetric3").textContent = "Rooms Occupied:";
+                    document.getElementById("valMetric3").innerHTML = `${stats.rooms_occupied}/${stats.total_rooms} <span style="font-size:0.9rem; font-weight:normal; color:#718096;">(${stats.room_occupancy_pct}%)</span>`;
+
+                    document.getElementById("lblMetric4").textContent = "Daily Workload Avg:";
+                    document.getElementById("valMetric4").textContent = `${stats.daily_workload_avg} hrs`;
+                } else if (currentUser.role === "faculty") {
+                    document.getElementById("lblMetric1").textContent = "Department:";
+                    document.getElementById("valMetric1").textContent = currentUser.department || "Engineering";
+                    document.getElementById("valMetric1").style.fontSize = "1.1rem";
+
+                    document.getElementById("lblMetric2").textContent = "Workload Ceiling:";
+                    document.getElementById("valMetric2").textContent = "5.0 hrs/day";
+                    document.getElementById("iconMetric2").className = "fa-solid fa-gauge-high";
+
+                    document.getElementById("lblMetric3").textContent = "Active Labs & Halls:";
+                    document.getElementById("valMetric3").innerHTML = `${stats.rooms_occupied} in use`;
+                    document.getElementById("iconMetric3").className = "fa-solid fa-door-open";
+
+                    document.getElementById("lblMetric4").textContent = "Campus Classes:";
+                    document.getElementById("valMetric4").textContent = `${stats.active_classes} weekly`;
+                } else if (currentUser.role === "student") {
+                    document.getElementById("lblMetric1").textContent = "My Section:";
+                    document.getElementById("valMetric1").textContent = currentUser.section_id || "Section A";
+                    document.getElementById("valMetric1").style.fontSize = "1.1rem";
+
+                    document.getElementById("lblMetric2").textContent = "Semester:";
+                    document.getElementById("valMetric2").textContent = `Sem ${currentUser.semester || 1}`;
+                    document.getElementById("iconMetric2").className = "fa-solid fa-graduation-cap";
+
+                    document.getElementById("lblMetric3").textContent = "Attendance Status:";
+                    document.getElementById("valMetric3").innerHTML = `<span style="color:#16a34a; font-size:1.2rem;">Good Standing</span>`;
+                    document.getElementById("iconMetric3").className = "fa-solid fa-user-check";
+
+                    document.getElementById("lblMetric4").textContent = "Department:";
+                    document.getElementById("valMetric4").textContent = currentUser.department || "CS";
+                    document.getElementById("valMetric4").style.fontSize = "1.1rem";
+                }
 
                 const compContainer = document.getElementById("complianceContainer");
                 if (compContainer && stats.compliance) {
@@ -649,6 +723,16 @@
                     return;
                 }
 
+                // If student, auto-select their section
+                if (currentUser && currentUser.role === "student" && currentUser.section_id) {
+                    if (cohorts.includes(currentUser.section_id)) {
+                        selector.innerHTML = `<option value="${currentUser.section_id}">${currentUser.section_id}</option>`;
+                        selector.disabled = true;
+                        renderScheduleTable(globalTimetable[currentUser.section_id]);
+                        return;
+                    }
+                }
+
                 selector.innerHTML = cohorts.map(c => `<option value="${c}">${c}</option>`).join("");
                 renderScheduleTable(globalTimetable[cohorts[0]]);
             } catch (err) {
@@ -673,7 +757,6 @@
                 return;
             }
 
-            // Sort slots chronologically starting from 09:00 AM
             const sortedSlots = Object.keys(schedule).sort((a, b) => parseTimeToMinutes(a) - parseTimeToMinutes(b));
             const previewSlots = sortedSlots.slice(0, 4);
 
@@ -717,5 +800,4 @@
         document.addEventListener("DOMContentLoaded", initDashboard);
     </script>
 </body>
-
 </html>
