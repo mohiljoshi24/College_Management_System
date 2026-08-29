@@ -1,143 +1,262 @@
-# SSIT College Management System (CMS) & Automated Timetable Engine
+# 🎓 SSIT College Management System (CMS) & Automated Timetable Engine
 
-An enterprise-grade Academic Operations and Automated Resource Scheduling platform. The system implements a heuristic Constraint Satisfaction Problem (CSP) solver in Python to generate conflict-free academic timetables across multiple engineering cohorts, departments, classrooms, and laboratories while monitoring faculty workloads in real time.
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-Microframework-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![JavaScript](https://img.shields.io/badge/Vanilla_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active_Development-blue?style=for-the-badge)]()
 
----
+An enterprise-grade Academic Operations and Automated Resource Scheduling platform designed for **Shree Swaminarayan Institute of Technology (SSIT)**. 
 
-## Key Features
-
-- **Heuristic Constraint Solver Engine:** Generates conflict-free academic schedules across all student cohorts, eliminating professor double-booking and room collisions.
-- **Infrastructural Room Allocation:** Differentiates between standard lecture halls and specialized computing/hardware labs with real-time capacity and occupancy metrics.
-- **Faculty & Workload Governance:** Manages faculty qualifications, departmental assignments, teaching competency arrays, and enforces daily 5-hour workload ceilings.
-- **Interactive Multi-Cohort Timetable:** Dynamic schedule matrix supporting real-time filtering by Branch, Semester Cohort, Professor, and Classroom with native print-to-PDF support.
-- **Live Metrics Dashboard:** Aggregates real-time statistics including room utilization percentages, active lectures, and department-wise compliance indicators.
-- **Native In-Browser Modals:** In-place data creation and deletion (CRUD) directly synced with the datastore via dedicated REST endpoints.
+The system couples a heuristic **Constraint Satisfaction Problem (CSP)** solver in Python with a comprehensive **Role-Based Access Control (RBAC)** architecture—automating conflict-free academic timetables across engineering cohorts, classrooms, and specialized laboratories while monitoring real-time faculty workloads.
 
 ---
 
-## Technology Stack
+## 📌 Table of Contents
 
-- **Frontend:**   Vanilla Semantic HTML5, CSS3 (CSS Variables, Grid & Flexbox), Modern JavaScript (ES6+ Fetch API)
-- **Backend:**    Python 3.x, Flask Micro-Framework
-- **Data Layer:** Atomic JSON Datastores (DAO Architecture)
-- **Icons:**      FontAwesome 6 (CDN)
-
----
-
-### Architectural Decisions
-
-- **No Heavy Frontend Frameworks (React/Vue/Tailwind):** Built using native web standards to eliminate heavy node dependency trees, avoid complex Webpack/Vite build pipelines, ensure instant initial page rendering, and maintain low-level control over the Document Object Model (DOM) lifecycle[cite: 1, 2, 3].
-- **Flask REST Architecture:** A lightweight WSGI implementation delivering clear separation of concerns between client-side asynchronous HTTP operations and backend business logic[cite: 1, 2, 3].
-- **Atomic File-Based Storage:** Safe local persistence using a custom storage manager with automatic directory creation and robust JSON decoding error handling.
+1. [Key Features & Modules](#-key-features--modules)
+2. [Role-Based Access Control (RBAC)](#-role-based-access-control-rbac)
+3. [Scheduling Engine & CSP Constraints](#-scheduling-engine--csp-constraints)
+4. [System Architecture & Data Flow](#-system-architecture--data-flow)
+5. [Technology Stack & Decisions](#-technology-stack--decisions)
+6. [REST API Specification](#-rest-api-specification)
+7. [Directory Structure](#-directory-structure)
+8. [Getting Started & Local Setup](#-getting-started--local-setup)
+9. [Engineering Highlights & Design Decisions](#-engineering-highlights--design-decisions)
+10. [Roadmap](#-roadmap)
 
 ---
 
-## System Architecture & Data Flow
+## 🚀 Key Features & Modules
 
-[ Client Browser (HTML5 / ES6 Fetch) ]
-│
-▼  (HTTP GET / POST / DELETE)
-[ Flask Router (app.py) ]
-├── Page Routing (Static File Serving)
-└── REST API Layer
-│
-┌────────┴─────────────────────────┐
-▼                                  ▼
-[ Heuristic Engine ]              [ Storage Manager ]
-(scheduler_engine.py)             (storage_manager.py)
-│                                  │
-▼                                  ▼
-[ Dynamic Schedule Matrix ]        [ JSON Datastores (/data) ]
+### 🧠 1. Heuristic Constraint Satisfaction Solver
+- Synthesizes conflict-free master schedules across multiple engineering departments and semesters in under a second.
+- Eliminates instructor double-booking, classroom collisions, and cohort overlaps.
+- Enforces strict lab-vs-lecture room routing and faculty competency validations.
 
----
+### 🔐 2. Role-Based Access Control (RBAC)
+- Distinct authentication flows and personalized user experiences for **Administrators**, **Faculty**, and **Students**.
+- Dynamic navigation generation and client-side route guardrails (`auth.js`).
+- Profile dropdown with instant sign-out and active role badges.
 
-## REST API Specification
+### 📊 3. Live Operational Dashboard
+- **Executive Campus View:** Real-time KPI cards for active lectures, room occupancy percentages, and faculty counts.
+- **Departmental Workload Compliance:** Dynamic visual progress bars tracking faculty hours against 5-hour daily ceilings.
+- **Personalized Previews:** Tailored mini-schedules for logged-in students and professors.
 
-| Endpoint | Method | Payload / Query | Status Codes | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `/api/login` | `POST` | `{ "email": "...", "password": "..." }` | `200`, `401`   Authenticates administrator credentials. |
-| `/api/faculties` | `GET` | *None* | `200` | Retrieves all registered faculty profiles and workload parameters[cite: 2]. |
-| `/api/faculties` | `POST` | Faculty Object (`JSON`) | `201`, `400` | Creates a new faculty record and persists to disk[cite: 2]. |
-| `/api/faculties` | `DELETE` | `?id=FAxxx` | `200`, `400` | Removes a faculty record by identifier[cite: 2]. |
-| `/api/rooms` | `GET` | *None* | `200` | Fetches all classrooms, labs, capacities, and department tags[cite: 3]. |
-| `/api/rooms` | `POST` | Room Object (`JSON`) | `201`, `400` | Adds a new classroom or specialized laboratory[cite: 3]. |
-| `/api/rooms` | `DELETE` | `?id=Rxxx` | `200`, `400` | Deletes a classroom or laboratory record by identifier[cite: 3]. |
-| `/api/sections` | `GET` | *None* | `200` | Retrieves defined student cohorts and batch sizes. |
-| `/api/timetable` | `GET` | *None* | `200` | Fetches the current master multi-cohort timetable matrix[cite: 1]. |
-| `/api/generate-timetable` | `POST` | *None* | `200` | Triggers the heuristic constraint satisfaction solver[cite: 1]. |
-| `/api/dashboard-stats` | `GET` | *None* | `200` | Returns live room occupancy and departmental workload compliance. |
+### 👨‍🏫 4. Faculty & Workload Governance
+- Manages instructor qualifications, departmental assignments, and verified subject competency arrays.
+- Real-time visual workload indicators to prevent faculty burnout and satisfy institutional compliance.
+- Interactive modal-based CRUD operations syncing atomically with backend JSON datastores.
+
+### 🏛️ 5. Classroom & Laboratory Infrastructure Manager
+- Categorizes physical rooms into standard Lecture Halls and specialized Computer/Hardware Labs.
+- Tracks seating capacity, departmental ownership, and occupancy states.
+
+### 📅 6. Multi-Cohort Filterable Timetable
+- Multi-dimensional matrix view with real-time filtering by **Branch / Section Cohort**, **Professor**, and **Room**.
+- High-contrast, pastel color-coding per department and laboratory course.
+- Clean print-to-PDF layout with dedicated print media stylesheets.
 
 ---
 
-## Scheduling Engine & Constraint Specifications
+## 🔐 Role-Based Access Control (RBAC)
 
-The scheduling engine (`scheduler_engine.py`) models timetable synthesis as a multi-variable Constraint Satisfaction Problem (CSP) across 6 institutional lecture slots:
+The platform enforces a granular permission matrix across all views:
 
-* **Slot 1:** 09:00 AM – 10:00 AM
-* **Slot 2:** 10:00 AM – 11:00 AM
-* **Break:** 11:00 AM – 11:20 AM *(Short Break)*
-* **Slot 3:** 11:20 AM – 12:10 PM
-* **Slot 4:** 12:10 PM – 01:00 PM
-* **Break:** 01:00 PM – 01:50 PM *(Lunch Break)*
-* **Slot 5:** 01:50 PM – 02:40 PM
-* **Slot 6:** 02:40 PM – 03:30 PM
+| Feature / Capability | Administrator (`admin`) | Faculty (`faculty`) | Student (`student`) |
+| :--- | :---: | :---: | :---: |
+| **Authentication & Profile** | Full Admin Profile | Faculty ID & Dept Mapped | Cohort & Section Mapped |
+| **Dashboard Experience** | Campus-wide Analytics | Department Load & Schedule | Cohort Standing & Schedule |
+| **Timetable View** | Full Matrix (All Cohorts) | Auto-Filtered to Self | Locked to Enrolled Section |
+| **Trigger Solver Synthesis** | ✅ Enabled | ❌ Hidden / Read-only | ❌ Hidden / Read-only |
+| **Faculty Management** | Full CRUD (Add / Delete) | Directory View (Read-only) | 🚫 Access Restricted |
+| **Room Allocation** | Full CRUD (Add / Delete) | Directory View (Read-only) | 🚫 Access Restricted |
+| **Attendance Portal** | Administrative Auditing | Mark Class Attendance | View Personal Attendance |
+| **Institutional Reports** | Full Campus Reports | Departmental Reports | 🚫 Access Restricted |
+
+---
+
+## ⚙️ Scheduling Engine & CSP Constraints
+
+The scheduling engine (`scheduler_engine.py`) models timetable generation as a multi-variable **Constraint Satisfaction Problem (CSP)** across 6 institutional lecture slots:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 09:00 AM - 10:00 AM  │ Lecture Slot 1                       │
+│ 10:00 AM - 11:00 AM  │ Lecture Slot 2                       │
+│ 11:00 AM - 11:20 AM  │ ☕ SHORT BREAK                       │
+│ 11:20 AM - 12:10 PM  │ Lecture Slot 3                       │
+│ 12:10 PM - 01:00 PM  │ Lecture Slot 4                       │
+│ 01:00 PM - 01:50 PM  │ 🍽️ LUNCH BREAK                       │
+│ 01:50 PM - 02:40 PM  │ Lecture Slot 5                       │
+│ 02:40 PM - 03:30 PM  │ Lecture Slot 6                       │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ### Constraints Enforced
 
-1. **Faculty Collision Prevention (Hard Constraint):** Tracks assigned instructor states via `(day, slot)` sets to guarantee no professor is double-booked across different cohorts or rooms.
-2. **Facility Collision Prevention (Hard Constraint):** Ensures physical classrooms and laboratories can host at most one section per time slot.
-3. **Infrastructural Domain Compatibility (Hard Constraint):** Strictly routes laboratory courses (`type: "LAB"`) to dedicated computer or hardware labs, while lecture courses are allocated to lecture halls.
-4. **Subject Competency Validation (Hard Constraint):** Assigns instructors strictly based on their verified `subjects_can_teach` competency lists.
-5. **Workload Distribution (Soft Constraint):** Caps daily lectures per cohort to prevent student and faculty fatigue.
+1. **Faculty Collision Prevention (Hard):** Tracks instructor allocations via `(day, slot)` sets to guarantee zero double-booking across different cohorts or classrooms.
+2. **Facility Collision Prevention (Hard):** Ensures physical rooms can host at most one section per time slot.
+3. **Infrastructural Domain Compatibility (Hard):** Routes lab courses (`type: "LAB"`) strictly to dedicated computer/hardware labs, while lecture courses are allocated to lecture halls.
+4. **Subject Competency Validation (Hard):** Assigns instructors strictly based on their verified `subjects_can_teach` competency lists.
+5. **Workload Ceiling (Soft):** Caps daily lectures per cohort to prevent student and faculty cognitive fatigue.
 
 ---
 
-## Directory Structure
+## 🏗️ System Architecture & Data Flow
 
+```
+                     [ Client Browser (HTML5 / ES6 Vanilla) ]
+                                        │
+           ┌────────────────────────────┼────────────────────────────┐
+           ▼                            ▼                            ▼
+    [ Admin View ]              [ Faculty View ]              [ Student View ]
+           │                            │                            │
+           └────────────────────────────┬────────────────────────────┘
+                                        │  HTTP REST (Fetch API)
+                                        ▼
+                            [ Flask Router (app.py) ]
+                          ┌─────────────┴─────────────┐
+                          ▼                           ▼
+                 [ Static Page Router ]       [ REST API Layer ]
+                                              ┌───────┴───────┐
+                                              ▼               ▼
+                                    [ CSP Solver Engine ]   [ Storage DAO ]
+                                    (scheduler_engine.py)  (storage_manager.py)
+                                              │               │
+                                              ▼               ▼
+                                      [ Master Schedule ]   [ JSON Datastores ]
+                                      (timetable.json)      (/data/*.json)
+```
+
+---
+
+## 🛠️ Technology Stack & Decisions
+
+- **Backend:** Python 3.x, Flask Micro-Framework (WSGI)
+- **Frontend:** Semantic HTML5, Modern CSS3 (CSS Variables, Flexbox & CSS Grid), Vanilla JavaScript (ES6+ Fetch API)
+- **Security & Session:** Client-side RBAC Session Controller (`auth.js`), Parameter Sanitization
+- **Data Persistence:** Atomic JSON Datastore (DAO Pattern)
+- **Iconography:** FontAwesome 6 (CDN)
+
+### Architectural Decisions
+- **Zero Heavy Frontend Dependencies:** Eliminates complex Node.js build pipelines (Webpack/Vite/Babel) to deliver instantaneous initial page loads and low-overhead DOM operations.
+- **RESTful Decoupling:** Complete separation of concerns between client-side asynchronous HTTP operations and backend business logic.
+- **Atomic File Storage:** File I/O operations with UTF-8 encoding and robust JSON decoding error fallback.
+
+---
+
+## 📡 REST API Specification
+
+| Endpoint | Method | Payload / Query | Status Codes | Description |
+| :--- | :---: | :--- | :---: | :--- |
+| `/api/login` | `POST` | `{ "email": "...", "password": "..." }` | `200`, `400`, `401` | Authenticates user and returns sanitized session profile. |
+| `/api/user-profile` | `GET` | `?id=Uxxx` | `200`, `400`, `404` | Retrieves public user profile without sensitive fields. |
+| `/api/faculties` | `GET` | *None* | `200` | Fetches all faculty profiles and teaching competency arrays. |
+| `/api/faculties` | `POST` | Faculty Object (`JSON`) | `201`, `400` | Registers a new faculty record and persists to disk. |
+| `/api/faculties` | `DELETE` | `?id=FAxxx` | `200`, `400` | Removes a faculty record by identifier. |
+| `/api/rooms` | `GET` | *None* | `200` | Returns all classrooms, labs, capacities, and department tags. |
+| `/api/rooms` | `POST` | Room Object (`JSON`) | `201`, `400` | Creates a new classroom or laboratory record. |
+| `/api/rooms` | `DELETE` | `?id=Rxxx` | `200`, `400` | Deletes a classroom or laboratory record by identifier. |
+| `/api/sections` | `GET` | *None* | `200` | Retrieves academic cohort partitions and batch identifiers. |
+| `/api/timetable` | `GET` | *None* | `200` | Returns the current master multi-cohort schedule matrix. |
+| `/api/generate-timetable` | `POST` | *None* | `200` | Triggers the heuristic CSP solver to synthesize a new schedule. |
+| `/api/dashboard-stats` | `GET` | *None* | `200` | Returns aggregated metrics, room occupancies, and compliance stats. |
+
+---
+
+## 📁 Directory Structure
+
+```
 College_Management_System/
-├── app.py                     # Core Flask application, API endpoints & page routes
-├── scheduler_engine.py        # Heuristic constraint solver & timetable synthesizer
-├── storage_manager.py         # File I/O handler with atomic JSON persistence
+├── app.py                     # Flask application, REST endpoints & static routes
+├── scheduler_engine.py        # Heuristic Constraint Satisfaction (CSP) engine
+├── storage_manager.py         # Atomic JSON persistence handler (DAO pattern)
 ├── requirements.txt           # Python dependency manifest
-├── data/                      # JSON persistence datastores
+├── data/                      # Persistent JSON Datastores
 │   ├── faculties.json         # Faculty profiles, qualifications & teaching allowances
 │   ├── rooms.json             # Classroom and laboratory infrastructure records
 │   ├── sections.json          # Academic cohorts partitioned by branch and semester
-│   ├── subjects.json          # Multi-semester curriculum and credit hours
-│   ├── timetable.json         # Generated master weekly schedule matrix
-│   └── users.json             # Administrative authentication credentials
-└── frontend/                  # Static client-side assets
-├── dashboard.html         # Analytics dashboard, KPIs and mini schedule preview
-├── faculties.html         # Faculty workload manager with interactive modals[cite: 
-├── login_page.html        # Authentication entry gateway
-├── room_allocation.html   # Room & Lab infrastructure manager[cite: 3]
-└── timetable.html         # Filterable master schedule view with PDF export styling[cite: 1]
+│   ├── subjects.json          # Multi-semester curriculum and credit requirements
+│   ├── timetable.json         # Master weekly multi-cohort schedule matrix
+│   └── users.json             # User accounts and RBAC role assignments
+└── frontend/                  # Client-Side Web Application
+    ├── auth.js                # Shared RBAC session controller & route guard
+    ├── dashboard.html         # Executive campus metrics & personalized previews
+    ├── faculties.html         # Faculty workload manager & staff directory
+    ├── login_page.html        # Secure authentication entry gateway
+    ├── room_allocation.html   # Classroom and laboratory infrastructure manager
+    ├── timetable.html         # Dynamic schedule matrix with print-ready PDF styling
+    ├── attendance.html        # Attendance portal interface (in development)
+    ├── reports.html           # Institutional analytics hub (in development)
+    └── settings.html          # System and profile configuration view
+```
 
 ---
 
-## Engineering Challenges Overcome
+## 💻 Getting Started & Local Setup
 
-**Circular Dependency Resolution:** Isolated storage_manager.py into a pure utility module to eliminate runtime circular self-imports on server initialization.
+### Prerequisites
+- **Python 3.8+** installed on your system.
 
-**REST Method Normalization:** Standardized Flask route decorators with explicit methods=["GET", "POST", "DELETE"] allowances to prevent HTTP 405 Method Not Allowed exceptions.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/mohiljoshi24/College_Management_System.git
+cd College_Management_System
+```
 
-**Multi-Cohort Data Overwriting:** Refactored a flat schedule matrix into a multi-dimensional key-value store partitioned by Section IDs (SEC-CS-SEM1-A, SEC-IT-SEM3-A), allowing independent multi-cohort filtering.
+### 2. Create and Activate Virtual Environment
+```bash
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
 
-**Modal Input Validation:** Replaced primitive browser prompt inputs with accessible HTML5 modal overlay dialogs to prevent malformed JSON schemas from entering the datastore[cite: 2, 3].
+# macOS / Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the Application
+```bash
+python app.py
+```
+
+Open your browser and navigate to:
+```
+http://127.0.0.1:5000/
+```
 
 ---
 
-## Future Roadmap
+## 💡 Engineering Highlights & Design Decisions
 
-**[ ] Role-Based Access Control (RBAC):** JWT-secured role routing for Administrators, Faculty, and Students.
-
-**[ ] Advanced Optimization:** Genetic Algorithm (GA) integration to minimize faculty idle gap periods between classes.
-
-**[ ] Database Migration:** Migration to PostgreSQL with SQLAlchemy ORM for higher transactional concurrency.
-
-**[ ] Direct Vector PDF Rendering:** Native server-side vector PDF generation for administrative printouts.
+- **Circular Dependency Elimination:** Isolated file storage into a pure utility module (`storage_manager.py`), preventing circular imports on Flask server bootstrap.
+- **REST Method Normalization:** Standardized Flask decorators with explicit HTTP method allowances (`GET`, `POST`, `DELETE`) to avoid `405 Method Not Allowed` exceptions.
+- **Multi-Cohort Data Partitioning:** Structured the schedule matrix as a keyed multi-dimensional dictionary partitioned by Section IDs (`SEC-CS-SEM1-A`, `SEC-IT-SEM3-A`), enabling independent cohort filtering.
+- **Modal Input Validation:** Implemented HTML5 modal dialogs with client validation to enforce structured JSON schemas before saving to disk.
 
 ---
 
-## last but not the least: 
-**its my very first project that to as a sem-1 CSE student.**
+## 🗺️ Roadmap
+
+- [x] **Automated CSP Timetable Engine** (Conflict-free multi-cohort generator)
+- [x] **Role-Based Access Control (RBAC)** (Admin, Faculty, and Student workflows)
+- [ ] **Student Management System** (Student directory, enrollment & batch assignments)
+- [ ] **Timetable-Linked Attendance Portal** (Roster attendance marking & calculation)
+- [ ] **Defaulter Analytics & Reports Hub** (Attendance < 75% alerts with CSV/PDF export)
+- [ ] **PostgreSQL Migration** (SQLAlchemy ORM integration for high-concurrency deployments)
+
+---
+
+## 👨‍💻 Author & Notes
+
+Developed by **Mohil Joshi** — Computer Science & Engineering.
+
+> *Built from the ground up as a foundational full-stack software engineering project, focusing on clean architecture, algorithmic scheduling, and pragmatic system design.*
+
