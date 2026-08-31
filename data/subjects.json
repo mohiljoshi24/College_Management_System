@@ -1,14 +1,46 @@
 [
   {
     "code": "CS101",
-    "name": "Programming Fundamentals",
+    "name": "Programming Fundamentals (C)",
     "department": "Computer Science",
     "semester": 1,
     "type": "LECTURE",
     "credits": 4
   },
   {
-    "code": "CS202",
+    "code": "CS101L",
+    "name": "C Programming Lab",
+    "department": "Computer Science",
+    "semester": 1,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "MA101",
+    "name": "Calculus & Linear Algebra",
+    "department": "Mathematics",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "EC101",
+    "name": "Basic Electronics Engineering",
+    "department": "Electronics & Comm",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "HS101",
+    "name": "Technical Communication",
+    "department": "Computer Science",
+    "semester": 1,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "CS201",
     "name": "Data Structures & Algorithms",
     "department": "Computer Science",
     "semester": 3,
@@ -16,12 +48,44 @@
     "credits": 4
   },
   {
-    "code": "CS202L",
+    "code": "CS201L",
     "name": "Data Structures Lab",
     "department": "Computer Science",
     "semester": 3,
     "type": "LAB",
     "credits": 2
+  },
+  {
+    "code": "CS202",
+    "name": "Object Oriented Programming (Java)",
+    "department": "Computer Science",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS202L",
+    "name": "Java Programming Lab",
+    "department": "Computer Science",
+    "semester": 3,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "CS203",
+    "name": "Computer Organization & Architecture",
+    "department": "Computer Science",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "MA201",
+    "name": "Discrete Mathematics & Probability",
+    "department": "Mathematics",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 4
   },
   {
     "code": "CS301",
@@ -32,8 +96,72 @@
     "credits": 4
   },
   {
+    "code": "CS301L",
+    "name": "Database Systems Lab",
+    "department": "Computer Science",
+    "semester": 5,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "CS302",
+    "name": "Design & Analysis of Algorithms",
+    "department": "Computer Science",
+    "semester": 5,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS303",
+    "name": "Operating Systems",
+    "department": "Computer Science",
+    "semester": 5,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS304",
+    "name": "Software Engineering & Agile",
+    "department": "Computer Science",
+    "semester": 5,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
     "code": "CS401",
-    "name": "Artificial Intelligence & ML",
+    "name": "Artificial Intelligence & Machine Learning",
+    "department": "Computer Science",
+    "semester": 7,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS401L",
+    "name": "AI & Machine Learning Lab",
+    "department": "Computer Science",
+    "semester": 7,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "CS402",
+    "name": "Cloud Computing & DevOps",
+    "department": "Computer Science",
+    "semester": 7,
+    "type": "LECTURE",
+    "credits": 4
+  },
+  {
+    "code": "CS403",
+    "name": "Information & Cyber Security",
+    "department": "Computer Science",
+    "semester": 7,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "CS404",
+    "name": "Compiler Design",
     "department": "Computer Science",
     "semester": 7,
     "type": "LECTURE",
@@ -41,11 +169,11 @@
   },
   {
     "code": "IT201",
-    "name": "Web Technologies",
+    "name": "Web Technologies & Full Stack",
     "department": "Information Technology",
     "semester": 3,
     "type": "LECTURE",
-    "credits": 3
+    "credits": 4
   },
   {
     "code": "IT201L",
@@ -56,12 +184,28 @@
     "credits": 2
   },
   {
-    "code": "EC101",
-    "name": "Basic Electrical & Electronics",
-    "department": "Electronics & Comm",
-    "semester": 1,
+    "code": "IT202",
+    "name": "Data Structures & Applications",
+    "department": "Information Technology",
+    "semester": 3,
     "type": "LECTURE",
-    "credits": 3
+    "credits": 4
+  },
+  {
+    "code": "IT202L",
+    "name": "Data Structures Lab",
+    "department": "Information Technology",
+    "semester": 3,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "IT203",
+    "name": "Relational Database Systems",
+    "department": "Information Technology",
+    "semester": 3,
+    "type": "LECTURE",
+    "credits": 4
   },
   {
     "code": "EC201",
@@ -80,18 +224,34 @@
     "credits": 2
   },
   {
-    "code": "MA101",
-    "name": "Calculus & Linear Algebra",
-    "department": "Mathematics",
-    "semester": 1,
+    "code": "EC202",
+    "name": "Signals & Linear Systems",
+    "department": "Electronics & Comm",
+    "semester": 4,
     "type": "LECTURE",
     "credits": 4
   },
   {
-    "code": "MA201",
-    "name": "Probability & Statistics",
+    "code": "EC203",
+    "name": "Analog Circuits & Applications",
+    "department": "Electronics & Comm",
+    "semester": 4,
+    "type": "LECTURE",
+    "credits": 3
+  },
+  {
+    "code": "EC203L",
+    "name": "Analog Electronics Lab",
+    "department": "Electronics & Comm",
+    "semester": 4,
+    "type": "LAB",
+    "credits": 2
+  },
+  {
+    "code": "MA202",
+    "name": "Numerical Methods & Complex Analysis",
     "department": "Mathematics",
-    "semester": 3,
+    "semester": 4,
     "type": "LECTURE",
     "credits": 4
   }

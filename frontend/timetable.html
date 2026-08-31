@@ -681,7 +681,7 @@
                         continue;
                     }
 
-                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf || item.professor === currentUser?.name;
+                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
                     let matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
 
                     filtered[slot][day] = (matchProf && matchRoom) ? item : null;

@@ -14,6 +14,13 @@
     "department": "General"
   },
   {
+    "id": "R103",
+    "name": "Lecture Hall 103",
+    "type": "LECTURE",
+    "capacity": 65,
+    "department": "General"
+  },
+  {
     "id": "R201",
     "name": "Lecture Hall 201",
     "type": "LECTURE",
@@ -21,24 +28,66 @@
     "department": "Computer Science"
   },
   {
+    "id": "R202",
+    "name": "Lecture Hall 202",
+    "type": "LECTURE",
+    "capacity": 60,
+    "department": "Computer Science"
+  },
+  {
+    "id": "R203",
+    "name": "Lecture Hall 203",
+    "type": "LECTURE",
+    "capacity": 60,
+    "department": "Information Technology"
+  },
+  {
+    "id": "R301",
+    "name": "Lecture Hall 301",
+    "type": "LECTURE",
+    "capacity": 60,
+    "department": "Electronics & Comm"
+  },
+  {
+    "id": "R302",
+    "name": "Lecture Hall 302",
+    "type": "LECTURE",
+    "capacity": 60,
+    "department": "Electronics & Comm"
+  },
+  {
     "id": "LAB-CS1",
-    "name": "Computer Programming Lab",
+    "name": "Computer Programming Lab 1",
     "type": "LAB",
-    "capacity": 40,
+    "capacity": 45,
+    "department": "Computer Science"
+  },
+  {
+    "id": "LAB-CS2",
+    "name": "Advanced Systems & DBMS Lab",
+    "type": "LAB",
+    "capacity": 45,
     "department": "Computer Science"
   },
   {
     "id": "LAB-IT1",
-    "name": "Web & Network Lab",
+    "name": "Web & Network Cloud Lab",
     "type": "LAB",
-    "capacity": 40,
+    "capacity": 45,
     "department": "Information Technology"
   },
   {
     "id": "LAB-EC1",
-    "name": "Digital Electronics Lab",
+    "name": "Digital & VLSI Electronics Lab",
     "type": "LAB",
-    "capacity": 35,
+    "capacity": 40,
     "department": "Electronics & Comm"
+  },
+  {
+    "id": "LAB-AI",
+    "name": "AI & High-Performance Lab",
+    "type": "LAB",
+    "capacity": 40,
+    "department": "Computer Science"
   }
 ]

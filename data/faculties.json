@@ -1,42 +1,123 @@
 [
   {
-    "id": "F102",
-    "name": "Prof. Patel",
-    "qualification": "(M.Tech)",
+    "id": "FA100",
+    "name": "Prof. Shivang",
+    "qualification": "(M.Tech, CSE)",
     "department": "Computer Science",
-    "specialties": ["Web Development", "UI/UX"],
-    "active_courses": ["CS 101", "CS 302"],
+    "specialties": ["Programming", "Cloud Computing"],
+    "subjects_can_teach": ["CS101", "CS101L", "CS402", "CS403"],
+    "active_courses": ["CS101", "CS402"],
     "daily_workload": 3.5,
-    "max_workload_hrs": 5
+    "max_workload_hrs": 5.0
   },
   {
     "id": "FA001",
     "name": "Dr. Aditi Sharma",
-    "qualification": "(PhD)",
+    "qualification": "(PhD, IIT Bombay)",
     "department": "Computer Science",
-    "specialties": ["Python", "Data Structures"],
-    "active_courses": ["CS 101", "CS 202"],
+    "specialties": ["Algorithms", "Data Structures"],
+    "subjects_can_teach": ["CS201", "CS201L", "CS302", "CS401", "CS401L"],
+    "active_courses": ["CS201", "CS302"],
     "daily_workload": 3.5,
-    "max_workload_hrs": 5
+    "max_workload_hrs": 5.0
   },
   {
     "id": "FA002",
     "name": "Prof. Rajesh Kumar",
-    "qualification": "(M.Tech)",
+    "qualification": "(M.Sc, Gold Medalist)",
     "department": "Mathematics",
-    "specialties": ["Calculus", "Linear Algebra"],
-    "active_courses": ["MA 101"],
-    "daily_workload": 2.0,
-    "max_workload_hrs": 5
+    "specialties": ["Calculus", "Linear Algebra", "Probability"],
+    "subjects_can_teach": ["MA101", "MA201", "MA202"],
+    "active_courses": ["MA101", "MA201"],
+    "daily_workload": 3.0,
+    "max_workload_hrs": 5.0
   },
   {
     "id": "FA003",
     "name": "Dr. Sneha Patel",
-    "qualification": "(PhD)",
-    "department": "Electrical Eng.",
-    "specialties": ["Digital Logic", "Signal Processing"],
-    "active_courses": ["EE 102"],
-    "daily_workload": 4.0,
-    "max_workload_hrs": 5
+    "qualification": "(PhD, VLSI)",
+    "department": "Electronics & Comm",
+    "specialties": ["Digital Logic", "Microprocessors", "Embedded"],
+    "subjects_can_teach": ["EC101", "EC201", "EC201L", "EC202"],
+    "active_courses": ["EC101", "EC201"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA004",
+    "name": "Prof. Patel",
+    "qualification": "(M.Tech)",
+    "department": "Computer Science",
+    "specialties": ["Database Systems", "Software Engineering"],
+    "subjects_can_teach": ["CS301", "CS301L", "CS304", "CS203"],
+    "active_courses": ["CS301", "CS304"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA005",
+    "name": "Prof. Neha Gupta",
+    "qualification": "(M.Tech, IT)",
+    "department": "Information Technology",
+    "specialties": ["Web Technologies", "Full Stack Development"],
+    "subjects_can_teach": ["IT201", "IT201L", "IT202", "IT202L", "IT203"],
+    "active_courses": ["IT201", "IT203"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA006",
+    "name": "Dr. Vikram Joshi",
+    "qualification": "(PhD, AI)",
+    "department": "Computer Science",
+    "specialties": ["Artificial Intelligence", "Compiler Design"],
+    "subjects_can_teach": ["CS401", "CS401L", "CS404", "CS202", "CS202L"],
+    "active_courses": ["CS401", "CS404"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA007",
+    "name": "Prof. Anand Verma",
+    "qualification": "(M.Tech, Systems)",
+    "department": "Computer Science",
+    "specialties": ["Operating Systems", "Computer Architecture"],
+    "subjects_can_teach": ["CS303", "CS203", "CS101", "CS101L"],
+    "active_courses": ["CS303", "CS203"],
+    "daily_workload": 3.0,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA008",
+    "name": "Dr. Meera Nair",
+    "qualification": "(PhD, Communications)",
+    "department": "Electronics & Comm",
+    "specialties": ["Analog Circuits", "Signal Processing"],
+    "subjects_can_teach": ["EC202", "EC203", "EC203L", "EC101"],
+    "active_courses": ["EC202", "EC203"],
+    "daily_workload": 3.0,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA009",
+    "name": "Prof. Sanjay Dave",
+    "qualification": "(M.Phil, English)",
+    "department": "Humanities",
+    "specialties": ["Professional Ethics", "Technical Communication"],
+    "subjects_can_teach": ["HS101"],
+    "active_courses": ["HS101"],
+    "daily_workload": 2.0,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA010",
+    "name": "Prof. Pooja Shah",
+    "qualification": "(M.Tech, Software)",
+    "department": "Information Technology",
+    "specialties": ["Database Systems", "Java Programming"],
+    "subjects_can_teach": ["IT203", "CS202", "CS202L", "IT201"],
+    "active_courses": ["IT203", "CS202"],
+    "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
   }
 ]
