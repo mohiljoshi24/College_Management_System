@@ -7,21 +7,11 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Tue": {
-        "subject": "CS101",
-        "subject_name": "Programming Fundamentals (C)",
-        "type": "LECTURE",
-        "professor": "Prof. Shivang",
-        "faculty_id": "FA100",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
-        "color": "purple-card"
-      },
-      "Wed": {
         "subject": "CS101",
         "subject_name": "Programming Fundamentals (C)",
         "type": "LECTURE",
@@ -31,7 +21,7 @@
         "room_id": "R201",
         "color": "purple-card"
       },
-      "Thu": {
+      "Wed": {
         "subject": "CS101",
         "subject_name": "Programming Fundamentals (C)",
         "type": "LECTURE",
@@ -41,14 +31,24 @@
         "room_id": "R101",
         "color": "purple-card"
       },
+      "Thu": {
+        "subject": "CS101",
+        "subject_name": "Programming Fundamentals (C)",
+        "type": "LECTURE",
+        "professor": "Prof. Shivang",
+        "faculty_id": "FA100",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "purple-card"
+      },
       "Fri": {
         "subject": "CS101",
         "subject_name": "Programming Fundamentals (C)",
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Sat": {
@@ -57,8 +57,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       }
     },
@@ -69,8 +69,8 @@
         "type": "LAB",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Tue": {
@@ -79,8 +79,8 @@
         "type": "LAB",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Wed": {
@@ -89,8 +89,8 @@
         "type": "LAB",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Thu": {
@@ -119,8 +119,8 @@
         "type": "LAB",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       }
     },
@@ -131,8 +131,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "yellow-card"
       },
       "Tue": {
@@ -141,8 +141,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "yellow-card"
       },
       "Wed": {
@@ -151,11 +151,21 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "yellow-card"
       },
       "Thu": {
+        "subject": "MA101",
+        "subject_name": "Calculus & Linear Algebra",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
+        "color": "yellow-card"
+      },
+      "Fri": {
         "subject": "MA101",
         "subject_name": "Calculus & Linear Algebra",
         "type": "LECTURE",
@@ -165,24 +175,14 @@
         "room_id": "R103",
         "color": "yellow-card"
       },
-      "Fri": {
-        "subject": "MA101",
-        "subject_name": "Calculus & Linear Algebra",
-        "type": "LECTURE",
-        "professor": "Prof. Rajesh Kumar",
-        "faculty_id": "FA002",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
-        "color": "yellow-card"
-      },
       "Sat": {
         "subject": "MA101",
         "subject_name": "Calculus & Linear Algebra",
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "yellow-card"
       }
     },
@@ -193,8 +193,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "green-card"
       },
       "Tue": {
@@ -203,8 +203,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "green-card"
       },
       "Wed": {
@@ -213,8 +213,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "green-card"
       },
       "Thu": {
@@ -233,8 +233,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "green-card"
       },
       "Sat": {
@@ -243,8 +243,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "green-card"
       }
     },
@@ -255,8 +255,8 @@
         "type": "LECTURE",
         "professor": "Prof. Sanjay Dave",
         "faculty_id": "FA009",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Tue": {
@@ -275,8 +275,8 @@
         "type": "LECTURE",
         "professor": "Prof. Sanjay Dave",
         "faculty_id": "FA009",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Thu": {
@@ -285,8 +285,8 @@
         "type": "LECTURE",
         "professor": "Prof. Sanjay Dave",
         "faculty_id": "FA009",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Fri": {
@@ -295,8 +295,8 @@
         "type": "LECTURE",
         "professor": "Prof. Sanjay Dave",
         "faculty_id": "FA009",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Sat": null
@@ -318,8 +318,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Tue": {
@@ -328,8 +328,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "yellow-card"
       },
       "Wed": {
@@ -338,8 +338,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Thu": {
@@ -348,8 +348,8 @@
         "type": "LAB",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Fri": {
@@ -368,8 +368,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       }
     },
@@ -390,8 +390,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Wed": {
@@ -420,8 +420,8 @@
         "type": "LAB",
         "professor": "Prof. Pooja Shah",
         "faculty_id": "FA010",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Sat": {
@@ -430,8 +430,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       }
     },
@@ -442,8 +442,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Tue": {
@@ -452,8 +452,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Wed": {
@@ -462,8 +462,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Thu": {
@@ -472,8 +472,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Fri": {
@@ -482,8 +482,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Sat": {
@@ -492,8 +492,8 @@
         "type": "LAB",
         "professor": "Prof. Pooja Shah",
         "faculty_id": "FA010",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       }
     },
@@ -514,8 +514,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Wed": {
@@ -524,11 +524,21 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Thu": {
+        "subject": "MA201",
+        "subject_name": "Discrete Mathematics & Probability",
+        "type": "LECTURE",
+        "professor": "Prof. Rajesh Kumar",
+        "faculty_id": "FA002",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
+        "color": "yellow-card"
+      },
+      "Fri": {
         "subject": "MA201",
         "subject_name": "Discrete Mathematics & Probability",
         "type": "LECTURE",
@@ -538,24 +548,14 @@
         "room_id": "R202",
         "color": "yellow-card"
       },
-      "Fri": {
-        "subject": "MA201",
-        "subject_name": "Discrete Mathematics & Probability",
-        "type": "LECTURE",
-        "professor": "Prof. Rajesh Kumar",
-        "faculty_id": "FA002",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
-        "color": "yellow-card"
-      },
       "Sat": {
         "subject": "CS203",
         "subject_name": "Computer Organization & Architecture",
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       }
     },
@@ -566,8 +566,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Tue": {
@@ -576,8 +576,8 @@
         "type": "LAB",
         "professor": "Prof. Pooja Shah",
         "faculty_id": "FA010",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Wed": {
@@ -596,8 +596,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Fri": {
@@ -606,8 +606,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Sat": null
@@ -629,8 +629,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Tue": {
@@ -639,8 +639,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Wed": {
@@ -649,8 +649,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Thu": {
@@ -659,8 +659,8 @@
         "type": "LAB",
         "professor": "Prof. Pooja Shah",
         "faculty_id": "FA010",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Fri": {
@@ -669,8 +669,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Sat": {
@@ -679,8 +679,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       }
     },
@@ -691,8 +691,8 @@
         "type": "LAB",
         "professor": "Prof. Pooja Shah",
         "faculty_id": "FA010",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Tue": {
@@ -701,8 +701,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "yellow-card"
       },
       "Wed": {
@@ -711,8 +711,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Thu": {
@@ -721,8 +721,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "yellow-card"
       },
       "Fri": {
@@ -731,8 +731,8 @@
         "type": "LAB",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Sat": {
@@ -741,8 +741,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       }
     },
@@ -753,8 +753,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Tue": {
@@ -763,8 +763,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Wed": {
@@ -783,8 +783,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Fri": {
@@ -815,8 +815,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Tue": {
@@ -825,8 +825,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Wed": {
@@ -845,8 +845,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Fri": {
@@ -855,8 +855,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Sat": {
@@ -865,8 +865,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       }
     },
@@ -877,8 +877,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Tue": {
@@ -897,8 +897,8 @@
         "type": "LAB",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "AI & High-Performance Lab",
+        "room_id": "LAB-AI",
         "color": "red-card"
       },
       "Thu": {
@@ -907,8 +907,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Fri": {
@@ -917,8 +917,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "yellow-card"
       },
       "Sat": null
@@ -940,8 +940,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Tue": {
@@ -950,8 +950,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Wed": {
@@ -970,8 +970,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Fri": {
@@ -980,8 +980,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Sat": {
@@ -990,8 +990,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       }
     },
@@ -1002,8 +1002,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Tue": {
@@ -1012,8 +1012,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Wed": {
@@ -1022,8 +1022,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Thu": {
@@ -1032,8 +1032,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Fri": {
@@ -1042,8 +1042,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Sat": {
@@ -1052,8 +1052,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       }
     },
@@ -1064,8 +1064,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Tue": {
@@ -1074,8 +1074,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Wed": {
@@ -1084,8 +1084,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Thu": {
@@ -1094,8 +1094,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Fri": null,
@@ -1105,8 +1105,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       }
     },
@@ -1117,8 +1117,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Tue": {
@@ -1137,8 +1137,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Thu": {
@@ -1147,8 +1147,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Advanced Systems & DBMS Lab",
-        "room_id": "LAB-CS2",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Fri": {
@@ -1157,8 +1157,8 @@
         "type": "LAB",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Computer Programming Lab 1",
+        "room_id": "LAB-CS1",
         "color": "red-card"
       },
       "Sat": null
@@ -1170,8 +1170,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Tue": {
@@ -1190,8 +1190,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Thu": {
@@ -1200,8 +1200,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Fri": {
@@ -1210,8 +1210,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 202",
+        "room_id": "R202",
         "color": "purple-card"
       },
       "Sat": {
@@ -1220,8 +1220,8 @@
         "type": "LECTURE",
         "professor": "Prof. Anand Verma",
         "faculty_id": "FA007",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       }
     },
@@ -1236,8 +1236,8 @@
         "type": "LECTURE",
         "professor": "Prof. Patel",
         "faculty_id": "FA004",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Sat": null
@@ -1252,8 +1252,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Wed": {
@@ -1272,8 +1272,8 @@
         "type": "LECTURE",
         "professor": "Dr. Aditi Sharma",
         "faculty_id": "FA001",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Fri": null,
@@ -1286,8 +1286,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Tue": {
@@ -1306,8 +1306,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Thu": {
@@ -1316,8 +1316,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Fri": {
@@ -1326,8 +1326,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "purple-card"
       },
       "Sat": {
@@ -1336,8 +1336,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       }
     },
@@ -1348,8 +1348,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Tue": {
@@ -1358,8 +1358,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       },
       "Wed": {
@@ -1368,8 +1368,8 @@
         "type": "LAB",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Computer Programming Lab 1",
-        "room_id": "LAB-CS1",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Thu": {
@@ -1398,8 +1398,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       }
     },
@@ -1410,8 +1410,8 @@
         "type": "LAB",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "AI & High-Performance Lab",
-        "room_id": "LAB-AI",
+        "room": "Advanced Systems & DBMS Lab",
+        "room_id": "LAB-CS2",
         "color": "red-card"
       },
       "Tue": {
@@ -1420,8 +1420,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Wed": {
@@ -1440,8 +1440,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Fri": {
@@ -1460,8 +1460,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "purple-card"
       }
     },
@@ -1472,8 +1472,8 @@
         "type": "LECTURE",
         "professor": "Prof. Shivang",
         "faculty_id": "FA100",
-        "room": "Lecture Hall 201",
-        "room_id": "R201",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "purple-card"
       },
       "Tue": null,
@@ -1525,8 +1525,8 @@
         "type": "LECTURE",
         "professor": "Dr. Vikram Joshi",
         "faculty_id": "FA006",
-        "room": "Lecture Hall 202",
-        "room_id": "R202",
+        "room": "Lecture Hall 201",
+        "room_id": "R201",
         "color": "purple-card"
       },
       "Tue": null,
@@ -1553,8 +1553,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 203",
-        "room_id": "R203",
+        "room": "Lecture Hall 103",
+        "room_id": "R103",
         "color": "yellow-card"
       },
       "Tue": {
@@ -1603,8 +1603,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 203",
+        "room_id": "R203",
         "color": "yellow-card"
       }
     },
@@ -1615,8 +1615,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 203",
-        "room_id": "R203",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "blue-card"
       },
       "Tue": {
@@ -1625,8 +1625,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 203",
-        "room_id": "R203",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "blue-card"
       },
       "Wed": {
@@ -1635,8 +1635,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 203",
+        "room_id": "R203",
         "color": "blue-card"
       },
       "Thu": {
@@ -1697,8 +1697,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 203",
-        "room_id": "R203",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "blue-card"
       },
       "Thu": {
@@ -1727,8 +1727,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 203",
+        "room_id": "R203",
         "color": "blue-card"
       }
     },
@@ -1739,8 +1739,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 203",
+        "room_id": "R203",
         "color": "blue-card"
       },
       "Tue": {
@@ -1749,8 +1749,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 203",
+        "room_id": "R203",
         "color": "yellow-card"
       },
       "Wed": {
@@ -1769,8 +1769,8 @@
         "type": "LECTURE",
         "professor": "Prof. Neha Gupta",
         "faculty_id": "FA005",
-        "room": "Lecture Hall 103",
-        "room_id": "R103",
+        "room": "Lecture Hall 102",
+        "room_id": "R102",
         "color": "blue-card"
       },
       "Fri": {
@@ -1894,8 +1894,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 301",
-        "room_id": "R301",
+        "room": "Lecture Hall 302",
+        "room_id": "R302",
         "color": "yellow-card"
       },
       "Fri": {
@@ -1966,8 +1966,8 @@
         "type": "LECTURE",
         "professor": "Dr. Meera Nair",
         "faculty_id": "FA008",
-        "room": "Lecture Hall 101",
-        "room_id": "R101",
+        "room": "Lecture Hall 302",
+        "room_id": "R302",
         "color": "green-card"
       },
       "Sat": {
@@ -2018,8 +2018,8 @@
         "type": "LECTURE",
         "professor": "Dr. Sneha Patel",
         "faculty_id": "FA003",
-        "room": "Lecture Hall 302",
-        "room_id": "R302",
+        "room": "Lecture Hall 301",
+        "room_id": "R301",
         "color": "green-card"
       },
       "Fri": {
@@ -2038,8 +2038,8 @@
         "type": "LECTURE",
         "professor": "Dr. Meera Nair",
         "faculty_id": "FA008",
-        "room": "Lecture Hall 102",
-        "room_id": "R102",
+        "room": "Lecture Hall 302",
+        "room_id": "R302",
         "color": "green-card"
       }
     },
@@ -2050,8 +2050,8 @@
         "type": "LECTURE",
         "professor": "Dr. Meera Nair",
         "faculty_id": "FA008",
-        "room": "Lecture Hall 301",
-        "room_id": "R301",
+        "room": "Lecture Hall 302",
+        "room_id": "R302",
         "color": "green-card"
       },
       "Tue": {
@@ -2060,8 +2060,8 @@
         "type": "LECTURE",
         "professor": "Dr. Meera Nair",
         "faculty_id": "FA008",
-        "room": "Lecture Hall 301",
-        "room_id": "R301",
+        "room": "Lecture Hall 101",
+        "room_id": "R101",
         "color": "green-card"
       },
       "Wed": {
@@ -2122,8 +2122,8 @@
         "type": "LECTURE",
         "professor": "Prof. Rajesh Kumar",
         "faculty_id": "FA002",
-        "room": "Lecture Hall 302",
-        "room_id": "R302",
+        "room": "Lecture Hall 301",
+        "room_id": "R301",
         "color": "yellow-card"
       },
       "Wed": {
