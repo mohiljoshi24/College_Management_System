@@ -300,30 +300,51 @@
             line-height: 1.3;
         }
 
-       /* Unified High-Intensity Pastel Palette */
-        .purple-chip { 
-             background-color: #cab1e7 !important; 
-             color: #44337a !important; 
-         }
-        .green-chip { 
-             background-color: #b3dbbf !important; 
-                color: #1c4532 !important; 
+        /* Unified High-Intensity Pastel Palette */
+        .purple-card, .purple-chip { 
+            background-color: #cab1e7 !important; 
+            color: #44337a !important; 
+            border-left: 3px solid #7c3aed !important;
         }
-        .yellow-chip { 
-             background-color: #eee76c !important; 
-             color: #5f370e !important; 
+        .green-card, .green-chip { 
+            background-color: #b3dbbf !important; 
+            color: #1c4532 !important; 
+            border-left: 3px solid #16a34a !important;
         }
-        .red-chip { 
-              background-color: #e69f9f !important; 
-              color: #5c2323 !important; 
+        .yellow-card, .yellow-chip { 
+            background-color: #eee76c !important; 
+            color: #5f370e !important; 
+            border-left: 3px solid #ca8a04 !important;
         }
-        .blue-card { 
-              background-color: #a6c8f7 !important; 
-              color: #173b8a !important; 
+        .red-card, .red-chip { 
+            background-color: #e69f9f !important; 
+            color: #5c2323 !important; 
+            border-left: 3px solid #dc2626 !important;
         }
-        .orange-card { 
-              background-color: #e7a05d !important; 
-              color: #652b19 !important; 
+        .blue-card, .blue-chip { 
+            background-color: #a6c8f7 !important; 
+            color: #173b8a !important; 
+            border-left: 3px solid #2563eb !important;
+        }
+        .orange-card, .orange-chip { 
+            background-color: #fed7aa !important; 
+            color: #7c2d12 !important; 
+            border-left: 3px solid #ea580c !important;
+        }
+        .sports-card, .sports-chip {
+            background-color: #a7f3d0 !important;
+            color: #064e3b !important;
+            border-left: 3px solid #059669 !important;
+        }
+        .library-card, .library-chip {
+            background-color: #fde68a !important;
+            color: #78350f !important;
+            border-left: 3px solid #d97706 !important;
+        }
+        .assignment-card, .assignment-chip {
+            background-color: #c7d2fe !important;
+            color: #312e81 !important;
+            border-left: 3px solid #4f46e5 !important;
         }
 
 /* Ensure child text isn't muted or faded */
@@ -573,22 +594,17 @@
     <!-- Live Data Fetching Logic -->
     <script>
         const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const COLOR_CLASSES = ["purple-chip", "green-chip", "yellow-chip", "red-chip", "blue-card", "orange-card"];
+        const COLOR_CLASSES = ["purple-chip", "green-chip", "yellow-chip", "red-chip", "blue-card", "orange-card", "purple-card", "sports-card", "library-card", "assignment-card"];
         const subjectColorMap = {};
         let colorCounter = 0;
         let globalTimetable = {};
         let currentUser = null;
 
         function getSubjectColor(item) {
-            if (item && item.color && COLOR_CLASSES.includes(item.color)) {
+            if (item && item.color) {
                 return item.color;
             }
-            const subj = item.subject || "";
-            if (!subjectColorMap[subj]) {
-                subjectColorMap[subj] = COLOR_CLASSES[colorCounter % COLOR_CLASSES.length];
-                colorCounter++;
-            }
-            return subjectColorMap[subj];
+            return "purple-card";
         }
 
         function parseTimeToMinutes(timeStr) {
@@ -770,10 +786,12 @@
                         const chipClass = getSubjectColor(item);
                         cells += `<td>
                             <div class="event-chip ${chipClass}">
-                                <div>${item.subject}</div>
-                                <span style="font-size:0.68rem; opacity:0.85;">${item.room || ''}</span>
+                                <div style="font-weight:700;">${item.subject}</div>
+                                <span style="font-size:0.68rem; opacity:0.95;">${item.room || ''}</span>
                             </div>
                         </td>`;
+                    } else if (day === "Sat") {
+                        cells += `<td style="color:#94a3b8; font-size:0.7rem; font-style:italic; background:#f8fafc;">Off</td>`;
                     } else {
                         cells += `<td style="color:#cbd5e1;">-</td>`;
                     }

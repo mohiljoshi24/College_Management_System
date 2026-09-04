@@ -368,6 +368,28 @@
               background-color: #e7a05d !important; 
               color: #652b19 !important; 
         }
+        .sports-card {
+              background-color: #a7f3d0 !important;
+              color: #064e3b !important;
+              border-left: 3px solid #059669 !important;
+        }
+        .library-card {
+              background-color: #fed7aa !important;
+              color: #7c2d12 !important;
+              border-left: 3px solid #ea580c !important;
+        }
+        .assignment-card {
+              background-color: #c7d2fe !important;
+              color: #312e81 !important;
+              border-left: 3px solid #4f46e5 !important;
+        }
+        .weekend-cell {
+              background-color: #f8fafc;
+              color: #94a3b8;
+              font-size: 11px;
+              font-style: italic;
+              text-align: center;
+        }
 
 
         .break-cell {
@@ -743,6 +765,8 @@
                             </div>
                         </td>
                     `;
+                } else if (day === "Sat") {
+                    rowHtml += `<td class="weekend-cell">Weekend / Off</td>`;
                 } else {
                     rowHtml += `<td></td>`;
                 }
