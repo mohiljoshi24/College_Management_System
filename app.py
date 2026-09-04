@@ -164,8 +164,8 @@ def api_dashboard_stats():
     # Daily average workload per faculty
     daily_workload_avg = 0.0
     if total_faculty > 0:
-        # divided across 6 working days
-        daily_workload_avg = round((total_scheduled_hours / (total_faculty * 6)), 1)
+        # divided across 5 working days (Mon-Fri)
+        daily_workload_avg = round((total_scheduled_hours / (total_faculty * 5)), 1)
 
     # Room occupancy percentage
     room_occupancy_pct = 0
@@ -182,7 +182,7 @@ def api_dashboard_stats():
         fac_id = fac.get("id")
         hours = faculty_assigned_hours.get(fac_id, 0)
         dept_compliance[dept]["total_hours"] += hours
-        dept_compliance[dept]["max_hours"] += fac.get("max_workload_hrs", 5) * 6
+        dept_compliance[dept]["max_hours"] += fac.get("max_workload_hrs", 5) * 5
 
     formatted_compliance = []
     for dept, data in dept_compliance.items():
