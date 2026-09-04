@@ -94,13 +94,16 @@ The scheduling engine (`scheduler_engine.py`) models timetable generation as a m
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Constraints Enforced
+### Constraints & Heuristics Enforced
 
-1. **Faculty Collision Prevention (Hard):** Tracks instructor allocations via `(day, slot)` sets to guarantee zero double-booking across different cohorts or classrooms.
-2. **Facility Collision Prevention (Hard):** Ensures physical rooms can host at most one section per time slot.
-3. **Infrastructural Domain Compatibility (Hard):** Routes lab courses (`type: "LAB"`) strictly to dedicated computer/hardware labs, while lecture courses are allocated to lecture halls.
-4. **Subject Competency Validation (Hard):** Assigns instructors strictly based on their verified `subjects_can_teach` competency lists.
-5. **Workload Ceiling (Soft):** Caps daily lectures per cohort to prevent student and faculty cognitive fatigue.
+1. **5-Day Academic Week Model:** Mon–Fri operational curriculum with Saturday preserved in the UI palette as a scheduled institutional off-day.
+2. **Fixed Weekly Activity Invariants:** Injects exactly **1 Library**, **1 Assignment/Tutorial**, and **1 Sports** period per cohort across distinct days.
+3. **Faculty Collision Prevention (Hard):** Tracks instructor allocations via `(day, slot)` sets to guarantee zero double-booking across cohorts or classrooms.
+4. **Facility Collision Prevention (Hard):** Ensures physical rooms host at most one section per time slot.
+5. **Infrastructural Domain Compatibility (Hard):** Routes laboratory courses strictly to specialized labs (`LAB-CS1`, `LAB-IT1`, `LAB-EC1`, `LAB-AI`) and lecture courses to standard halls.
+6. **Subject Competency Validation (Hard):** Assigns instructors strictly based on verified `subjects_can_teach` competency lists.
+7. **Morning Slot Randomization (Soft):** Distributes 09:00 AM period 1 assignments across faculty to avoid repetitive locks.
+8. **Staff-Room Break Interval Heuristic (Soft):** Penalizes consecutive back-to-back lecture assignments for the same professor to mitigate cognitive fatigue while complying with 5.0-hour daily caps.
 
 ---
 
