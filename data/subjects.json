@@ -34,7 +34,7 @@
   {
     "code": "HS101",
     "name": "Technical Communication",
-    "department": "Computer Science",
+    "department": "Humanities",
     "semester": 1,
     "type": "LECTURE",
     "credits": 3
@@ -254,5 +254,29 @@
     "semester": 4,
     "type": "LECTURE",
     "credits": 4
+  },
+  {
+    "code": "LIB101",
+    "name": "Library",
+    "department": "General",
+    "semester": "ALL",
+    "type": "LIBRARY",
+    "credits": 1
+  },
+  {
+    "code": "ASG101",
+    "name": "Assignment",
+    "department": "General",
+    "semester": "ALL",
+    "type": "ASSIGNMENT",
+    "credits": 1
+  },
+  {
+    "code": "SPT101",
+    "name": "Sports",
+    "department": "General",
+    "semester": "ALL",
+    "type": "SPORTS",
+    "credits": 1
   }
 ]

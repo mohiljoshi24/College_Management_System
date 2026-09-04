@@ -5,7 +5,7 @@
     "qualification": "(M.Tech, CSE)",
     "department": "Computer Science",
     "specialties": ["Programming", "Cloud Computing"],
-    "subjects_can_teach": ["CS101", "CS101L", "CS402", "CS403"],
+    "subjects_can_teach": ["CS101", "CS101L", "CS401", "CS402", "CS403", "CS404", "ASG101"],
     "active_courses": ["CS101", "CS402"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -16,7 +16,7 @@
     "qualification": "(PhD, IIT Bombay)",
     "department": "Computer Science",
     "specialties": ["Algorithms", "Data Structures"],
-    "subjects_can_teach": ["CS201", "CS201L", "CS302", "CS401", "CS401L"],
+    "subjects_can_teach": ["CS201", "CS201L", "CS301", "CS302", "CS401", "CS401L", "ASG101"],
     "active_courses": ["CS201", "CS302"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -27,7 +27,7 @@
     "qualification": "(M.Sc, Gold Medalist)",
     "department": "Mathematics",
     "specialties": ["Calculus", "Linear Algebra", "Probability"],
-    "subjects_can_teach": ["MA101", "MA201", "MA202"],
+    "subjects_can_teach": ["MA101", "MA201", "MA202", "ASG101"],
     "active_courses": ["MA101", "MA201"],
     "daily_workload": 3.0,
     "max_workload_hrs": 5.0
@@ -38,7 +38,7 @@
     "qualification": "(PhD, VLSI)",
     "department": "Electronics & Comm",
     "specialties": ["Digital Logic", "Microprocessors", "Embedded"],
-    "subjects_can_teach": ["EC101", "EC201", "EC201L", "EC202"],
+    "subjects_can_teach": ["EC101", "EC201", "EC201L", "EC202", "ASG101"],
     "active_courses": ["EC101", "EC201"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -49,7 +49,7 @@
     "qualification": "(M.Tech)",
     "department": "Computer Science",
     "specialties": ["Database Systems", "Software Engineering"],
-    "subjects_can_teach": ["CS301", "CS301L", "CS304", "CS203"],
+    "subjects_can_teach": ["CS301", "CS301L", "CS304", "CS203", "CS302", "ASG101"],
     "active_courses": ["CS301", "CS304"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -60,7 +60,7 @@
     "qualification": "(M.Tech, IT)",
     "department": "Information Technology",
     "specialties": ["Web Technologies", "Full Stack Development"],
-    "subjects_can_teach": ["IT201", "IT201L", "IT202", "IT202L", "IT203"],
+    "subjects_can_teach": ["IT201", "IT201L", "IT202", "IT202L", "IT203", "ASG101"],
     "active_courses": ["IT201", "IT203"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -71,7 +71,7 @@
     "qualification": "(PhD, AI)",
     "department": "Computer Science",
     "specialties": ["Artificial Intelligence", "Compiler Design"],
-    "subjects_can_teach": ["CS401", "CS401L", "CS404", "CS202", "CS202L"],
+    "subjects_can_teach": ["CS401", "CS401L", "CS404", "CS402", "CS403", "CS202", "CS202L", "ASG101"],
     "active_courses": ["CS401", "CS404"],
     "daily_workload": 3.5,
     "max_workload_hrs": 5.0
@@ -82,7 +82,7 @@
     "qualification": "(M.Tech, Systems)",
     "department": "Computer Science",
     "specialties": ["Operating Systems", "Computer Architecture"],
-    "subjects_can_teach": ["CS303", "CS203", "CS101", "CS101L"],
+    "subjects_can_teach": ["CS303", "CS203", "CS101", "CS101L", "CS304", "ASG101"],
     "active_courses": ["CS303", "CS203"],
     "daily_workload": 3.0,
     "max_workload_hrs": 5.0
@@ -93,7 +93,7 @@
     "qualification": "(PhD, Communications)",
     "department": "Electronics & Comm",
     "specialties": ["Analog Circuits", "Signal Processing"],
-    "subjects_can_teach": ["EC202", "EC203", "EC203L", "EC101"],
+    "subjects_can_teach": ["EC202", "EC203", "EC203L", "EC101", "ASG101"],
     "active_courses": ["EC202", "EC203"],
     "daily_workload": 3.0,
     "max_workload_hrs": 5.0
@@ -104,7 +104,7 @@
     "qualification": "(M.Phil, English)",
     "department": "Humanities",
     "specialties": ["Professional Ethics", "Technical Communication"],
-    "subjects_can_teach": ["HS101"],
+    "subjects_can_teach": ["HS101", "ASG101"],
     "active_courses": ["HS101"],
     "daily_workload": 2.0,
     "max_workload_hrs": 5.0
@@ -115,9 +115,31 @@
     "qualification": "(M.Tech, Software)",
     "department": "Information Technology",
     "specialties": ["Database Systems", "Java Programming"],
-    "subjects_can_teach": ["IT203", "CS202", "CS202L", "IT201"],
+    "subjects_can_teach": ["IT203", "CS202", "CS202L", "IT201", "CS301", "CS301L", "CS304", "ASG101"],
     "active_courses": ["IT203", "CS202"],
     "daily_workload": 3.5,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA_SPORTS",
+    "name": "Coach Vikram Rathore",
+    "qualification": "(M.P.Ed, Sports Authority)",
+    "department": "Physical Education",
+    "specialties": ["Athletics", "Team Sports", "Physical Fitness"],
+    "subjects_can_teach": ["SPT101"],
+    "active_courses": ["SPT101"],
+    "daily_workload": 3.0,
+    "max_workload_hrs": 5.0
+  },
+  {
+    "id": "FA_LIB",
+    "name": "Dr. Sarita Joshi",
+    "qualification": "(Ph.D, Library & Info Science)",
+    "department": "Library & Research",
+    "specialties": ["Digital Research", "Information Retrieval", "Literature Survey"],
+    "subjects_can_teach": ["LIB101"],
+    "active_courses": ["LIB101"],
+    "daily_workload": 3.0,
     "max_workload_hrs": 5.0
   }
 ]

@@ -89,5 +89,26 @@
     "type": "LAB",
     "capacity": 40,
     "department": "Computer Science"
+  },
+  {
+    "id": "LIB-CENTRAL",
+    "name": "Library",
+    "type": "LIBRARY",
+    "capacity": 100,
+    "department": "General"
+  },
+  {
+    "id": "SPORTS-GROUND",
+    "name": "Sports Ground",
+    "type": "SPORTS",
+    "capacity": 120,
+    "department": "General"
+  },
+  {
+    "id": "TUTORIAL-ROOM",
+    "name": "Tutorial Room",
+    "type": "ASSIGNMENT",
+    "capacity": 60,
+    "department": "General"
   }
 ]
