@@ -334,6 +334,20 @@
             font-weight: 700;
             font-size: 11px;
             margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.14);
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+            white-space: nowrap;
         }
 
         .card-prof,
@@ -490,7 +504,7 @@
                 <div class="filter-group" id="groupSectionFilter">
                     <label id="lblSectionFilter">View By: Class / Section</label>
                     <div class="select-wrapper">
-                        <select id="sectionSelect" onchange="filterSchedule()">
+                        <select id="sectionSelect" onchange="onSectionChange()">
                             <!-- Populated dynamically -->
                         </select>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -499,7 +513,7 @@
                 <div class="filter-group" id="groupProfFilter">
                     <label id="lblProfFilter">Filter By: Professor</label>
                     <div class="select-wrapper">
-                        <select id="professorSelect" onchange="filterSchedule()">
+                        <select id="professorSelect" onchange="onProfessorChange()">
                             <option value="">All Professors</option>
                             <!-- Populated dynamically -->
                         </select>
@@ -509,7 +523,7 @@
                 <div class="filter-group" id="groupRoomFilter">
                     <label>Filter By: Room</label>
                     <div class="select-wrapper">
-                        <select id="roomSelect" onchange="filterSchedule()">
+                        <select id="roomSelect" onchange="onRoomChange()">
                             <option value="">All Rooms</option>
                             <!-- Populated dynamically -->
                         </select>
@@ -548,6 +562,14 @@
 
     <script>
         const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const TIME_SLOTS = [
+            "09:00 AM - 10:00 AM",
+            "10:00 AM - 11:00 AM",
+            "11:20 AM - 12:10 PM",
+            "12:10 PM - 01:00 PM",
+            "01:50 PM - 02:40 PM",
+            "02:40 PM - 03:30 PM"
+        ];
         let fullSchedule = {};
         let allSections = [];
         let allProfessors = [];
@@ -604,9 +626,16 @@
                         }
                     }
 
-                    select.innerHTML = allSections.map(s => `
+                    let optionsHtml = `<option value="">All Classes / Sections (Campus Overview)</option>`;
+                    optionsHtml += allSections.map(s => `
                         <option value="${s.id}">${s.department} - Sem ${s.semester} (${s.section})</option>
                     `).join("");
+                    select.innerHTML = optionsHtml;
+
+                    // Default to first section for clean initial matrix view
+                    if (!currentUser || currentUser.role !== "student") {
+                        select.value = allSections[0].id;
+                    }
                 }
             } catch (err) {
                 console.error("Failed to load sections:", err);
@@ -623,11 +652,13 @@
                         <option value="${p.id || p.name}">${p.name}</option>
                     `).join("");
 
-                    // If faculty, pre-select themselves
+                    // If faculty, pre-select themselves and set section to all
                     if (currentUser && currentUser.role === "faculty") {
                         const matched = allProfessors.find(p => p.id === currentUser.faculty_id || p.name === currentUser.name);
                         if (matched) {
                             select.value = matched.id || matched.name;
+                            const secSelect = document.getElementById("sectionSelect");
+                            if (secSelect) secSelect.value = "";
                         }
                     }
                 }
@@ -661,52 +692,208 @@
             }
         }
 
+        function getCohortLabel(secId) {
+            const sec = allSections.find(s => s.id === secId);
+            if (!sec) return secId;
+            const deptCode = sec.department.includes("Computer") ? "CS" : 
+                             sec.department.includes("Info") ? "IT" : 
+                             sec.department.includes("Elect") ? "EC" : "ENG";
+            return `${deptCode} S${sec.semester}-${sec.section}`;
+        }
+
+        function onProfessorChange() {
+            const profSelect = document.getElementById("professorSelect");
+            const secSelect = document.getElementById("sectionSelect");
+            const selectedProf = profSelect?.value;
+
+            if (selectedProf && secSelect && (!currentUser || currentUser.role !== "student")) {
+                const currentSecId = secSelect.value;
+                const currentSecSchedule = fullSchedule[currentSecId];
+                let teachesInCurrentSec = false;
+
+                if (currentSecSchedule) {
+                    for (const slot in currentSecSchedule) {
+                        for (const day of DAYS) {
+                            const item = currentSecSchedule[slot] ? currentSecSchedule[slot][day] : null;
+                            if (item && (item.faculty_id === selectedProf || item.professor === selectedProf)) {
+                                teachesInCurrentSec = true;
+                                break;
+                            }
+                        }
+                        if (teachesInCurrentSec) break;
+                    }
+                }
+
+                // If selected professor doesn't teach the current single section, switch to campus overview
+                // so the user sees the professor's complete schedule across all classes without blank cells!
+                if (!teachesInCurrentSec) {
+                    secSelect.value = "";
+                }
+            }
+
+            filterSchedule();
+        }
+
+        function onRoomChange() {
+            const roomSelect = document.getElementById("roomSelect");
+            const secSelect = document.getElementById("sectionSelect");
+            const selectedRoom = roomSelect?.value;
+
+            if (selectedRoom && secSelect && (!currentUser || currentUser.role !== "student")) {
+                const currentSecId = secSelect.value;
+                const currentSecSchedule = fullSchedule[currentSecId];
+                let usedInCurrentSec = false;
+
+                if (currentSecSchedule) {
+                    for (const slot in currentSecSchedule) {
+                        for (const day of DAYS) {
+                            const item = currentSecSchedule[slot] ? currentSecSchedule[slot][day] : null;
+                            if (item && (item.room === selectedRoom || item.room_id === selectedRoom)) {
+                                usedInCurrentSec = true;
+                                break;
+                            }
+                        }
+                        if (usedInCurrentSec) break;
+                    }
+                }
+
+                if (!usedInCurrentSec) {
+                    secSelect.value = "";
+                }
+            }
+
+            filterSchedule();
+        }
+
+        function onSectionChange() {
+            const secSelect = document.getElementById("sectionSelect");
+            const profSelect = document.getElementById("professorSelect");
+            const roomSelect = document.getElementById("roomSelect");
+
+            const selectedSecId = secSelect?.value;
+            const selectedProf = profSelect?.value;
+            const selectedRoom = roomSelect?.value;
+
+            if (selectedSecId && fullSchedule[selectedSecId]) {
+                const secSchedule = fullSchedule[selectedSecId];
+                
+                // If current prof filter doesn't teach here, clear prof filter
+                if (selectedProf) {
+                    let profFound = false;
+                    for (const slot in secSchedule) {
+                        for (const day of DAYS) {
+                            const item = secSchedule[slot] ? secSchedule[slot][day] : null;
+                            if (item && (item.faculty_id === selectedProf || item.professor === selectedProf)) {
+                                profFound = true;
+                                break;
+                            }
+                        }
+                        if (profFound) break;
+                    }
+                    if (!profFound && profSelect) profSelect.value = "";
+                }
+
+                // If current room filter isn't in this section, clear room filter
+                if (selectedRoom) {
+                    let roomFound = false;
+                    for (const slot in secSchedule) {
+                        for (const day of DAYS) {
+                            const item = secSchedule[slot] ? secSchedule[slot][day] : null;
+                            if (item && (item.room === selectedRoom || item.room_id === selectedRoom)) {
+                                roomFound = true;
+                                break;
+                            }
+                        }
+                        if (roomFound) break;
+                    }
+                    if (!roomFound && roomSelect) roomSelect.value = "";
+                }
+            }
+
+            filterSchedule();
+        }
+
         function filterSchedule() {
             const selectedSection = document.getElementById("sectionSelect")?.value;
             const selectedProf = document.getElementById("professorSelect")?.value;
             const selectedRoom = document.getElementById("roomSelect")?.value;
+            const subHeading = document.getElementById("timetableSubHeading");
 
             if (!fullSchedule || Object.keys(fullSchedule).length === 0) {
                 renderTimetable({});
                 return;
             }
 
-            // If faculty has selected their name but "All Sections" is desired, or section selected:
-            let sectionSchedule = fullSchedule[selectedSection] || fullSchedule;
+            let filtered = {};
+            let isMultiCohortView = false;
 
-            // If faculty is logged in and wants to see their classes across all sections when no specific section is chosen
-            if (currentUser && currentUser.role === "faculty" && selectedProf && !selectedSection) {
-                // Aggregate across all sections
-                sectionSchedule = {};
-                for (const [secId, secSlots] of Object.entries(fullSchedule)) {
-                    if (typeof secSlots !== 'object') continue;
-                    for (const [slot, days] of Object.entries(secSlots)) {
-                        if (!sectionSchedule[slot]) sectionSchedule[slot] = {};
-                        for (const day of DAYS) {
-                            const entry = days ? days[day] : null;
-                            if (entry && (entry.faculty_id === selectedProf || entry.professor === selectedProf || entry.professor === currentUser.name)) {
-                                sectionSchedule[slot][day] = entry;
+            // Scenario 1: Specific single section selected
+            if (selectedSection && fullSchedule[selectedSection]) {
+                const secObj = allSections.find(s => s.id === selectedSection);
+                if (subHeading && (!currentUser || currentUser.role === "admin")) {
+                    subHeading.textContent = `Class Schedule • ${secObj ? `${secObj.department} - Sem ${secObj.semester} (${secObj.section})` : selectedSection} • 30 Weekly Periods`;
+                }
+
+                const secSchedule = fullSchedule[selectedSection];
+                for (const slot of TIME_SLOTS) {
+                    filtered[slot] = {};
+                    for (const day of DAYS) {
+                        const item = secSchedule[slot] ? secSchedule[slot][day] : null;
+                        if (!item) {
+                            filtered[slot][day] = null;
+                            continue;
+                        }
+
+                        const matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
+                        const matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
+
+                        filtered[slot][day] = (matchProf && matchRoom) ? item : null;
+                    }
+                }
+            } 
+            // Scenario 2: Multi-cohort campus-wide aggregation (by Professor, Room, or All)
+            else {
+                isMultiCohortView = true;
+
+                if (selectedProf) {
+                    const pObj = allProfessors.find(p => p.id === selectedProf || p.name === selectedProf);
+                    if (subHeading && (!currentUser || currentUser.role === "admin")) {
+                        subHeading.textContent = `Faculty Schedule Matrix • ${pObj ? pObj.name : selectedProf} (All Assigned Cohorts)`;
+                    }
+                } else if (selectedRoom) {
+                    const rObj = allRooms.find(r => r.id === selectedRoom || r.name === selectedRoom);
+                    if (subHeading && (!currentUser || currentUser.role === "admin")) {
+                        subHeading.textContent = `Facility Schedule • ${rObj ? rObj.name : selectedRoom} (All Active Classes)`;
+                    }
+                } else {
+                    if (subHeading && (!currentUser || currentUser.role === "admin")) {
+                        subHeading.textContent = "Institution-Wide Multi-Cohort Schedule Matrix";
+                    }
+                }
+
+                for (const slot of TIME_SLOTS) {
+                    filtered[slot] = {};
+                    for (const day of DAYS) {
+                        filtered[slot][day] = null;
+
+                        // Scan through all cohorts to find matching sessions
+                        for (const [secId, secSlots] of Object.entries(fullSchedule)) {
+                            if (typeof secSlots !== "object") continue;
+                            const item = secSlots[slot] ? secSlots[slot][day] : null;
+                            if (!item) continue;
+
+                            const matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
+                            const matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
+
+                            if (matchProf && matchRoom) {
+                                filtered[slot][day] = {
+                                    ...item,
+                                    cohort_label: getCohortLabel(secId)
+                                };
+                                break; // Exactly 1 instructor/room match per slot
                             }
                         }
                     }
-                }
-            }
-
-            // Apply professor & room filters if selected
-            let filtered = {};
-            for (let slot in sectionSchedule) {
-                filtered[slot] = {};
-                for (let day of DAYS) {
-                    const item = sectionSchedule[slot] ? sectionSchedule[slot][day] : null;
-                    if (!item) {
-                        filtered[slot][day] = null;
-                        continue;
-                    }
-
-                    let matchProf = !selectedProf || item.professor === selectedProf || item.faculty_id === selectedProf;
-                    let matchRoom = !selectedRoom || item.room === selectedRoom || item.room_id === selectedRoom;
-
-                    filtered[slot][day] = (matchProf && matchRoom) ? item : null;
                 }
             }
 
@@ -759,7 +946,10 @@
                     rowHtml += `
                         <td>
                             <div class="schedule-card ${item.color || 'purple-card'}">
-                                <div class="card-title">${item.subject}</div>
+                                <div class="card-title">
+                                    <span>${item.subject}</span>
+                                    ${item.cohort_label ? `<span class="card-badge">${item.cohort_label}</span>` : ""}
+                                </div>
                                 <div class="card-prof">${item.professor}</div>
                                 <div class="card-room">${item.room}</div>
                             </div>
