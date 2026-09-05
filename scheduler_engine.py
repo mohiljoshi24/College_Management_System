@@ -95,15 +95,75 @@ def generate_schedule():
         general_facs = [f for f in faculties if f.get("id") not in ["FA_SPORTS", "FA_LIB"]]
         return general_facs if general_facs else faculties
 
-    def get_eligible_rooms(subj_type, dept):
+    def get_specialized_rooms(subj_type, dept):
         matched_type = [r for r in rooms if r.get("type", "LECTURE").upper() == subj_type.upper()]
         if not matched_type:
             if subj_type == "ASSIGNMENT":
                 matched_type = [r for r in rooms if r.get("type") in ["LECTURE", "ASSIGNMENT"]]
+            elif subj_type == "LAB":
+                matched_type = [r for r in rooms if r.get("type") == "LAB"]
             else:
                 matched_type = [r for r in rooms if r.get("type") == "LECTURE"]
         dept_matched = [r for r in matched_type if r.get("department") == dept or r.get("department") == "General"]
         return dept_matched if dept_matched else matched_type
+
+    # =========================================================================
+    # DYNAMIC MULTI-FLOOR BASE CLASSROOM ALLOCATION ENGINE
+    # =========================================================================
+    lecture_rooms = [r for r in rooms if r.get("type") == "LECTURE"]
+    if not lecture_rooms:
+        lecture_rooms = rooms[:]
+
+    section_home_rooms = {}
+    used_base_rooms = set()
+
+    # Prioritize higher semester & larger student cohorts for departmental floor matching
+    sorted_sections = sorted(sections, key=lambda s: (s.get("semester", 1), s.get("student_count", 60)), reverse=True)
+
+    for sec in sorted_sections:
+        sec_id = sec["id"]
+        sec_dept = sec.get("department", "Computer Science")
+        sec_sem = sec.get("semester", 1)
+        sec_count = sec.get("student_count", 50)
+
+        # Explicit override if present in section definition
+        if sec.get("home_room_id"):
+            preset_room = next((r for r in lecture_rooms if r.get("id") == sec.get("home_room_id")), None)
+            if preset_room:
+                section_home_rooms[sec_id] = preset_room
+                used_base_rooms.add(preset_room["id"])
+                continue
+
+        # Dynamic heuristic ranking
+        def score_candidate_room(r):
+            # Prefer unallocated rooms to ensure 1-to-1 dedicated spaces whenever room inventory permits
+            is_unclaimed = 1 if r["id"] not in used_base_rooms else 0
+            
+            # Department / Floor affinity (e.g. CS dept room for CS cohorts, General/1st floor for Sem 1)
+            r_dept = r.get("department", "General")
+            if sec_sem == 1:
+                dept_score = 3 if r_dept == "General" else (1 if r_dept == sec_dept else 0)
+            else:
+                dept_score = 3 if r_dept == sec_dept else (2 if r_dept == "General" else 0)
+
+            # Capacity suitability: must seat class, minimizing wasted excessive seats
+            cap = r.get("capacity", 60)
+            cap_fit = 2 if cap >= sec_count else -5
+            cap_diff = -abs(cap - sec_count)
+
+            # Floor proximity heuristic (R1xx = Floor 1, R2xx = Floor 2, R3xx = Floor 3)
+            r_id = str(r.get("id", ""))
+            floor_score = 0
+            if sec_sem == 1 and "10" in r_id: floor_score = 2
+            elif sec_sem in [3, 4] and "20" in r_id: floor_score = 2
+            elif sec_sem in [5, 6, 7, 8] and ("20" in r_id or "30" in r_id): floor_score = 2
+
+            return (is_unclaimed, dept_score, cap_fit, floor_score, cap_diff, random.random())
+
+        ranked_rooms = sorted(lecture_rooms, key=score_candidate_room, reverse=True)
+        chosen_home = ranked_rooms[0] if ranked_rooms else lecture_rooms[0]
+        section_home_rooms[sec_id] = chosen_home
+        used_base_rooms.add(chosen_home["id"])
 
     master_schedule = {}
 
@@ -119,7 +179,7 @@ def generate_schedule():
 
     for sec in sections:
         sec_id = sec["id"]
-        # Master schedule template has all DAYS (including Saturday as None)
+        sec_home = section_home_rooms.get(sec_id, lecture_rooms[0])
         master_schedule[sec_id] = {slot: {day: None for day in DAYS} for slot in TIME_SLOTS}
         sec_dept = sec.get("department", "Computer Science")
         sec_sem = sec.get("semester", 1)
@@ -150,7 +210,7 @@ def generate_schedule():
                     if f["id"] not in booked_faculty[slot_key]
                     and faculty_daily_load.get((f["id"], act_day), 0) < f.get("max_workload_hrs", 5.0)
                 ]
-                act_rms = [r for r in get_eligible_rooms(act_subj["type"], sec_dept) if r["id"] not in booked_rooms[slot_key]]
+                act_rms = [r for r in get_specialized_rooms(act_subj["type"], sec_dept) if r["id"] not in booked_rooms[slot_key]]
 
                 if act_facs and act_rms:
                     chosen_f = act_facs[0]
@@ -178,7 +238,7 @@ def generate_schedule():
                     activity_slots_assigned[act_day] = cand_slot
                     break
 
-        # 2. Fill the remaining academic slots across Monday through Friday (all 6 periods per day)
+        # 2. Fill remaining academic slots across Monday through Friday (all 6 periods per day)
         subj_weekly_count = {s.get("code"): 0 for s in academic_subjects}
 
         for day in INSTRUCTIONAL_DAYS:
@@ -223,13 +283,20 @@ def generate_schedule():
                     if not avail_facs:
                         continue
 
-                    eligible_rms = get_eligible_rooms(s_type, sec_dept)
-                    avail_rms = [r for r in eligible_rms if r["id"] not in booked_rooms[slot_key]]
-                    if not avail_rms:
-                        continue
+                    # Room Allocation Rule:
+                    # - Theory Lectures (LECTURE): Stay 100% in section's dedicated Home Classroom (sec_home)
+                    # - Practical Labs (LAB): Route to specialized departmental lab
+                    if s_type == "LECTURE":
+                        if sec_home["id"] in booked_rooms[slot_key]:
+                            continue
+                        avail_rms = [sec_home]
+                    else:
+                        eligible_rms = get_specialized_rooms("LAB", sec_dept)
+                        avail_rms = [r for r in eligible_rms if r["id"] not in booked_rooms[slot_key]]
+                        if not avail_rms:
+                            continue
 
-                    # STAFF-ROOM BREAK / REST GAP HEURISTIC:
-                    # Penalize faculty who taught in the immediately preceding slot today
+                    # STAFF-ROOM BREAK / REST GAP HEURISTIC
                     def faculty_rest_score(f):
                         f_id = f["id"]
                         last_slot = faculty_last_slot.get((f_id, day), -99)
@@ -241,10 +308,10 @@ def generate_schedule():
 
                     chosen_subject = subj
                     chosen_faculty = avail_facs[0]
-                    chosen_room = random.choice(avail_rms)
+                    chosen_room = avail_rms[0] if s_type == "LECTURE" else random.choice(avail_rms)
                     break
 
-                # Robust fallback across all academic subjects and department faculties
+                # Robust fallback
                 if not chosen_subject or not chosen_faculty or not chosen_room:
                     for subj in academic_subjects:
                         s_code = subj.get("code")
@@ -258,7 +325,6 @@ def generate_schedule():
                             and faculty_daily_load.get((f["id"], day), 0) < f.get("max_workload_hrs", 5.0)
                         ]
                         if not avail_facs:
-                            # Try any available faculty in department/college
                             avail_facs = [
                                 f for f in faculties
                                 if f.get("id") not in ["FA_SPORTS", "FA_LIB"]
@@ -266,15 +332,25 @@ def generate_schedule():
                                 and faculty_daily_load.get((f["id"], day), 0) < f.get("max_workload_hrs", 5.0)
                             ]
 
-                        if not avail_facs: continue
+                        if not avail_facs:
+                            continue
 
-                        eligible_rms = get_eligible_rooms(s_type, sec_dept)
-                        avail_rms = [r for r in eligible_rms if r["id"] not in booked_rooms[slot_key]]
-                        if not avail_rms: continue
+                        if s_type == "LECTURE":
+                            if sec_home["id"] in booked_rooms[slot_key]:
+                                alt_lecture_rms = [r for r in lecture_rooms if r["id"] not in booked_rooms[slot_key]]
+                                if not alt_lecture_rms: continue
+                                avail_rms = alt_lecture_rms
+                            else:
+                                avail_rms = [sec_home]
+                        else:
+                            eligible_rms = get_specialized_rooms("LAB", sec_dept)
+                            avail_rms = [r for r in eligible_rms if r["id"] not in booked_rooms[slot_key]]
+                            if not avail_rms:
+                                continue
 
                         chosen_subject = subj
                         chosen_faculty = random.choice(avail_facs)
-                        chosen_room = random.choice(avail_rms)
+                        chosen_room = avail_rms[0] if s_type == "LECTURE" and avail_rms == [sec_home] else random.choice(avail_rms)
                         break
 
                 if not chosen_subject or not chosen_faculty or not chosen_room:
@@ -308,4 +384,8 @@ def generate_schedule():
                 }
 
     save_data(TIMETABLE_FILE, master_schedule)
-    return master_schedule
+    return master_schedule
+
+if __name__ == "__main__":
+    generate_schedule()
+    print("Master schedule synthesized and saved successfully.")
