@@ -1,12 +1,5 @@
 [
   {
-    "id": "R101",
-    "name": "Lecture Hall 101",
-    "type": "LECTURE",
-    "capacity": 70,
-    "department": "General"
-  },
-  {
     "id": "R102",
     "name": "Lecture Hall 102",
     "type": "LECTURE",
